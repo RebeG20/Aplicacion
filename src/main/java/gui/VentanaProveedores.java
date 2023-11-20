@@ -124,7 +124,7 @@ public class VentanaProveedores extends javax.swing.JFrame {
 
         center.add(jPanel9, java.awt.BorderLayout.PAGE_START);
 
-        jPanel10.setLayout(new java.awt.GridLayout(4, 1, 0, 10));
+        jPanel10.setLayout(new java.awt.GridLayout(4, 1, 0, 5));
 
         jButton3.setText("Agregar");
         jPanel10.add(jButton3);
