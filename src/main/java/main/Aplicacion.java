@@ -1,6 +1,7 @@
-package com.mycompany.aplicacion;
+package main;
 
-import gui.VentanaRecargas;
+import gui.relaciones.*;
+import gui.tablas.*;
 
 public class Aplicacion {
 
@@ -8,5 +9,8 @@ public class Aplicacion {
         //Ejecutar Ventanas para pruebas:
 //       VentanaRecargas obVR = new VentanaRecargas();
 //       obVR.setVisible(true);
+
+//        VentanaTurno obTurno = new VentanaTurno();
+//        obTurno.setVisible(true);
     }
 }

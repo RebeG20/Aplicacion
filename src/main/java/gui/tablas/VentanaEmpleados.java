@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package gui;
+package gui.tablas;
 
 /**
  *
  * @author rafae
  */
-public class VentanaCompaniasTel extends javax.swing.JFrame {
+public class VentanaEmpleados extends javax.swing.JFrame {
 
     /**
-     * Creates new form VentanaCompaniasTel
+     * Creates new form VentanaEmpleados
      */
-    public VentanaCompaniasTel() {
+    public VentanaEmpleados() {
         initComponents();
     }
 
@@ -35,17 +35,31 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
         center = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jPanel10 = new javax.swing.JPanel();
+        jButton8 = new javax.swing.JButton();
+        jPanel11 = new javax.swing.JPanel();
+        jButton9 = new javax.swing.JButton();
+        jPanel12 = new javax.swing.JPanel();
+        jButton10 = new javax.swing.JButton();
+        jPanel13 = new javax.swing.JPanel();
+        jButton11 = new javax.swing.JButton();
         footer = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
@@ -53,7 +67,7 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -62,12 +76,12 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
 
         principal.setLayout(new java.awt.BorderLayout(10, 10));
 
-        jLabel1.setText("Compañias Telefonicas");
+        jLabel1.setText("Empleados");
         header.add(jLabel1);
 
         principal.add(header, java.awt.BorderLayout.PAGE_START);
 
-        aside.setPreferredSize(new java.awt.Dimension(270, 272));
+        aside.setPreferredSize(new java.awt.Dimension(500, 415));
         aside.setLayout(new java.awt.BorderLayout(5, 5));
 
         jLabel2.setText("Ingresar Datos");
@@ -75,61 +89,83 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
 
         aside.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        jPanel2.setPreferredSize(new java.awt.Dimension(150, 246));
-        jPanel2.setLayout(new java.awt.GridLayout(2, 1, 0, 15));
+        jPanel2.setPreferredSize(new java.awt.Dimension(150, 389));
+        jPanel2.setLayout(new java.awt.GridLayout(7, 1, 0, 5));
 
-        jLabel3.setText("     ID Compañia Tel:");
+        jLabel3.setText("     ID Empleado:");
         jPanel2.add(jLabel3);
 
-        jLabel4.setText("     Nombre Compañia Tel:");
+        jLabel4.setText("     Nombre Empleado:");
         jPanel2.add(jLabel4);
+
+        jLabel5.setText("     Apellido Paterno:");
+        jPanel2.add(jLabel5);
+
+        jLabel6.setText("     Apellido Materno:");
+        jPanel2.add(jLabel6);
+
+        jLabel7.setText("     Calle Empleado:");
+        jPanel2.add(jLabel7);
+
+        jLabel8.setText("     Colonia Empleado:");
+        jPanel2.add(jLabel8);
+
+        jLabel9.setText("     Num. Casa Empleado:");
+        jPanel2.add(jLabel9);
 
         aside.add(jPanel2, java.awt.BorderLayout.LINE_START);
 
-        jPanel3.setLayout(new java.awt.GridLayout(2, 1, 0, 15));
+        jPanel3.setLayout(new java.awt.GridLayout(7, 1, 0, 5));
         jPanel3.add(jTextField1);
         jPanel3.add(jTextField2);
+        jPanel3.add(jTextField3);
+        jPanel3.add(jTextField4);
+        jPanel3.add(jTextField5);
+        jPanel3.add(jTextField6);
+        jPanel3.add(jTextField7);
 
         aside.add(jPanel3, java.awt.BorderLayout.CENTER);
 
         principal.add(aside, java.awt.BorderLayout.LINE_START);
 
-        center.setLayout(new java.awt.BorderLayout(5, 5));
+        center.setLayout(new java.awt.BorderLayout(0, 5));
 
-        jLabel5.setText("Opciones");
-        jPanel4.add(jLabel5);
+        jLabel10.setText("Opciones");
+        jPanel4.add(jLabel10);
 
         center.add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
-        jPanel5.setLayout(new java.awt.GridLayout(2, 2, 5, 5));
+        jPanel5.setLayout(new java.awt.GridLayout(4, 1, 5, 10));
 
-        jButton1.setText("Agregar");
-        jPanel5.add(jButton1);
+        jButton8.setText("Agregar");
+        jButton8.setPreferredSize(new java.awt.Dimension(100, 30));
+        jPanel10.add(jButton8);
 
-        jButton2.setText("Eliminar");
-        jPanel5.add(jButton2);
+        jPanel5.add(jPanel10);
 
-        jButton3.setText("Actualizar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jButton3);
+        jButton9.setText("Actualizar");
+        jButton9.setPreferredSize(new java.awt.Dimension(100, 30));
+        jPanel11.add(jButton9);
 
-        jButton4.setText("Mostrar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jButton4);
+        jPanel5.add(jPanel11);
+
+        jButton10.setText("Eliminar");
+        jButton10.setPreferredSize(new java.awt.Dimension(100, 30));
+        jPanel12.add(jButton10);
+
+        jPanel5.add(jPanel12);
+
+        jButton11.setText("Mostrar");
+        jButton11.setPreferredSize(new java.awt.Dimension(100, 30));
+        jPanel13.add(jButton11);
+
+        jPanel5.add(jPanel13);
 
         center.add(jPanel5, java.awt.BorderLayout.CENTER);
 
         principal.add(center, java.awt.BorderLayout.CENTER);
 
-        footer.setPreferredSize(new java.awt.Dimension(475, 250));
+        footer.setPreferredSize(new java.awt.Dimension(677, 300));
         footer.setLayout(new java.awt.BorderLayout());
 
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 5));
@@ -150,8 +186,8 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
 
         jPanel7.setLayout(new java.awt.BorderLayout());
 
-        jLabel6.setText("Tabla Compañia Telefonica");
-        jPanel8.add(jLabel6);
+        jLabel11.setText("Tabla Empleados");
+        jPanel8.add(jLabel11);
 
         jPanel7.add(jPanel8, java.awt.BorderLayout.PAGE_START);
 
@@ -159,17 +195,17 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID Compañia Tel", "Nombre Compañia Tel"
+                "ID Empleado", "Nombre", "Apellido Paterno", "Apellido Materno", "Calle Empleado", "Colonia Empleado", "Num Casa"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -197,19 +233,11 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,20 +256,20 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaCompaniasTel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaCompaniasTel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaCompaniasTel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaCompaniasTel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaCompaniasTel().setVisible(true);
+                new VentanaEmpleados().setVisible(true);
             }
         });
     }
@@ -251,20 +279,29 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
     private javax.swing.JPanel center;
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -277,6 +314,11 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     private javax.swing.JPanel principal;
     // End of variables declaration//GEN-END:variables
 }

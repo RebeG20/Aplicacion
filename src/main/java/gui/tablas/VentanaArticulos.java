@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package gui;
+package gui.tablas;
 
 /**
  *
  * @author rafae
  */
-public class VentanaMarca extends javax.swing.JFrame {
+public class VentanaArticulos extends javax.swing.JFrame {
 
     /**
-     * Creates new form VentanaMarca
+     * Creates new form VentanaArticulos
      */
-    public VentanaMarca() {
+    public VentanaArticulos() {
         initComponents();
     }
 
@@ -35,12 +35,16 @@ public class VentanaMarca extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
         center = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -53,7 +57,7 @@ public class VentanaMarca extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -62,54 +66,62 @@ public class VentanaMarca extends javax.swing.JFrame {
 
         principal.setLayout(new java.awt.BorderLayout(10, 10));
 
-        jLabel1.setText("Marca");
+        jLabel1.setText("Articulos");
         header.add(jLabel1);
 
         principal.add(header, java.awt.BorderLayout.PAGE_START);
 
-        aside.setPreferredSize(new java.awt.Dimension(250, 387));
-        aside.setLayout(new java.awt.BorderLayout(5, 5));
+        aside.setPreferredSize(new java.awt.Dimension(350, 387));
+        aside.setLayout(new java.awt.BorderLayout(0, 5));
 
         jLabel2.setText("Ingresar Datos");
         jPanel1.add(jLabel2);
 
         aside.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        jPanel2.setPreferredSize(new java.awt.Dimension(120, 361));
-        jPanel2.setLayout(new java.awt.GridLayout(2, 1, 0, 15));
+        jPanel2.setPreferredSize(new java.awt.Dimension(150, 361));
+        jPanel2.setLayout(new java.awt.GridLayout(4, 1, 0, 5));
 
-        jLabel3.setText("     ID Marca:");
+        jLabel3.setText("     ID Articulo:");
         jPanel2.add(jLabel3);
 
-        jLabel4.setText("     Nombre Marca:");
+        jLabel4.setText("     Nombre Articulo:");
         jPanel2.add(jLabel4);
+
+        jLabel5.setText("     Precio:");
+        jPanel2.add(jLabel5);
+
+        jLabel6.setText("     Stock:");
+        jPanel2.add(jLabel6);
 
         aside.add(jPanel2, java.awt.BorderLayout.LINE_START);
 
-        jPanel3.setLayout(new java.awt.GridLayout(2, 1, 0, 15));
+        jPanel3.setLayout(new java.awt.GridLayout(4, 1, 0, 5));
         jPanel3.add(jTextField1);
         jPanel3.add(jTextField2);
+        jPanel3.add(jTextField3);
+        jPanel3.add(jTextField4);
 
         aside.add(jPanel3, java.awt.BorderLayout.CENTER);
 
         principal.add(aside, java.awt.BorderLayout.LINE_START);
 
-        center.setLayout(new java.awt.BorderLayout());
+        center.setLayout(new java.awt.BorderLayout(0, 5));
 
-        jLabel5.setText("Opciones");
-        jPanel4.add(jLabel5);
+        jLabel7.setText("Opciones");
+        jPanel4.add(jLabel7);
 
         center.add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
-        jPanel5.setLayout(new java.awt.GridLayout(2, 2, 5, 5));
+        jPanel5.setLayout(new java.awt.GridLayout(4, 1, 0, 5));
 
         jButton1.setText("Agregar");
         jPanel5.add(jButton1);
 
-        jButton2.setText("Eliminar");
+        jButton2.setText("Actualizar");
         jPanel5.add(jButton2);
 
-        jButton3.setText("Actualizar");
+        jButton3.setText("Eliminar");
         jPanel5.add(jButton3);
 
         jButton4.setText("Mostrar");
@@ -119,7 +131,7 @@ public class VentanaMarca extends javax.swing.JFrame {
 
         principal.add(center, java.awt.BorderLayout.CENTER);
 
-        footer.setPreferredSize(new java.awt.Dimension(548, 250));
+        footer.setPreferredSize(new java.awt.Dimension(548, 300));
         footer.setLayout(new java.awt.BorderLayout());
 
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 5));
@@ -140,8 +152,8 @@ public class VentanaMarca extends javax.swing.JFrame {
 
         jPanel7.setLayout(new java.awt.BorderLayout());
 
-        jLabel6.setText("Tabla Marca");
-        jPanel8.add(jLabel6);
+        jLabel8.setText("Tabla Articulos");
+        jPanel8.add(jLabel8);
 
         jPanel7.add(jPanel8, java.awt.BorderLayout.PAGE_START);
 
@@ -149,13 +161,13 @@ public class VentanaMarca extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID Marca", "Nombre Marca"
+                "ID Articulo", "Nombre Articulo", "Precio", "Stock"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -172,15 +184,14 @@ public class VentanaMarca extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -200,20 +211,20 @@ public class VentanaMarca extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaMarca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaMarca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaMarca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaMarca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaMarca().setVisible(true);
+                new VentanaArticulos().setVisible(true);
             }
         });
     }
@@ -236,6 +247,8 @@ public class VentanaMarca extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -249,6 +262,8 @@ public class VentanaMarca extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel principal;
     // End of variables declaration//GEN-END:variables
 }
