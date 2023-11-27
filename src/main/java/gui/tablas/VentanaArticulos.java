@@ -1,20 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package gui.tablas;
 
-/**
- *
- * @author rafae
- */
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import tda.Articulos;
+import tda.DAO_Articulos;
+
 public class VentanaArticulos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaArticulos
-     */
+    DAO_Articulos dao = new DAO_Articulos();
+    Articulos art = new Articulos();
+    DefaultTableModel dtm = new DefaultTableModel();
+    
     public VentanaArticulos() {
         initComponents();
+    }
+    
+    public void mostrarArticulos(){
+        dtm = (DefaultTableModel)tablaArticulos.getModel();
+        List<Articulos> lista = dao.listarArticulos();
+        Object[] fila = new Object[4];
+        for(int i = 0; i < lista.size(); i++){
+            fila[0] = lista.get(i).getIdArt();
+            fila[1] = lista.get(i).getNomArt();
+            fila[2] = lista.get(i).getPrecio();
+            fila[3] = lista.get(i).getStock();
+            dtm.addRow(fila);
+        }
+        tablaArticulos.setModel(dtm);
     }
 
     /**
@@ -38,10 +51,10 @@ public class VentanaArticulos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
+        txtStock = new javax.swing.JTextField();
         center = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -60,7 +73,7 @@ public class VentanaArticulos extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaArticulos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,10 +110,10 @@ public class VentanaArticulos extends javax.swing.JFrame {
         aside.add(jPanel2, java.awt.BorderLayout.LINE_START);
 
         jPanel3.setLayout(new java.awt.GridLayout(4, 1, 0, 5));
-        jPanel3.add(jTextField1);
-        jPanel3.add(jTextField2);
-        jPanel3.add(jTextField3);
-        jPanel3.add(jTextField4);
+        jPanel3.add(txtID);
+        jPanel3.add(txtNombre);
+        jPanel3.add(txtPrecio);
+        jPanel3.add(txtStock);
 
         aside.add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -125,6 +138,11 @@ public class VentanaArticulos extends javax.swing.JFrame {
         jPanel5.add(jButton3);
 
         jButton4.setText("Mostrar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton4);
 
         center.add(jPanel5, java.awt.BorderLayout.CENTER);
@@ -159,18 +177,15 @@ public class VentanaArticulos extends javax.swing.JFrame {
 
         jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaArticulos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID Articulo", "Nombre Articulo", "Precio", "Stock"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaArticulos);
 
         jPanel9.add(jScrollPane1);
 
@@ -193,6 +208,10 @@ public class VentanaArticulos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        mostrarArticulos();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,11 +278,11 @@ public class VentanaArticulos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel principal;
+    private javax.swing.JTable tablaArticulos;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtStock;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,5 +12,8 @@ public class Aplicacion {
 
 //        VentanaTurno obTurno = new VentanaTurno();
 //        obTurno.setVisible(true);
+
+        VentanaArticulos obArt = new VentanaArticulos();
+        obArt.setVisible(true);
     }
 }
