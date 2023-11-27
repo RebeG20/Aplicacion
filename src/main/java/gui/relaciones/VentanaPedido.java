@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package gui;
+package gui.relaciones;
 
 /**
  *
  * @author rafae
  */
-public class VentanaRecargas extends javax.swing.JFrame {
+public class VentanaPedido extends javax.swing.JFrame {
 
     /**
-     * Creates new form VentanaRecargas
+     * Creates new form VentanaPedido
      */
-    public VentanaRecargas() {
+    public VentanaPedido() {
         initComponents();
     }
 
@@ -36,13 +36,15 @@ public class VentanaRecargas extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
         center = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -55,7 +57,7 @@ public class VentanaRecargas extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -64,12 +66,12 @@ public class VentanaRecargas extends javax.swing.JFrame {
 
         principal.setLayout(new java.awt.BorderLayout(10, 10));
 
-        jLabel1.setText("Recargas");
+        jLabel1.setText("Pedido");
         header.add(jLabel1);
 
         principal.add(header, java.awt.BorderLayout.PAGE_START);
 
-        aside.setPreferredSize(new java.awt.Dimension(350, 415));
+        aside.setPreferredSize(new java.awt.Dimension(350, 387));
         aside.setLayout(new java.awt.BorderLayout());
 
         jLabel2.setText("Ingresar Datos");
@@ -77,25 +79,28 @@ public class VentanaRecargas extends javax.swing.JFrame {
 
         aside.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        jPanel2.setPreferredSize(new java.awt.Dimension(150, 389));
-        jPanel2.setLayout(new java.awt.GridLayout(3, 1, 0, 15));
+        jPanel2.setPreferredSize(new java.awt.Dimension(150, 361));
+        jPanel2.setLayout(new java.awt.GridLayout(4, 1, 5, 5));
 
-        jLabel3.setText("     ID Recargas:");
+        jLabel3.setText("     ID Articulo:");
         jPanel2.add(jLabel3);
 
-        jLabel4.setText("     Precio:");
+        jLabel4.setText("     ID Proveedor:");
         jPanel2.add(jLabel4);
 
-        jLabel5.setText("     Tipo:");
+        jLabel5.setText("     Cantidad:");
         jPanel2.add(jLabel5);
+
+        jLabel6.setText("     Fecha Pedido:");
+        jPanel2.add(jLabel6);
 
         aside.add(jPanel2, java.awt.BorderLayout.LINE_START);
 
-        jPanel3.setPreferredSize(new java.awt.Dimension(200, 389));
-        jPanel3.setLayout(new java.awt.GridLayout(3, 1, 0, 15));
+        jPanel3.setLayout(new java.awt.GridLayout(4, 1, 0, 5));
         jPanel3.add(jTextField1);
         jPanel3.add(jTextField2);
         jPanel3.add(jTextField3);
+        jPanel3.add(jTextField4);
 
         aside.add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -103,12 +108,12 @@ public class VentanaRecargas extends javax.swing.JFrame {
 
         center.setLayout(new java.awt.BorderLayout());
 
-        jLabel6.setText("Opciones");
-        jPanel4.add(jLabel6);
+        jLabel7.setText("Opciones");
+        jPanel4.add(jLabel7);
 
         center.add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
-        jPanel5.setLayout(new java.awt.GridLayout(4, 1, 10, 5));
+        jPanel5.setLayout(new java.awt.GridLayout(4, 1, 0, 5));
 
         jButton1.setText("Agregar");
         jPanel5.add(jButton1);
@@ -126,7 +131,7 @@ public class VentanaRecargas extends javax.swing.JFrame {
 
         principal.add(center, java.awt.BorderLayout.CENTER);
 
-        footer.setPreferredSize(new java.awt.Dimension(677, 300));
+        footer.setPreferredSize(new java.awt.Dimension(548, 300));
         footer.setLayout(new java.awt.BorderLayout());
 
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 5));
@@ -147,8 +152,8 @@ public class VentanaRecargas extends javax.swing.JFrame {
 
         jPanel7.setLayout(new java.awt.BorderLayout());
 
-        jLabel7.setText("Tabla Recargas");
-        jPanel8.add(jLabel7);
+        jLabel8.setText("Tabla Pedido");
+        jPanel8.add(jLabel8);
 
         jPanel7.add(jPanel8, java.awt.BorderLayout.PAGE_START);
 
@@ -156,29 +161,16 @@ public class VentanaRecargas extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID Recargas", "Precio", "Tipo"
+                "ID Articulo", "ID Proveedor", "Cantidad", "Fecha Pedido"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-        }
 
         jPanel9.add(jScrollPane1);
 
@@ -192,7 +184,7 @@ public class VentanaRecargas extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,6 +192,7 @@ public class VentanaRecargas extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -219,20 +212,20 @@ public class VentanaRecargas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaRecargas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaRecargas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaRecargas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaRecargas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaRecargas().setVisible(true);
+                new VentanaPedido().setVisible(true);
             }
         });
     }
@@ -256,6 +249,7 @@ public class VentanaRecargas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -270,6 +264,7 @@ public class VentanaRecargas extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel principal;
     // End of variables declaration//GEN-END:variables
 }
