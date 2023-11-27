@@ -4,6 +4,8 @@
  */
 package gui.tablas;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author rafae
@@ -15,6 +17,13 @@ public class VentanaProveedores extends javax.swing.JFrame {
      */
     public VentanaProveedores() {
         initComponents();
+        Agregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadir.png"));
+        Actualizar.setIcon(new ImageIcon("./src/main/java/Imagenes/actualizar.png"));
+        Regresar.setIcon(new ImageIcon("./src/main/java/Imagenes/atras.png"));
+        Mostrar.setIcon(new ImageIcon("./src/main/java/Imagenes/mostrar.png"));
+        Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
+        Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
+        limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
     }
 
     /**
@@ -48,15 +57,15 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        Agregar = new javax.swing.JButton();
+        Actualizar = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
+        Mostrar = new javax.swing.JButton();
         footer = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
-        jButton7 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Regresar = new javax.swing.JButton();
+        Editar = new javax.swing.JButton();
+        limpiar = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -66,77 +75,137 @@ public class VentanaProveedores extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        principal.setBackground(new java.awt.Color(255, 255, 255));
         principal.setLayout(new java.awt.BorderLayout(10, 10));
 
+        header.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Proveedores");
         header.add(jLabel1);
 
         principal.add(header, java.awt.BorderLayout.PAGE_START);
 
+        aside.setBackground(new java.awt.Color(255, 255, 255));
         aside.setPreferredSize(new java.awt.Dimension(500, 374));
-        aside.setLayout(new java.awt.BorderLayout(10, 0));
+        aside.setLayout(new java.awt.BorderLayout(10, 1));
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setLayout(new java.awt.GridLayout(5, 1, 0, 5));
 
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("     ID Proveedor:");
         jPanel6.add(jLabel3);
 
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("     Nombre Proveedor:");
         jPanel6.add(jLabel4);
 
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("     Dias que Surte:");
         jPanel6.add(jLabel5);
 
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("     Telefono Proveedor:");
         jPanel6.add(jLabel6);
 
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("     Ciudad Proveedor:");
         jPanel6.add(jLabel7);
 
         aside.add(jPanel6, java.awt.BorderLayout.LINE_START);
 
+        jPanel7.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel2.setFont(new java.awt.Font("Lucida Sans", 0, 15)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Ingresar Datos");
         jPanel7.add(jLabel2);
 
         aside.add(jPanel7, java.awt.BorderLayout.PAGE_START);
 
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new java.awt.GridLayout(5, 1, 0, 5));
+
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel8.add(jTextField1);
+
+        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel8.add(jTextField2);
+
+        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
         jPanel8.add(jTextField3);
+
+        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextField4.setForeground(new java.awt.Color(0, 0, 0));
         jPanel8.add(jTextField4);
+
+        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextField5.setForeground(new java.awt.Color(0, 0, 0));
         jPanel8.add(jTextField5);
 
         aside.add(jPanel8, java.awt.BorderLayout.CENTER);
 
         principal.add(aside, java.awt.BorderLayout.LINE_START);
 
+        center.setBackground(new java.awt.Color(255, 255, 255));
         center.setPreferredSize(new java.awt.Dimension(300, 374));
-        center.setLayout(new java.awt.BorderLayout());
+        center.setLayout(new java.awt.BorderLayout(0, 2));
 
+        jPanel9.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel8.setFont(new java.awt.Font("Lucida Sans", 0, 15)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Opciones");
         jPanel9.add(jLabel8);
 
         center.add(jPanel9, java.awt.BorderLayout.PAGE_START);
 
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setLayout(new java.awt.GridLayout(4, 1, 0, 5));
 
-        jButton3.setText("Agregar");
-        jPanel10.add(jButton3);
+        Agregar.setBackground(new java.awt.Color(255, 102, 102));
+        Agregar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Agregar.setForeground(new java.awt.Color(255, 255, 255));
+        Agregar.setText("Agregar");
+        jPanel10.add(Agregar);
 
-        jButton4.setText("Actualizar");
-        jPanel10.add(jButton4);
+        Actualizar.setBackground(new java.awt.Color(255, 102, 102));
+        Actualizar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Actualizar.setForeground(new java.awt.Color(255, 255, 255));
+        Actualizar.setText("Actualizar");
+        jPanel10.add(Actualizar);
 
-        jButton5.setText("Eliminar");
-        jPanel10.add(jButton5);
+        Eliminar.setBackground(new java.awt.Color(255, 102, 102));
+        Eliminar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Eliminar.setForeground(new java.awt.Color(255, 255, 255));
+        Eliminar.setText("Eliminar");
+        jPanel10.add(Eliminar);
 
-        jButton6.setText("Mostrar");
-        jPanel10.add(jButton6);
+        Mostrar.setBackground(new java.awt.Color(255, 102, 102));
+        Mostrar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Mostrar.setForeground(new java.awt.Color(255, 255, 255));
+        Mostrar.setText("Mostrar");
+        jPanel10.add(Mostrar);
 
         center.add(jPanel10, java.awt.BorderLayout.CENTER);
 
@@ -145,25 +214,39 @@ public class VentanaProveedores extends javax.swing.JFrame {
         footer.setPreferredSize(new java.awt.Dimension(754, 300));
         footer.setLayout(new java.awt.BorderLayout());
 
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 5));
 
-        jButton7.setText("Regresar");
-        jButton7.setPreferredSize(new java.awt.Dimension(80, 30));
-        jPanel11.add(jButton7);
+        Regresar.setBackground(new java.awt.Color(255, 102, 102));
+        Regresar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Regresar.setForeground(new java.awt.Color(255, 255, 255));
+        Regresar.setText("Regresar");
+        Regresar.setPreferredSize(new java.awt.Dimension(120, 35));
+        jPanel11.add(Regresar);
 
-        jButton2.setText("Editar");
-        jButton2.setPreferredSize(new java.awt.Dimension(80, 30));
-        jPanel11.add(jButton2);
+        Editar.setBackground(new java.awt.Color(255, 102, 102));
+        Editar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Editar.setForeground(new java.awt.Color(255, 255, 255));
+        Editar.setText("Editar");
+        Editar.setPreferredSize(new java.awt.Dimension(120, 35));
+        jPanel11.add(Editar);
 
-        jButton1.setText("Limpiar");
-        jButton1.setPreferredSize(new java.awt.Dimension(80, 30));
-        jPanel11.add(jButton1);
+        limpiar.setBackground(new java.awt.Color(255, 102, 102));
+        limpiar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        limpiar.setForeground(new java.awt.Color(255, 255, 255));
+        limpiar.setText("Limpiar");
+        limpiar.setPreferredSize(new java.awt.Dimension(120, 35));
+        jPanel11.add(limpiar);
 
         footer.add(jPanel11, java.awt.BorderLayout.PAGE_START);
 
         jPanel12.setPreferredSize(new java.awt.Dimension(754, 200));
         jPanel12.setLayout(new java.awt.BorderLayout());
 
+        jPanel13.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel9.setFont(new java.awt.Font("Lucida Sans", 0, 13)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Tabla Proveedores");
         jPanel13.add(jLabel9);
 
@@ -243,17 +326,16 @@ public class VentanaProveedores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Actualizar;
+    private javax.swing.JButton Agregar;
+    private javax.swing.JButton Editar;
+    private javax.swing.JButton Eliminar;
+    private javax.swing.JButton Mostrar;
+    private javax.swing.JButton Regresar;
     private javax.swing.JPanel aside;
     private javax.swing.JPanel center;
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -279,6 +361,7 @@ public class VentanaProveedores extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JButton limpiar;
     private javax.swing.JPanel principal;
     // End of variables declaration//GEN-END:variables
 }
