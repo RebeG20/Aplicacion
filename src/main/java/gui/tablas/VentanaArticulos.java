@@ -1,7 +1,7 @@
-
 package gui.tablas;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import tda.Articulos;
 import tda.DAO_Articulos;
@@ -11,16 +11,16 @@ public class VentanaArticulos extends javax.swing.JFrame {
     DAO_Articulos dao = new DAO_Articulos();
     Articulos art = new Articulos();
     DefaultTableModel dtm = new DefaultTableModel();
-    
+
     public VentanaArticulos() {
         initComponents();
     }
-    
-    public void mostrarArticulos(){
-        dtm = (DefaultTableModel)tablaArticulos.getModel();
+
+    public void mostrar() {
+        dtm = (DefaultTableModel) tablaArticulos.getModel();
         List<Articulos> lista = dao.listarArticulos();
         Object[] fila = new Object[4];
-        for(int i = 0; i < lista.size(); i++){
+        for (int i = 0; i < lista.size(); i++) {
             fila[0] = lista.get(i).getIdArt();
             fila[1] = lista.get(i).getNomArt();
             fila[2] = lista.get(i).getPrecio();
@@ -28,6 +28,83 @@ public class VentanaArticulos extends javax.swing.JFrame {
             dtm.addRow(fila);
         }
         tablaArticulos.setModel(dtm);
+    }
+
+    public void agregar() {
+        String id = txtID.getText();
+        String nombre = txtNombre.getText();
+        double precio = Double.parseDouble(txtPrecio.getText());
+        int stock = Integer.parseInt(txtStock.getText());
+
+        art.setIdArt(id);
+        art.setNomArt(nombre);
+        art.setPrecio(precio);
+        art.setStock(stock);
+
+        int r = dao.agregarArticulos(art);
+        if (r == 1) {
+            JOptionPane.showMessageDialog(null, "Articulo agregado correctamente");
+        } else if (r == 0) {
+            JOptionPane.showMessageDialog(null, "Error: Ya existe un artículo con el mismo ID");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al agregar el articulo");
+        }
+    }
+
+    public void editar() {
+        int filaSeleccionada = tablaArticulos.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "Selecciona la fila a editar");
+        } else {
+            String id = (String) tablaArticulos.getValueAt(filaSeleccionada, 0);
+            String nombre = (String) tablaArticulos.getValueAt(filaSeleccionada, 1);
+            double precio = (Double) tablaArticulos.getValueAt(filaSeleccionada, 2);
+            int stock = (Integer) tablaArticulos.getValueAt(filaSeleccionada, 3);
+
+            txtID.setText(id);
+            txtNombre.setText(nombre);
+            txtPrecio.setText(String.valueOf(precio));
+            txtStock.setText(String.valueOf(stock));
+        }
+    }
+
+    public void actualizar() {
+        String id = txtID.getText();
+        String nombre = txtNombre.getText();
+        double precio = Double.parseDouble(txtPrecio.getText());
+        int stock = Integer.parseInt(txtStock.getText());
+
+        art.setIdArt(id);
+        art.setNomArt(nombre);
+        art.setPrecio(precio);
+        art.setStock(stock);
+
+        int r = dao.actualizarArticulos(art);
+        if (r == 1) {
+            JOptionPane.showMessageDialog(null, "Artículo actualizado correctamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al actualizar el artículo");
+        }
+    }
+
+    public void eliminar() {
+        int filaSeleccionada = tablaArticulos.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "Selecciona la fila a eliminar");
+        } else {
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar el articulo?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                String id = (String) tablaArticulos.getValueAt(filaSeleccionada, 0);
+                dao.eliminarArticulos(id);
+                JOptionPane.showMessageDialog(null, "Articulo Eliminado");
+            }
+        }
+    }
+
+    public void limpiarTabla() {
+        dtm = (DefaultTableModel) tablaArticulos.getModel();
+        dtm.setRowCount(0);
     }
 
     /**
@@ -59,15 +136,15 @@ public class VentanaArticulos extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnMostrar = new javax.swing.JButton();
         footer = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -128,22 +205,37 @@ public class VentanaArticulos extends javax.swing.JFrame {
 
         jPanel5.setLayout(new java.awt.GridLayout(4, 1, 0, 5));
 
-        jButton1.setText("Agregar");
-        jPanel5.add(jButton1);
-
-        jButton2.setText("Actualizar");
-        jPanel5.add(jButton2);
-
-        jButton3.setText("Eliminar");
-        jPanel5.add(jButton3);
-
-        jButton4.setText("Mostrar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton4);
+        jPanel5.add(btnAgregar);
+
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnActualizar);
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnEliminar);
+
+        btnMostrar.setText("Mostrar");
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnMostrar);
 
         center.add(jPanel5, java.awt.BorderLayout.CENTER);
 
@@ -154,17 +246,33 @@ public class VentanaArticulos extends javax.swing.JFrame {
 
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 5));
 
-        jButton5.setText("Regresar");
-        jButton5.setPreferredSize(new java.awt.Dimension(80, 30));
-        jPanel6.add(jButton5);
+        btnRegresar.setText("Regresar");
+        btnRegresar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnRegresar.setPreferredSize(new java.awt.Dimension(80, 30));
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnRegresar);
 
-        jButton6.setText("Editar");
-        jButton6.setPreferredSize(new java.awt.Dimension(80, 30));
-        jPanel6.add(jButton6);
+        btnEditar.setText("Editar");
+        btnEditar.setPreferredSize(new java.awt.Dimension(80, 30));
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnEditar);
 
-        jButton7.setText("Limpiar");
-        jButton7.setPreferredSize(new java.awt.Dimension(80, 30));
-        jPanel6.add(jButton7);
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setPreferredSize(new java.awt.Dimension(80, 30));
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnLimpiar);
 
         footer.add(jPanel6, java.awt.BorderLayout.PAGE_START);
 
@@ -207,11 +315,47 @@ public class VentanaArticulos extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        mostrarArticulos();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+        limpiarTabla();
+        mostrar();
+    }//GEN-LAST:event_btnMostrarActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        agregar();
+        limpiarTabla();
+        mostrar();
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        editar();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        actualizar();
+        limpiarTabla();
+        mostrar();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtID.setText("");
+        txtNombre.setText("");
+        txtPrecio.setText("");
+        txtStock.setText("");
+        limpiarTabla();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        eliminar();
+        limpiarTabla();
+        mostrar();
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,16 +394,16 @@ public class VentanaArticulos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aside;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnMostrar;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JPanel center;
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
