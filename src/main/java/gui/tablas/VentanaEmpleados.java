@@ -4,6 +4,8 @@
  */
 package gui.tablas;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author rafae
@@ -15,6 +17,13 @@ public class VentanaEmpleados extends javax.swing.JFrame {
      */
     public VentanaEmpleados() {
         initComponents();
+        Agregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadir.png"));
+        Actualizar.setIcon(new ImageIcon("./src/main/java/Imagenes/actualizar.png"));
+        Regresar.setIcon(new ImageIcon("./src/main/java/Imagenes/atras.png"));
+        Mostrar.setIcon(new ImageIcon("./src/main/java/Imagenes/mostrar.png"));
+        Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
+        Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
+        limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
     }
 
     /**
@@ -53,18 +62,18 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
-        jButton8 = new javax.swing.JButton();
+        Agregar = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
-        jButton9 = new javax.swing.JButton();
+        Actualizar = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
-        jButton10 = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
-        jButton11 = new javax.swing.JButton();
+        Mostrar = new javax.swing.JButton();
         footer = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        Regresar = new javax.swing.JButton();
+        Editar = new javax.swing.JButton();
+        limpiar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -74,90 +83,155 @@ public class VentanaEmpleados extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        principal.setBackground(new java.awt.Color(255, 255, 255));
         principal.setLayout(new java.awt.BorderLayout(10, 10));
 
+        header.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Empleados");
         header.add(jLabel1);
 
         principal.add(header, java.awt.BorderLayout.PAGE_START);
 
         aside.setPreferredSize(new java.awt.Dimension(500, 415));
-        aside.setLayout(new java.awt.BorderLayout(5, 5));
+        aside.setLayout(new java.awt.BorderLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel2.setFont(new java.awt.Font("Lucida Sans", 1, 15)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Ingresar Datos");
         jPanel1.add(jLabel2);
 
         aside.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(150, 389));
         jPanel2.setLayout(new java.awt.GridLayout(7, 1, 0, 5));
 
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("     ID Empleado:");
         jPanel2.add(jLabel3);
 
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("     Nombre Empleado:");
         jPanel2.add(jLabel4);
 
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("     Apellido Paterno:");
         jPanel2.add(jLabel5);
 
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("     Apellido Materno:");
         jPanel2.add(jLabel6);
 
-        jLabel7.setText("     Calle Empleado:");
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("             Calle :");
         jPanel2.add(jLabel7);
 
-        jLabel8.setText("     Colonia Empleado:");
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("           Colonia :");
         jPanel2.add(jLabel8);
 
-        jLabel9.setText("     Num. Casa Empleado:");
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("        Num. Casa :");
         jPanel2.add(jLabel9);
 
         aside.add(jPanel2, java.awt.BorderLayout.LINE_START);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new java.awt.GridLayout(7, 1, 0, 5));
+
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.add(jTextField1);
+
+        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.add(jTextField2);
+
+        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.add(jTextField3);
+
+        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.add(jTextField4);
+
+        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.add(jTextField5);
+
+        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.add(jTextField6);
+
+        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.add(jTextField7);
 
         aside.add(jPanel3, java.awt.BorderLayout.CENTER);
 
         principal.add(aside, java.awt.BorderLayout.LINE_START);
 
+        center.setBackground(new java.awt.Color(255, 255, 255));
         center.setLayout(new java.awt.BorderLayout(0, 5));
 
+        jPanel4.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel10.setFont(new java.awt.Font("Lucida Sans", 1, 15)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Opciones");
         jPanel4.add(jLabel10);
 
         center.add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new java.awt.GridLayout(4, 1, 5, 10));
 
-        jButton8.setText("Agregar");
-        jButton8.setPreferredSize(new java.awt.Dimension(100, 30));
-        jPanel10.add(jButton8);
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+
+        Agregar.setBackground(new java.awt.Color(255, 102, 102));
+        Agregar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        Agregar.setForeground(new java.awt.Color(255, 255, 255));
+        Agregar.setText("Agregar");
+        Agregar.setPreferredSize(new java.awt.Dimension(130, 35));
+        jPanel10.add(Agregar);
 
         jPanel5.add(jPanel10);
 
-        jButton9.setText("Actualizar");
-        jButton9.setPreferredSize(new java.awt.Dimension(100, 30));
-        jPanel11.add(jButton9);
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
+
+        Actualizar.setBackground(new java.awt.Color(255, 102, 102));
+        Actualizar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        Actualizar.setForeground(new java.awt.Color(255, 255, 255));
+        Actualizar.setText("Actualizar");
+        Actualizar.setPreferredSize(new java.awt.Dimension(130, 35));
+        jPanel11.add(Actualizar);
 
         jPanel5.add(jPanel11);
 
-        jButton10.setText("Eliminar");
-        jButton10.setPreferredSize(new java.awt.Dimension(100, 30));
-        jPanel12.add(jButton10);
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
+
+        Eliminar.setBackground(new java.awt.Color(255, 102, 102));
+        Eliminar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        Eliminar.setForeground(new java.awt.Color(255, 255, 255));
+        Eliminar.setText("Eliminar");
+        Eliminar.setPreferredSize(new java.awt.Dimension(130, 35));
+        jPanel12.add(Eliminar);
 
         jPanel5.add(jPanel12);
 
-        jButton11.setText("Mostrar");
-        jButton11.setPreferredSize(new java.awt.Dimension(100, 30));
-        jPanel13.add(jButton11);
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+
+        Mostrar.setBackground(new java.awt.Color(255, 102, 102));
+        Mostrar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        Mostrar.setForeground(new java.awt.Color(255, 255, 255));
+        Mostrar.setText("Mostrar");
+        Mostrar.setPreferredSize(new java.awt.Dimension(130, 35));
+        jPanel13.add(Mostrar);
 
         jPanel5.add(jPanel13);
 
@@ -168,24 +242,38 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         footer.setPreferredSize(new java.awt.Dimension(677, 300));
         footer.setLayout(new java.awt.BorderLayout());
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 5));
 
-        jButton5.setText("Regresar");
-        jButton5.setPreferredSize(new java.awt.Dimension(80, 30));
-        jPanel6.add(jButton5);
+        Regresar.setBackground(new java.awt.Color(255, 102, 102));
+        Regresar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        Regresar.setForeground(new java.awt.Color(255, 255, 255));
+        Regresar.setText("Regresar");
+        Regresar.setPreferredSize(new java.awt.Dimension(120, 35));
+        jPanel6.add(Regresar);
 
-        jButton6.setText("Editar");
-        jButton6.setPreferredSize(new java.awt.Dimension(80, 30));
-        jPanel6.add(jButton6);
+        Editar.setBackground(new java.awt.Color(255, 102, 102));
+        Editar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        Editar.setForeground(new java.awt.Color(255, 255, 255));
+        Editar.setText("Editar");
+        Editar.setPreferredSize(new java.awt.Dimension(120, 35));
+        jPanel6.add(Editar);
 
-        jButton7.setText("Limpiar");
-        jButton7.setPreferredSize(new java.awt.Dimension(80, 30));
-        jPanel6.add(jButton7);
+        limpiar.setBackground(new java.awt.Color(255, 102, 102));
+        limpiar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        limpiar.setForeground(new java.awt.Color(255, 255, 255));
+        limpiar.setText("Limpiar");
+        limpiar.setPreferredSize(new java.awt.Dimension(120, 35));
+        jPanel6.add(limpiar);
 
         footer.add(jPanel6, java.awt.BorderLayout.PAGE_START);
 
         jPanel7.setLayout(new java.awt.BorderLayout());
 
+        jPanel8.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel11.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Tabla Empleados");
         jPanel8.add(jLabel11);
 
@@ -229,7 +317,7 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,17 +363,16 @@ public class VentanaEmpleados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Actualizar;
+    private javax.swing.JButton Agregar;
+    private javax.swing.JButton Editar;
+    private javax.swing.JButton Eliminar;
+    private javax.swing.JButton Mostrar;
+    private javax.swing.JButton Regresar;
     private javax.swing.JPanel aside;
     private javax.swing.JPanel center;
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -319,6 +406,7 @@ public class VentanaEmpleados extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JButton limpiar;
     private javax.swing.JPanel principal;
     // End of variables declaration//GEN-END:variables
 }

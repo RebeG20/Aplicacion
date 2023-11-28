@@ -6,6 +6,8 @@ import javax.swing.table.DefaultTableModel;
 import tda.Articulos;
 import tda.DAO_Articulos;
 
+import javax.swing.ImageIcon;
+
 public class VentanaArticulos extends javax.swing.JFrame {
 
     DAO_Articulos dao = new DAO_Articulos();
@@ -14,6 +16,13 @@ public class VentanaArticulos extends javax.swing.JFrame {
 
     public VentanaArticulos() {
         initComponents();
+        Agregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadir.png"));
+        Actualizar.setIcon(new ImageIcon("./src/main/java/Imagenes/actualizar.png"));
+        Regresar.setIcon(new ImageIcon("./src/main/java/Imagenes/atras.png"));
+        Mostrar.setIcon(new ImageIcon("./src/main/java/Imagenes/mostrar.png"));
+        Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
+        Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
+        limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
     }
 
     public void mostrar() {
@@ -145,6 +154,15 @@ public class VentanaArticulos extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
+        Agregar = new javax.swing.JButton();
+        Actualizar = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
+        Mostrar = new javax.swing.JButton();
+        footer = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        Regresar = new javax.swing.JButton();
+        Editar = new javax.swing.JButton();
+        limpiar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -154,56 +172,96 @@ public class VentanaArticulos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        principal.setBackground(new java.awt.Color(255, 255, 255));
         principal.setLayout(new java.awt.BorderLayout(10, 10));
 
+        header.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Articulos");
         header.add(jLabel1);
 
         principal.add(header, java.awt.BorderLayout.PAGE_START);
 
+        aside.setBackground(new java.awt.Color(255, 255, 255));
         aside.setPreferredSize(new java.awt.Dimension(350, 387));
         aside.setLayout(new java.awt.BorderLayout(0, 5));
 
+        jPanel1.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel2.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Ingresar Datos");
         jPanel1.add(jLabel2);
 
         aside.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(150, 361));
         jPanel2.setLayout(new java.awt.GridLayout(4, 1, 0, 5));
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("     ID Articulo:");
         jPanel2.add(jLabel3);
 
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("     Nombre Articulo:");
         jPanel2.add(jLabel4);
 
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("     Precio:");
         jPanel2.add(jLabel5);
 
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("     Stock:");
         jPanel2.add(jLabel6);
 
         aside.add(jPanel2, java.awt.BorderLayout.LINE_START);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new java.awt.GridLayout(4, 1, 0, 5));
+
         jPanel3.add(txtID);
         jPanel3.add(txtNombre);
         jPanel3.add(txtPrecio);
         jPanel3.add(txtStock);
 
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField1.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        jPanel3.add(jTextField1);
+
+        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField2.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        jPanel3.add(jTextField2);
+
+        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField3.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        jPanel3.add(jTextField3);
+
+        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField4.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        jPanel3.add(jTextField4);
+
         aside.add(jPanel3, java.awt.BorderLayout.CENTER);
 
         principal.add(aside, java.awt.BorderLayout.LINE_START);
 
+        center.setBackground(new java.awt.Color(255, 255, 255));
         center.setLayout(new java.awt.BorderLayout(0, 5));
 
+        jPanel4.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel7.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Opciones");
         jPanel4.add(jLabel7);
 
         center.add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new java.awt.GridLayout(4, 1, 0, 5));
+
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -237,6 +295,36 @@ public class VentanaArticulos extends javax.swing.JFrame {
         });
         jPanel5.add(btnMostrar);
 
+        Agregar.setBackground(new java.awt.Color(255, 102, 102));
+        Agregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Agregar.setForeground(new java.awt.Color(255, 255, 255));
+        Agregar.setText("Agregar");
+        Agregar.setMaximumSize(new java.awt.Dimension(75, 35));
+        Agregar.setMinimumSize(new java.awt.Dimension(75, 35));
+        Agregar.setPreferredSize(new java.awt.Dimension(78, 35));
+        jPanel5.add(Agregar);
+
+        Actualizar.setBackground(new java.awt.Color(255, 102, 102));
+        Actualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Actualizar.setForeground(new java.awt.Color(255, 255, 255));
+        Actualizar.setText("Actualizar");
+        Actualizar.setPreferredSize(new java.awt.Dimension(78, 35));
+        jPanel5.add(Actualizar);
+
+        Eliminar.setBackground(new java.awt.Color(255, 102, 102));
+        Eliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Eliminar.setForeground(new java.awt.Color(255, 255, 255));
+        Eliminar.setText("Eliminar");
+        Eliminar.setPreferredSize(new java.awt.Dimension(78, 35));
+        jPanel5.add(Eliminar);
+
+        Mostrar.setBackground(new java.awt.Color(255, 102, 102));
+        Mostrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Mostrar.setForeground(new java.awt.Color(255, 255, 255));
+        Mostrar.setText("Mostrar");
+        Mostrar.setPreferredSize(new java.awt.Dimension(78, 35));
+        jPanel5.add(Mostrar);
+
         center.add(jPanel5, java.awt.BorderLayout.CENTER);
 
         principal.add(center, java.awt.BorderLayout.CENTER);
@@ -244,6 +332,7 @@ public class VentanaArticulos extends javax.swing.JFrame {
         footer.setPreferredSize(new java.awt.Dimension(548, 300));
         footer.setLayout(new java.awt.BorderLayout());
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 5));
 
         btnRegresar.setText("Regresar");
@@ -274,10 +363,35 @@ public class VentanaArticulos extends javax.swing.JFrame {
         });
         jPanel6.add(btnLimpiar);
 
+        Regresar.setBackground(new java.awt.Color(255, 102, 102));
+        Regresar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        Regresar.setForeground(new java.awt.Color(255, 255, 255));
+        Regresar.setText("Regresar");
+        Regresar.setPreferredSize(new java.awt.Dimension(120, 35));
+        jPanel6.add(Regresar);
+
+        Editar.setBackground(new java.awt.Color(255, 102, 102));
+        Editar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        Editar.setForeground(new java.awt.Color(255, 255, 255));
+        Editar.setText("Editar");
+        Editar.setPreferredSize(new java.awt.Dimension(120, 35));
+        jPanel6.add(Editar);
+
+        limpiar.setBackground(new java.awt.Color(255, 102, 102));
+        limpiar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        limpiar.setForeground(new java.awt.Color(255, 255, 255));
+        limpiar.setText("Limpiar");
+        limpiar.setPreferredSize(new java.awt.Dimension(120, 35));
+        jPanel6.add(limpiar);
+
         footer.add(jPanel6, java.awt.BorderLayout.PAGE_START);
 
         jPanel7.setLayout(new java.awt.BorderLayout());
 
+        jPanel8.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel8.setFont(new java.awt.Font("Lucida Sans", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Tabla Articulos");
         jPanel8.add(jLabel8);
 
@@ -393,6 +507,12 @@ public class VentanaArticulos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Actualizar;
+    private javax.swing.JButton Agregar;
+    private javax.swing.JButton Editar;
+    private javax.swing.JButton Eliminar;
+    private javax.swing.JButton Mostrar;
+    private javax.swing.JButton Regresar;
     private javax.swing.JPanel aside;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregar;
@@ -422,6 +542,14 @@ public class VentanaArticulos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+
+
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JButton limpiar;
     private javax.swing.JPanel principal;
     private javax.swing.JTable tablaArticulos;
     private javax.swing.JTextField txtID;
