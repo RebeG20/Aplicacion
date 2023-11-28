@@ -5,6 +5,10 @@
 package gui.tablas;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import tda.DAO_Empleados;
+import tda.Empleados;
 
 /**
  *
@@ -15,8 +19,12 @@ public class VentanaEmpleados extends javax.swing.JFrame {
     /**
      * Creates new form VentanaEmpleados
      */
+    DefaultTableModel dtm = new DefaultTableModel();
+    DAO_Empleados dao=new DAO_Empleados();
+    Empleados emp=new Empleados();
     public VentanaEmpleados() {
         initComponents();
+        
         Agregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadir.png"));
         Actualizar.setIcon(new ImageIcon("./src/main/java/Imagenes/actualizar.png"));
         Regresar.setIcon(new ImageIcon("./src/main/java/Imagenes/atras.png"));
@@ -24,6 +32,16 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
         Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
         limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
+        
+        TablaE.setModel(dtm);
+        dtm.addColumn("ID Empleado");
+        dtm.addColumn("Nombre");
+        dtm.addColumn("Apellido Paterno");
+        dtm.addColumn("Apellido Materno");
+        dtm.addColumn("Calle Empleado");
+        dtm.addColumn("Colonia Empleado");
+        dtm.addColumn("Num Casa");
+        
     }
 
     /**
@@ -50,13 +68,13 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        id = new javax.swing.JTextField();
+        nombre = new javax.swing.JTextField();
+        aP = new javax.swing.JTextField();
+        aM = new javax.swing.JTextField();
+        calle = new javax.swing.JTextField();
+        colonia = new javax.swing.JTextField();
+        num = new javax.swing.JTextField();
         center = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -79,7 +97,7 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaE = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -151,26 +169,26 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new java.awt.GridLayout(7, 1, 0, 5));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(jTextField1);
+        id.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(id);
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(jTextField2);
+        nombre.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(nombre);
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(jTextField3);
+        aP.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(aP);
 
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(jTextField4);
+        aM.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(aM);
 
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(jTextField5);
+        calle.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(calle);
 
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(jTextField6);
+        colonia.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(colonia);
 
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(jTextField7);
+        num.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(num);
 
         aside.add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -198,6 +216,11 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         Agregar.setForeground(new java.awt.Color(255, 255, 255));
         Agregar.setText("Agregar");
         Agregar.setPreferredSize(new java.awt.Dimension(130, 35));
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarActionPerformed(evt);
+            }
+        });
         jPanel10.add(Agregar);
 
         jPanel5.add(jPanel10);
@@ -209,6 +232,11 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         Actualizar.setForeground(new java.awt.Color(255, 255, 255));
         Actualizar.setText("Actualizar");
         Actualizar.setPreferredSize(new java.awt.Dimension(130, 35));
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarActionPerformed(evt);
+            }
+        });
         jPanel11.add(Actualizar);
 
         jPanel5.add(jPanel11);
@@ -220,6 +248,11 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         Eliminar.setForeground(new java.awt.Color(255, 255, 255));
         Eliminar.setText("Eliminar");
         Eliminar.setPreferredSize(new java.awt.Dimension(130, 35));
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
         jPanel12.add(Eliminar);
 
         jPanel5.add(jPanel12);
@@ -231,6 +264,11 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         Mostrar.setForeground(new java.awt.Color(255, 255, 255));
         Mostrar.setText("Mostrar");
         Mostrar.setPreferredSize(new java.awt.Dimension(130, 35));
+        Mostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MostrarActionPerformed(evt);
+            }
+        });
         jPanel13.add(Mostrar);
 
         jPanel5.add(jPanel13);
@@ -257,6 +295,11 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         Editar.setForeground(new java.awt.Color(255, 255, 255));
         Editar.setText("Editar");
         Editar.setPreferredSize(new java.awt.Dimension(120, 35));
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
         jPanel6.add(Editar);
 
         limpiar.setBackground(new java.awt.Color(255, 102, 102));
@@ -281,7 +324,7 @@ public class VentanaEmpleados extends javax.swing.JFrame {
 
         jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaE.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -300,9 +343,9 @@ public class VentanaEmpleados extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
+        jScrollPane1.setViewportView(TablaE);
+        if (TablaE.getColumnModel().getColumnCount() > 0) {
+            TablaE.getColumnModel().getColumn(0).setResizable(false);
         }
 
         jPanel9.add(jScrollPane1);
@@ -326,6 +369,89 @@ public class VentanaEmpleados extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
+        // TODO add your handling code here:
+        dao.mostrarEmpleados(dtm);
+        
+    }//GEN-LAST:event_MostrarActionPerformed
+
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
+        // TODO add your handling code here:
+        String idEmpleado=id.getText(),nom=nombre.getText(),ap=aP.getText(),am=aM.getText();
+        String c=calle.getText(),col=colonia.getText();
+        int numcalle=Integer.parseInt(num.getText());
+        
+        emp.setIdEmpleado(idEmpleado);
+        emp.setNombreE(nom);
+        emp.setApellidoPE(ap);
+        emp.setApellidoME(am);
+        emp.setCalle(c);
+        emp.setColonia(col);
+        emp.setNumCalle(numcalle);
+        
+        dao.insertarEmpleados(emp);
+        dao.mostrarEmpleados(dtm);
+    }//GEN-LAST:event_AgregarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        // TODO add your handling code here:
+        int filaSeleccionada = TablaE.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "Selecciona la fila a eliminar");
+        } else {
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar el articulo?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                String id = (String) TablaE.getValueAt(filaSeleccionada, 0);
+                dao.eliminarEmpleados(id);
+                JOptionPane.showMessageDialog(null, "Articulo Eliminado");
+            }
+        }
+        dao.mostrarEmpleados(dtm);
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
+        // TODO add your handling code here:
+        
+        String idEmpleado=id.getText();
+        String c=calle.getText(),col=colonia.getText();
+        int numcalle=Integer.parseInt(num.getText());
+        
+        
+        emp.setCalle(c);
+        emp.setColonia(col);
+        emp.setNumCalle(numcalle);
+        emp.setIdEmpleado(idEmpleado);
+
+        int r = dao.actualizarE(emp);
+        if (r == 1) {
+            JOptionPane.showMessageDialog(null, "Artículo actualizado correctamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al actualizar el artículo");
+        }
+        dao.mostrarEmpleados(dtm);
+        
+        
+    }//GEN-LAST:event_ActualizarActionPerformed
+
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+        // TODO add your handling code here:
+         int filaSeleccionada = TablaE.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "Selecciona la fila a editar");
+        } else {
+            String idE = (String) TablaE.getValueAt(filaSeleccionada, 0);
+            String c = (String) TablaE.getValueAt(filaSeleccionada, 4);
+            String col = (String )TablaE.getValueAt(filaSeleccionada, 5);
+            int numC= (Integer) TablaE.getValueAt(filaSeleccionada, 6);
+
+            id.setText(idE);
+            calle.setText(c);
+            colonia.setText(col);
+            num.setText(String.valueOf(numC));
+        }
+    }//GEN-LAST:event_EditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -369,10 +495,16 @@ public class VentanaEmpleados extends javax.swing.JFrame {
     private javax.swing.JButton Eliminar;
     private javax.swing.JButton Mostrar;
     private javax.swing.JButton Regresar;
+    private javax.swing.JTable TablaE;
+    private javax.swing.JTextField aM;
+    private javax.swing.JTextField aP;
     private javax.swing.JPanel aside;
+    private javax.swing.JTextField calle;
     private javax.swing.JPanel center;
+    private javax.swing.JTextField colonia;
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
+    private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -398,15 +530,9 @@ public class VentanaEmpleados extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JButton limpiar;
+    private javax.swing.JTextField nombre;
+    private javax.swing.JTextField num;
     private javax.swing.JPanel principal;
     // End of variables declaration//GEN-END:variables
 }
