@@ -100,7 +100,7 @@ public class DAO_Empleados
     
     public int actualizarE(Empleados emp)
     {
-         try
+        try
         {
             conectar=obConexion.establecerConnection();
             ps=conectar.prepareStatement("CALL actualizar_Empleado(?,?,?,?)");

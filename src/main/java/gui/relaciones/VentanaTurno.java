@@ -6,6 +6,10 @@ package gui.relaciones;
 
 import gui.tablas.*;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import tda.DAO_Turno;
+import tda.Turno;
 
 /**
  *
@@ -16,8 +20,14 @@ public class VentanaTurno extends javax.swing.JFrame {
     /**
      * Creates new form VentanaRecargas
      */
+    DefaultTableModel dtm = new DefaultTableModel();
+    DAO_Turno dao=new DAO_Turno();
+    Turno tur=new Turno();
+    
+    
     public VentanaTurno() {
         initComponents();
+        
         Agregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadir.png"));
         Actualizar.setIcon(new ImageIcon("./src/main/java/Imagenes/actualizar.png"));
         Regresar.setIcon(new ImageIcon("./src/main/java/Imagenes/atras.png"));
@@ -25,6 +35,12 @@ public class VentanaTurno extends javax.swing.JFrame {
         Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
         Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
         limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
+        
+        TablaT.setModel(dtm);
+        dtm.addColumn("ID Empleado");
+        dtm.addColumn("Horario Turno");
+        dtm.addColumn("Dias Que trabaja");
+        
     }
 
     /**
@@ -47,9 +63,9 @@ public class VentanaTurno extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        id = new javax.swing.JTextField();
+        horario = new javax.swing.JTextField();
+        dias = new javax.swing.JTextField();
         center = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -68,7 +84,7 @@ public class VentanaTurno extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaT = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(560, 540));
@@ -124,20 +140,20 @@ public class VentanaTurno extends javax.swing.JFrame {
         jPanel3.setPreferredSize(new java.awt.Dimension(200, 389));
         jPanel3.setLayout(new java.awt.GridLayout(3, 1, 0, 15));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jTextField1);
+        id.setBackground(new java.awt.Color(255, 255, 255));
+        id.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        id.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel3.add(id);
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jTextField2);
+        horario.setBackground(new java.awt.Color(255, 255, 255));
+        horario.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        horario.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel3.add(horario);
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jTextField3);
+        dias.setBackground(new java.awt.Color(255, 255, 255));
+        dias.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        dias.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel3.add(dias);
 
         aside.add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -164,6 +180,11 @@ public class VentanaTurno extends javax.swing.JFrame {
         Agregar.setForeground(new java.awt.Color(255, 255, 255));
         Agregar.setText("Agregar");
         Agregar.setPreferredSize(new java.awt.Dimension(80, 60));
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarActionPerformed(evt);
+            }
+        });
         jPanel5.add(Agregar);
 
         Actualizar.setBackground(new java.awt.Color(255, 102, 102));
@@ -171,6 +192,11 @@ public class VentanaTurno extends javax.swing.JFrame {
         Actualizar.setForeground(new java.awt.Color(255, 255, 255));
         Actualizar.setText("Actualizar");
         Actualizar.setPreferredSize(new java.awt.Dimension(80, 40));
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarActionPerformed(evt);
+            }
+        });
         jPanel5.add(Actualizar);
 
         Eliminar.setBackground(new java.awt.Color(255, 102, 102));
@@ -178,6 +204,11 @@ public class VentanaTurno extends javax.swing.JFrame {
         Eliminar.setForeground(new java.awt.Color(255, 255, 255));
         Eliminar.setText("Eliminar");
         Eliminar.setPreferredSize(new java.awt.Dimension(80, 40));
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
         jPanel5.add(Eliminar);
 
         Mostrar.setBackground(new java.awt.Color(255, 102, 102));
@@ -185,6 +216,11 @@ public class VentanaTurno extends javax.swing.JFrame {
         Mostrar.setForeground(new java.awt.Color(255, 255, 255));
         Mostrar.setText("Mostrar");
         Mostrar.setPreferredSize(new java.awt.Dimension(80, 40));
+        Mostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MostrarActionPerformed(evt);
+            }
+        });
         jPanel5.add(Mostrar);
 
         center.add(jPanel5, java.awt.BorderLayout.CENTER);
@@ -209,6 +245,11 @@ public class VentanaTurno extends javax.swing.JFrame {
         Editar.setForeground(new java.awt.Color(255, 255, 255));
         Editar.setText("Editar");
         Editar.setPreferredSize(new java.awt.Dimension(120, 35));
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
         jPanel6.add(Editar);
 
         limpiar.setBackground(new java.awt.Color(255, 102, 102));
@@ -216,6 +257,11 @@ public class VentanaTurno extends javax.swing.JFrame {
         limpiar.setForeground(new java.awt.Color(255, 255, 255));
         limpiar.setText("Limpiar");
         limpiar.setPreferredSize(new java.awt.Dimension(120, 35));
+        limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarActionPerformed(evt);
+            }
+        });
         jPanel6.add(limpiar);
 
         footer.add(jPanel6, java.awt.BorderLayout.PAGE_START);
@@ -233,7 +279,7 @@ public class VentanaTurno extends javax.swing.JFrame {
 
         jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -252,11 +298,11 @@ public class VentanaTurno extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        jScrollPane1.setViewportView(TablaT);
+        if (TablaT.getColumnModel().getColumnCount() > 0) {
+            TablaT.getColumnModel().getColumn(0).setResizable(false);
+            TablaT.getColumnModel().getColumn(1).setResizable(false);
+            TablaT.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jPanel9.add(jScrollPane1);
@@ -280,6 +326,89 @@ public class VentanaTurno extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
+        // TODO add your handling code here:
+        String idEmpleado=id.getText();
+        String horarion=horario.getText();
+        String diasn=dias.getText();
+        
+        tur.setIdEmpleado(idEmpleado);
+        tur.setHorario(horarion);
+        tur.setDias(diasn);
+        dao.insertarTurno(tur);
+        dao.mostrarTurnos(dtm);
+    }//GEN-LAST:event_AgregarActionPerformed
+
+    private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
+        // TODO add your handling code here:
+        dao.mostrarTurnos(dtm);
+    }//GEN-LAST:event_MostrarActionPerformed
+
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+        // TODO add your handling code here:
+        
+        int filaSeleccionada = TablaT.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "Selecciona la fila a editar");
+        } else {
+            String idE = (String) TablaT.getValueAt(filaSeleccionada, 0);
+            String h = (String) TablaT.getValueAt(filaSeleccionada, 1);
+            String d = (String )TablaT.getValueAt(filaSeleccionada, 2);
+            
+
+            id.setText(idE);
+            horario.setText(h);
+            dias.setText(d);
+            
+        }
+    }//GEN-LAST:event_EditarActionPerformed
+
+    private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
+        // TODO add your handling code here:
+        dtm = (DefaultTableModel) TablaT.getModel();
+        dtm.setRowCount(0);
+        
+        id.setText("");
+        horario.setText("");
+        dias.setText("");
+    }//GEN-LAST:event_limpiarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        // TODO add your handling code here:
+         int filaSeleccionada = TablaT.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "Selecciona la fila a eliminar");
+        } else {
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar el turno?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                String id = (String) TablaT.getValueAt(filaSeleccionada, 0);
+                dao.eliminar(id);
+                JOptionPane.showMessageDialog(null, "Turno Eliminado");
+            }
+        }
+        dao.mostrarTurnos(dtm);
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
+        // TODO add your handling code here:
+        String idEmpleado=id.getText();
+        String horarion=horario.getText();
+        String diasn=dias.getText();
+        
+        tur.setIdEmpleado(idEmpleado);
+        tur.setHorario(horarion);
+        tur.setDias(diasn);
+
+        int r = dao.actualizarT(tur);
+        if (r == 1) {
+            JOptionPane.showMessageDialog(null, "Turno actualizado correctamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al actualizar el turno");
+        }
+        dao.mostrarTurnos(dtm);
+    }//GEN-LAST:event_ActualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -326,10 +455,14 @@ public class VentanaTurno extends javax.swing.JFrame {
     private javax.swing.JButton Eliminar;
     private javax.swing.JButton Mostrar;
     private javax.swing.JButton Regresar;
+    private javax.swing.JTable TablaT;
     private javax.swing.JPanel aside;
     private javax.swing.JPanel center;
+    private javax.swing.JTextField dias;
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
+    private javax.swing.JTextField horario;
+    private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -347,10 +480,6 @@ public class VentanaTurno extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JButton limpiar;
     private javax.swing.JPanel principal;
     // End of variables declaration//GEN-END:variables

@@ -10,13 +10,14 @@ public class Aplicacion {
 //       VentanaProveedores obVR = new VentanaProveedores();
 //       obVR.setVisible(true);
 
-//        VentanaTurno obTurno = new VentanaTurno();
-//        obTurno.setVisible(true);
+        VentanaTurno obTurno = new VentanaTurno();
+        obTurno.setVisible(true);
 
 //        VentanaArticulos obArt = new VentanaArticulos();
 //        obArt.setVisible(true);
 
-       VentanaEmpleados obEmp = new VentanaEmpleados();
-       obEmp.setVisible(true);
+//       VentanaEmpleados obEmp = new VentanaEmpleados();
+//       obEmp.setVisible(true);
+
     }
 }

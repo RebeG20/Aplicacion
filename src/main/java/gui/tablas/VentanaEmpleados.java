@@ -288,6 +288,11 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         Regresar.setForeground(new java.awt.Color(255, 255, 255));
         Regresar.setText("Regresar");
         Regresar.setPreferredSize(new java.awt.Dimension(120, 35));
+        Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarActionPerformed(evt);
+            }
+        });
         jPanel6.add(Regresar);
 
         Editar.setBackground(new java.awt.Color(255, 102, 102));
@@ -307,6 +312,11 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         limpiar.setForeground(new java.awt.Color(255, 255, 255));
         limpiar.setText("Limpiar");
         limpiar.setPreferredSize(new java.awt.Dimension(120, 35));
+        limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarActionPerformed(evt);
+            }
+        });
         jPanel6.add(limpiar);
 
         footer.add(jPanel6, java.awt.BorderLayout.PAGE_START);
@@ -400,12 +410,12 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         if (filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(null, "Selecciona la fila a eliminar");
         } else {
-            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar el articulo?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar al empleado?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
 
             if (confirmacion == JOptionPane.YES_OPTION) {
                 String id = (String) TablaE.getValueAt(filaSeleccionada, 0);
                 dao.eliminarEmpleados(id);
-                JOptionPane.showMessageDialog(null, "Articulo Eliminado");
+                JOptionPane.showMessageDialog(null, "Empleado Eliminado");
             }
         }
         dao.mostrarEmpleados(dtm);
@@ -426,18 +436,22 @@ public class VentanaEmpleados extends javax.swing.JFrame {
 
         int r = dao.actualizarE(emp);
         if (r == 1) {
-            JOptionPane.showMessageDialog(null, "Artículo actualizado correctamente");
+            JOptionPane.showMessageDialog(null, "Los datos del empleado se actualizaron correctamente");
         } else {
-            JOptionPane.showMessageDialog(null, "Error al actualizar el artículo");
+            JOptionPane.showMessageDialog(null, "Error al actualizar los datos del empleado");
         }
         dao.mostrarEmpleados(dtm);
-        
         
     }//GEN-LAST:event_ActualizarActionPerformed
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
         // TODO add your handling code here:
-         int filaSeleccionada = TablaE.getSelectedRow();
+        
+        nombre.setVisible(false);
+        aP.setVisible(false);
+        aM.setVisible(false);
+        
+        int filaSeleccionada = TablaE.getSelectedRow();
         if (filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(null, "Selecciona la fila a editar");
         } else {
@@ -452,6 +466,26 @@ public class VentanaEmpleados extends javax.swing.JFrame {
             num.setText(String.valueOf(numC));
         }
     }//GEN-LAST:event_EditarActionPerformed
+
+    private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
+        // TODO add your handling code here:
+        dtm = (DefaultTableModel) TablaE.getModel();
+        dtm.setRowCount(0);
+        
+        id.setText("");
+        nombre.setText("");
+        aP.setText("");
+        aM.setText("");
+        calle.setText("");
+        colonia.setText("");
+        num.setText(String.valueOf(""));
+        
+    }//GEN-LAST:event_limpiarActionPerformed
+
+    private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_RegresarActionPerformed
 
     /**
      * @param args the command line arguments
