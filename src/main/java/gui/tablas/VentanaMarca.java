@@ -5,6 +5,10 @@
 package gui.tablas;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import tda.DAO_Marca;
+import tda.Marca;
 
 /**
  *
@@ -15,15 +19,21 @@ public class VentanaMarca extends javax.swing.JFrame {
     /**
      * Creates new form VentanaMarca
      */
+    DefaultTableModel dtm= new DefaultTableModel();
+    DAO_Marca dao=new DAO_Marca();
+    Marca m=new Marca();
     public VentanaMarca() {
         initComponents();
+        
         Agregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadir.png"));
-        Actualizar.setIcon(new ImageIcon("./src/main/java/Imagenes/actualizar.png"));
         Regresar.setIcon(new ImageIcon("./src/main/java/Imagenes/atras.png"));
         Mostrar.setIcon(new ImageIcon("./src/main/java/Imagenes/mostrar.png"));
         Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
-        Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
         limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
+        
+        TablaM.setModel(dtm);
+        dtm.addColumn("ID Marca");
+        dtm.addColumn("Nombre Marca");
     }
 
     /**
@@ -42,30 +52,32 @@ public class VentanaMarca extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        idM = new javax.swing.JTextField();
+        nomM = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         center = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         Agregar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
-        Actualizar = new javax.swing.JButton();
         Mostrar = new javax.swing.JButton();
         footer = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         Regresar = new javax.swing.JButton();
-        Editar = new javax.swing.JButton();
         limpiar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaM = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,7 +108,8 @@ public class VentanaMarca extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(120, 361));
-        jPanel2.setLayout(new java.awt.GridLayout(2, 1, 0, 15));
+        jPanel2.setLayout(new java.awt.GridLayout(4, 1, 0, 5));
+        jPanel2.add(jLabel7);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -107,17 +120,20 @@ public class VentanaMarca extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("     Nombre Marca:");
         jPanel2.add(jLabel4);
+        jPanel2.add(jLabel8);
 
         aside.add(jPanel2, java.awt.BorderLayout.LINE_START);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new java.awt.GridLayout(2, 1, 0, 15));
+        jPanel3.setLayout(new java.awt.GridLayout(4, 1, 0, 5));
+        jPanel3.add(jLabel10);
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(jTextField1);
+        idM.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(idM);
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(jTextField2);
+        nomM.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(nomM);
+        jPanel3.add(jLabel9);
 
         aside.add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -136,13 +152,18 @@ public class VentanaMarca extends javax.swing.JFrame {
         center.add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setLayout(new java.awt.GridLayout(2, 2, 5, 5));
+        jPanel5.setLayout(new java.awt.GridLayout(3, 1, 5, 5));
 
         Agregar.setBackground(new java.awt.Color(255, 102, 102));
         Agregar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         Agregar.setForeground(new java.awt.Color(255, 255, 255));
         Agregar.setText("Agregar");
         Agregar.setPreferredSize(new java.awt.Dimension(120, 35));
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarActionPerformed(evt);
+            }
+        });
         jPanel5.add(Agregar);
 
         Eliminar.setBackground(new java.awt.Color(255, 102, 102));
@@ -150,20 +171,23 @@ public class VentanaMarca extends javax.swing.JFrame {
         Eliminar.setForeground(new java.awt.Color(255, 255, 255));
         Eliminar.setText("Eliminar");
         Eliminar.setPreferredSize(new java.awt.Dimension(120, 35));
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
         jPanel5.add(Eliminar);
-
-        Actualizar.setBackground(new java.awt.Color(255, 102, 102));
-        Actualizar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        Actualizar.setForeground(new java.awt.Color(255, 255, 255));
-        Actualizar.setText("Actualizar");
-        Actualizar.setPreferredSize(new java.awt.Dimension(120, 35));
-        jPanel5.add(Actualizar);
 
         Mostrar.setBackground(new java.awt.Color(255, 102, 102));
         Mostrar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         Mostrar.setForeground(new java.awt.Color(255, 255, 255));
         Mostrar.setText("Mostrar");
         Mostrar.setPreferredSize(new java.awt.Dimension(120, 35));
+        Mostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MostrarActionPerformed(evt);
+            }
+        });
         jPanel5.add(Mostrar);
 
         center.add(jPanel5, java.awt.BorderLayout.CENTER);
@@ -182,13 +206,6 @@ public class VentanaMarca extends javax.swing.JFrame {
         Regresar.setText("Regresar");
         Regresar.setPreferredSize(new java.awt.Dimension(120, 35));
         jPanel6.add(Regresar);
-
-        Editar.setBackground(new java.awt.Color(255, 102, 102));
-        Editar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        Editar.setForeground(new java.awt.Color(255, 255, 255));
-        Editar.setText("Editar");
-        Editar.setPreferredSize(new java.awt.Dimension(120, 35));
-        jPanel6.add(Editar);
 
         limpiar.setBackground(new java.awt.Color(255, 102, 102));
         limpiar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
@@ -212,7 +229,7 @@ public class VentanaMarca extends javax.swing.JFrame {
 
         jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaM.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -223,7 +240,7 @@ public class VentanaMarca extends javax.swing.JFrame {
                 "ID Marca", "Nombre Marca"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TablaM);
 
         jPanel9.add(jScrollPane1);
 
@@ -237,16 +254,52 @@ public class VentanaMarca extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
+        // TODO add your handling code here:
+        String id=idM.getText();
+        String nombre=nomM.getText();
+        
+        m.setIdMarca(id);
+        m.setNombreM(nombre);
+        
+        dao.insertarMarca(m);
+        dao.mostrarMarcas(dtm);
+        
+    }//GEN-LAST:event_AgregarActionPerformed
+
+    private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
+        // TODO add your handling code here:
+        dao.mostrarMarcas(dtm);
+    }//GEN-LAST:event_MostrarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        // TODO add your handling code here:
+        int filaSeleccionada = TablaM.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "Selecciona la fila a eliminar");
+        } else {
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar la marca?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                String id = (String) TablaM.getValueAt(filaSeleccionada, 0);
+                dao.eliminarMarca(id);
+                JOptionPane.showMessageDialog(null, "La marca fue eliminada");
+            }
+        }
+        dao.mostrarMarcas(dtm);
+        
+    }//GEN-LAST:event_EliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,22 +337,26 @@ public class VentanaMarca extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Actualizar;
     private javax.swing.JButton Agregar;
-    private javax.swing.JButton Editar;
     private javax.swing.JButton Eliminar;
     private javax.swing.JButton Mostrar;
     private javax.swing.JButton Regresar;
+    private javax.swing.JTable TablaM;
     private javax.swing.JPanel aside;
     private javax.swing.JPanel center;
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
+    private javax.swing.JTextField idM;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -310,10 +367,8 @@ public class VentanaMarca extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JButton limpiar;
+    private javax.swing.JTextField nomM;
     private javax.swing.JPanel principal;
     // End of variables declaration//GEN-END:variables
 }

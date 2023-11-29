@@ -94,7 +94,7 @@ public class DAO_Empleados
         }
         catch(Exception e)
         {
-            System.out.println("e "+e);   
+               
         }
     }
     
