@@ -2,6 +2,7 @@
 package gui.tablas;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import tda.DAO_Proveedores;
 import tda.Proveedores;
@@ -66,11 +67,11 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtDias = new javax.swing.JTextField();
+        txtTel = new javax.swing.JTextField();
+        txtCiudad = new javax.swing.JTextField();
         center = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -149,20 +150,20 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new java.awt.GridLayout(5, 1, 0, 5));
 
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jPanel8.add(jTextField1);
+        txtID.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jPanel8.add(txtID);
 
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jPanel8.add(jTextField2);
+        txtNombre.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jPanel8.add(txtNombre);
 
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jPanel8.add(jTextField3);
+        txtDias.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jPanel8.add(txtDias);
 
-        jTextField4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jPanel8.add(jTextField4);
+        txtTel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jPanel8.add(txtTel);
 
-        jTextField5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jPanel8.add(jTextField5);
+        txtCiudad.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jPanel8.add(txtCiudad);
 
         aside.add(jPanel8, java.awt.BorderLayout.CENTER);
 
@@ -187,6 +188,11 @@ public class VentanaProveedores extends javax.swing.JFrame {
         Agregar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         Agregar.setForeground(new java.awt.Color(255, 255, 255));
         Agregar.setText("Agregar");
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarActionPerformed(evt);
+            }
+        });
         jPanel10.add(Agregar);
 
         Actualizar.setBackground(new java.awt.Color(255, 102, 102));
@@ -299,6 +305,29 @@ public class VentanaProveedores extends javax.swing.JFrame {
         mostrar();
     }//GEN-LAST:event_MostrarActionPerformed
 
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
+        String id=txtID.getText();
+        String nombre=txtNombre.getText();
+        String dias=txtDias.getText();
+        String tel=txtTel.getText();
+        String ciudad=txtCiudad.getText();
+        
+        prov.setIdProveedores(id);
+        prov.setNombreProv(nombre);
+        prov.setDiasQueSurte(dias);
+        prov.setNumTel(tel);
+        prov.setCiudadP(ciudad);
+        
+        int r = dao.agregarProveedores(prov);
+        if (r == 1) {
+            JOptionPane.showMessageDialog(null, "Articulo agregado correctamente");
+        } else if (r == 0) {
+            JOptionPane.showMessageDialog(null, "Error: Ya existe un artículo con el mismo ID");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al agregar el articulo");
+        }
+    }//GEN-LAST:event_AgregarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -364,13 +393,13 @@ public class VentanaProveedores extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JButton limpiar;
     private javax.swing.JPanel principal;
     private javax.swing.JTable tablaProveedores;
+    private javax.swing.JTextField txtCiudad;
+    private javax.swing.JTextField txtDias;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTel;
     // End of variables declaration//GEN-END:variables
 }

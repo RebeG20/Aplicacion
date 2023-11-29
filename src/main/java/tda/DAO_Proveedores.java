@@ -1,5 +1,5 @@
-
 package tda;
+
 import Funcionalidad.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
+
 public class DAO_Proveedores 
 {
     Conexion obConectar = new Conexion();
@@ -40,5 +41,31 @@ public class DAO_Proveedores
             
         }
         return datosProv;
+    }
+    
+    public int agregarProveedores(Proveedores prov)
+    {
+        String insertSQL="INSERT INTO proveedores(idProveedores, NombreProv, DiasQueSurte, `#TelProv`, CiudadP) VALUES(?,?,?,?,?)";
+        try
+        {
+            con=obConectar.establecerConnection();
+            ps=con.prepareStatement(insertSQL);
+            ps.setString(1, prov.getIdProveedores());
+            ps.setString(2, prov.getNombreProv());
+            ps.setString(3, prov.getDiasQueSurte());
+            ps.setString(4, prov.getNumTel());
+            ps.setString(5, prov.getCiudadP());
+            ps.executeUpdate();
+            return 1;   //Exito
+        }
+        catch(SQLIntegrityConstraintViolationException e)
+        {
+            return 0;   //ID Duplicado
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return -1;  //Otro tipo de error
+        }
     }
 }
