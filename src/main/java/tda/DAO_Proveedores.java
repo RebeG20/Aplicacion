@@ -110,4 +110,19 @@ public class DAO_Proveedores
             }
         }
     }
+    
+    public void eliminarProveedores(String id)
+    {
+        String deleteSQL="DELETE FROM proveedores WHERE idProveedores = "+id;
+        try
+        {
+            con=obConectar.establecerConnection();
+            ps=con.prepareStatement(deleteSQL);
+            ps.executeUpdate();
+        }
+        catch(Exception e)
+        {
+            
+        }
+    }
 }

@@ -69,6 +69,25 @@ public class VentanaProveedores extends javax.swing.JFrame {
         }
     }
     
+    public void eliminar()
+    {
+        int filaSeleccionada = tablaProveedores.getSelectedRow();
+        if(filaSeleccionada==-1)
+        {
+            JOptionPane.showMessageDialog(null, "Selecciona la fila a eliminar");
+        }
+        else
+        {
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar al proveedor?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+            if (confirmacion == JOptionPane.YES_OPTION) 
+            {
+                String id = (String) tablaProveedores.getValueAt(filaSeleccionada, 0);
+                dao.eliminarProveedores(id);
+                JOptionPane.showMessageDialog(null, "Proveedor Eliminado");
+            }
+        }
+    }
+    
     public void mostrar()
     {
         dtm= (DefaultTableModel) tablaProveedores.getModel();
@@ -256,6 +275,11 @@ public class VentanaProveedores extends javax.swing.JFrame {
         Eliminar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         Eliminar.setForeground(new java.awt.Color(255, 255, 255));
         Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
         jPanel10.add(Eliminar);
 
         Mostrar.setBackground(new java.awt.Color(255, 102, 102));
@@ -367,6 +391,12 @@ public class VentanaProveedores extends javax.swing.JFrame {
         limpiarTabla();
         mostrar();
     }//GEN-LAST:event_ActualizarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        eliminar();
+        limpiarTabla();
+        mostrar();
+    }//GEN-LAST:event_EliminarActionPerformed
 
     /**
      * @param args the command line arguments
