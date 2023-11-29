@@ -79,11 +79,11 @@ public class DAO_Proveedores
             
             System.out.println(prov.getDiasQueSurte());
             
-            ps.setString(1, prov.getIdProveedores());
-            ps.setString(2, prov.getNombreProv());
-            ps.setString(3, prov.getDiasQueSurte());
-            ps.setString(4, prov.getNumTel());
-            ps.setString(5, prov.getCiudadP());
+            ps.setString(5, prov.getIdProveedores());
+            ps.setString(1, prov.getNombreProv());
+            ps.setString(2, prov.getDiasQueSurte());
+            ps.setString(3, prov.getNumTel());
+            ps.setString(4, prov.getCiudadP());
             
             ps.executeUpdate();
             return 1; // Éxito
