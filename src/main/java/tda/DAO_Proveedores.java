@@ -77,6 +77,8 @@ public class DAO_Proveedores
             con = obConectar.establecerConnection();
             ps = con.prepareStatement(updateSQL);
             
+            System.out.println(prov.getDiasQueSurte());
+            
             ps.setString(1, prov.getIdProveedores());
             ps.setString(2, prov.getNombreProv());
             ps.setString(3, prov.getDiasQueSurte());
