@@ -23,6 +23,52 @@ public class VentanaProveedores extends javax.swing.JFrame {
         limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
     }
     
+    public void agregar()
+    {
+        String id=txtID.getText();
+        String nombre=txtNombre.getText();
+        String dias=txtDias.getText();
+        String tel=txtTel.getText();
+        String ciudad=txtCiudad.getText();
+        
+        prov.setIdProveedores(id);
+        prov.setNombreProv(nombre);
+        prov.setDiasQueSurte(dias);
+        prov.setNumTel(tel);
+        prov.setCiudadP(ciudad);
+        
+        int r = dao.agregarProveedores(prov);
+        if (r == 1) {
+            JOptionPane.showMessageDialog(null, "Articulo agregado correctamente");
+        } else if (r == 0) {
+            JOptionPane.showMessageDialog(null, "Error: Ya existe un artículo con el mismo ID");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al agregar el articulo");
+        }
+    }
+    
+    public void actualizar() 
+    {
+        String id=txtID.getText();
+        String nombre=txtNombre.getText();
+        String dias=txtDias.getText();
+        String tel=txtTel.getText();
+        String ciudad=txtCiudad.getText();
+        
+        prov.setIdProveedores(id);
+        prov.setNombreProv(nombre);
+        prov.setDiasQueSurte(dias);
+        prov.setNumTel(tel);
+        prov.setCiudadP(ciudad);
+
+        int r = dao.actualizarProveedores(prov);
+        if (r == 1) {
+            JOptionPane.showMessageDialog(null, "Artículo actualizado correctamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al actualizar el artículo");
+        }
+    }
+    
     public void mostrar()
     {
         dtm= (DefaultTableModel) tablaProveedores.getModel();
@@ -199,6 +245,11 @@ public class VentanaProveedores extends javax.swing.JFrame {
         Actualizar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         Actualizar.setForeground(new java.awt.Color(255, 255, 255));
         Actualizar.setText("Actualizar");
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarActionPerformed(evt);
+            }
+        });
         jPanel10.add(Actualizar);
 
         Eliminar.setBackground(new java.awt.Color(255, 102, 102));
@@ -306,27 +357,16 @@ public class VentanaProveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_MostrarActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        String id=txtID.getText();
-        String nombre=txtNombre.getText();
-        String dias=txtDias.getText();
-        String tel=txtTel.getText();
-        String ciudad=txtCiudad.getText();
-        
-        prov.setIdProveedores(id);
-        prov.setNombreProv(nombre);
-        prov.setDiasQueSurte(dias);
-        prov.setNumTel(tel);
-        prov.setCiudadP(ciudad);
-        
-        int r = dao.agregarProveedores(prov);
-        if (r == 1) {
-            JOptionPane.showMessageDialog(null, "Articulo agregado correctamente");
-        } else if (r == 0) {
-            JOptionPane.showMessageDialog(null, "Error: Ya existe un artículo con el mismo ID");
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al agregar el articulo");
-        }
+        agregar();
+        limpiarTabla();
+        mostrar();
     }//GEN-LAST:event_AgregarActionPerformed
+
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
+        actualizar();
+        limpiarTabla();
+        mostrar();
+    }//GEN-LAST:event_ActualizarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -68,4 +68,46 @@ public class DAO_Proveedores
             return -1;  //Otro tipo de error
         }
     }
+    
+    public int actualizarProveedores(Proveedores prov)
+    {
+        String updateSQL="UPDATE proveedores SET NombreProv = ?, DiasQueSurte = ?, `#TelProv` = ?, CiudadP = ? WHERE idProveedores = ?";
+        try 
+        {
+            con = obConectar.establecerConnection();
+            ps = con.prepareStatement(updateSQL);
+            
+            ps.setString(1, prov.getIdProveedores());
+            ps.setString(2, prov.getNombreProv());
+            ps.setString(3, prov.getDiasQueSurte());
+            ps.setString(4, prov.getNumTel());
+            ps.setString(5, prov.getCiudadP());
+            
+            ps.executeUpdate();
+            return 1; // Éxito
+        } 
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+            return -1; // Otro tipo de error
+        } 
+        finally 
+        {
+            try 
+            {
+                if (ps != null) 
+                {
+                    ps.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+            } 
+            catch (SQLException e) 
+            {
+                e.printStackTrace();
+            }
+        }
+    }
 }
