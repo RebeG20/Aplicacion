@@ -4,7 +4,13 @@
  */
 package gui.tablas;
 
+import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import tda.Articulos;
+import tda.CompaniasTel;
+import tda.DAO_CompaniasTel;
 
 /**
  *
@@ -12,18 +18,66 @@ import javax.swing.ImageIcon;
  */
 public class VentanaCompaniasTel extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaCompaniasTel
-     */
+    DAO_CompaniasTel dao = new DAO_CompaniasTel();
+    CompaniasTel CT = new CompaniasTel();
+    DefaultTableModel dtm = new DefaultTableModel();
+    
     public VentanaCompaniasTel() {
         initComponents();
-        Agregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadir.png"));
-        Actualizar.setIcon(new ImageIcon("./src/main/java/Imagenes/actualizar.png"));
-        Regresar.setIcon(new ImageIcon("./src/main/java/Imagenes/atras.png"));
-        Mostrar.setIcon(new ImageIcon("./src/main/java/Imagenes/mostrar.png"));
-        Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
-        Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
-        limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
+        btnAgregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadir.png"));
+        btnRegresar.setIcon(new ImageIcon("./src/main/java/Imagenes/atras.png"));
+        btnMostrar.setIcon(new ImageIcon("./src/main/java/Imagenes/mostrar.png"));
+        btnEliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
+        btnLimpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
+    }
+    
+    public void mostrar() {
+        dtm = (DefaultTableModel) tablaCT.getModel();
+        List<CompaniasTel> lista = dao.mostrarCT();
+        Object[] fila = new Object[2];
+        for (int i = 0; i < lista.size(); i++) {
+            fila[0] = lista.get(i).getIdCT();
+            fila[1] = lista.get(i).getNombreCT();
+            dtm.addRow(fila);
+        }
+        tablaCT.setModel(dtm);
+    }
+    
+    public void agregar() {
+        String id = txtId.getText();
+        String nombre = txtNombre.getText();
+
+        CT.setIdCT(id);
+        CT.setNombreCT(nombre);
+
+        int r = dao.agregarCT(CT);
+        if (r == 1) {
+            JOptionPane.showMessageDialog(null, "Articulo agregado correctamente");
+        } else if (r == 0) {
+            JOptionPane.showMessageDialog(null, "Error: Ya existe un artículo con el mismo ID");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al agregar el articulo");
+        }
+    }
+    
+    public void eliminar() {
+        int filaSeleccionada = tablaCT.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "Selecciona la fila a eliminar");
+        } else {
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar el articulo?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                String id = (String) tablaCT.getValueAt(filaSeleccionada, 0);
+                dao.eliminarCT(id);
+                JOptionPane.showMessageDialog(null, "Articulo Eliminado");
+            }
+        }
+    }
+    
+    public void limpiarTabla() {
+        dtm = (DefaultTableModel) tablaCT.getModel();
+        dtm.setRowCount(0);
     }
 
     /**
@@ -44,28 +98,28 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         center = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        Agregar = new javax.swing.JButton();
-        Eliminar = new javax.swing.JButton();
-        Actualizar = new javax.swing.JButton();
-        Mostrar = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnMostrar = new javax.swing.JButton();
         footer = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        Regresar = new javax.swing.JButton();
-        Editar = new javax.swing.JButton();
-        limpiar = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaCT = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,7 +150,7 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(150, 246));
-        jPanel2.setLayout(new java.awt.GridLayout(2, 1, 0, 15));
+        jPanel2.setLayout(new java.awt.GridLayout(3, 1, 0, 15));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -107,19 +161,21 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("     Nombre Compañia Tel:");
         jPanel2.add(jLabel4);
+        jPanel2.add(jLabel7);
 
         aside.add(jPanel2, java.awt.BorderLayout.LINE_START);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new java.awt.GridLayout(2, 1, 0, 15));
+        jPanel3.setLayout(new java.awt.GridLayout(3, 1, 0, 15));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel3.add(jTextField1);
+        txtId.setBackground(new java.awt.Color(255, 255, 255));
+        txtId.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jPanel3.add(txtId);
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel3.add(jTextField2);
+        txtNombre.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombre.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jPanel3.add(txtNombre);
+        jPanel3.add(jLabel8);
 
         aside.add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -138,46 +194,40 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
         center.add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setLayout(new java.awt.GridLayout(2, 2, 5, 5));
+        jPanel5.setLayout(new java.awt.GridLayout(3, 1, 5, 5));
 
-        Agregar.setBackground(new java.awt.Color(255, 102, 102));
-        Agregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Agregar.setForeground(new java.awt.Color(255, 255, 255));
-        Agregar.setText("Agregar");
-        jPanel5.add(Agregar);
-
-        Eliminar.setBackground(new java.awt.Color(255, 102, 102));
-        Eliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Eliminar.setForeground(new java.awt.Color(255, 255, 255));
-        Eliminar.setText("Eliminar");
-        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setBackground(new java.awt.Color(255, 102, 102));
+        btnAgregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EliminarActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
-        jPanel5.add(Eliminar);
+        jPanel5.add(btnAgregar);
 
-        Actualizar.setBackground(new java.awt.Color(255, 102, 102));
-        Actualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Actualizar.setForeground(new java.awt.Color(255, 255, 255));
-        Actualizar.setText("Actualizar");
-        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(255, 102, 102));
+        btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActualizarActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
-        jPanel5.add(Actualizar);
+        jPanel5.add(btnEliminar);
 
-        Mostrar.setBackground(new java.awt.Color(255, 102, 102));
-        Mostrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Mostrar.setForeground(new java.awt.Color(255, 255, 255));
-        Mostrar.setText("Mostrar");
-        Mostrar.addActionListener(new java.awt.event.ActionListener() {
+        btnMostrar.setBackground(new java.awt.Color(255, 102, 102));
+        btnMostrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnMostrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnMostrar.setText("Mostrar");
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MostrarActionPerformed(evt);
+                btnMostrarActionPerformed(evt);
             }
         });
-        jPanel5.add(Mostrar);
+        jPanel5.add(btnMostrar);
 
         center.add(jPanel5, java.awt.BorderLayout.CENTER);
 
@@ -189,26 +239,29 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 5));
 
-        Regresar.setBackground(new java.awt.Color(255, 102, 102));
-        Regresar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        Regresar.setForeground(new java.awt.Color(255, 255, 255));
-        Regresar.setText("Regresar");
-        Regresar.setPreferredSize(new java.awt.Dimension(120, 35));
-        jPanel6.add(Regresar);
+        btnRegresar.setBackground(new java.awt.Color(255, 102, 102));
+        btnRegresar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegresar.setText("Regresar");
+        btnRegresar.setPreferredSize(new java.awt.Dimension(120, 35));
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnRegresar);
 
-        Editar.setBackground(new java.awt.Color(255, 102, 102));
-        Editar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        Editar.setForeground(new java.awt.Color(255, 255, 255));
-        Editar.setText("Editar");
-        Editar.setPreferredSize(new java.awt.Dimension(120, 35));
-        jPanel6.add(Editar);
-
-        limpiar.setBackground(new java.awt.Color(255, 102, 102));
-        limpiar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        limpiar.setForeground(new java.awt.Color(255, 255, 255));
-        limpiar.setText("Limpiar");
-        limpiar.setPreferredSize(new java.awt.Dimension(120, 35));
-        jPanel6.add(limpiar);
+        btnLimpiar.setBackground(new java.awt.Color(255, 102, 102));
+        btnLimpiar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setPreferredSize(new java.awt.Dimension(120, 35));
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnLimpiar);
 
         footer.add(jPanel6, java.awt.BorderLayout.PAGE_START);
 
@@ -225,7 +278,7 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
 
         jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaCT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -244,9 +297,9 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
+        jScrollPane1.setViewportView(tablaCT);
+        if (tablaCT.getColumnModel().getColumnCount() > 0) {
+            tablaCT.getColumnModel().getColumn(0).setResizable(false);
         }
 
         jPanel9.add(jScrollPane1);
@@ -261,27 +314,42 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ActualizarActionPerformed
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+        limpiarTabla();
+        mostrar();
+    }//GEN-LAST:event_btnMostrarActionPerformed
 
-    private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MostrarActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        eliminar();
+        limpiarTabla();
+        mostrar();
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EliminarActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        agregar();
+        limpiarTabla();
+        mostrar();
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtId.setText("");
+        txtNombre.setText("");
+        limpiarTabla();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,13 +387,12 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Actualizar;
-    private javax.swing.JButton Agregar;
-    private javax.swing.JButton Editar;
-    private javax.swing.JButton Eliminar;
-    private javax.swing.JButton Mostrar;
-    private javax.swing.JButton Regresar;
     private javax.swing.JPanel aside;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnMostrar;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JPanel center;
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
@@ -335,6 +402,8 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -345,10 +414,9 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton limpiar;
     private javax.swing.JPanel principal;
+    private javax.swing.JTable tablaCT;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
