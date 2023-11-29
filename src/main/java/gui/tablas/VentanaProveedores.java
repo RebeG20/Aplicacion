@@ -322,6 +322,11 @@ public class VentanaProveedores extends javax.swing.JFrame {
         limpiar.setForeground(new java.awt.Color(255, 255, 255));
         limpiar.setText("Limpiar");
         limpiar.setPreferredSize(new java.awt.Dimension(120, 35));
+        limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarActionPerformed(evt);
+            }
+        });
         jPanel11.add(limpiar);
 
         footer.add(jPanel11, java.awt.BorderLayout.PAGE_START);
@@ -397,6 +402,15 @@ public class VentanaProveedores extends javax.swing.JFrame {
         limpiarTabla();
         mostrar();
     }//GEN-LAST:event_EliminarActionPerformed
+
+    private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
+        txtID.setText("");
+        txtNombre.setText("");
+        txtDias.setText("");
+        txtTel.setText("");
+        txtCiudad.setText("");
+        limpiarTabla();
+    }//GEN-LAST:event_limpiarActionPerformed
 
     /**
      * @param args the command line arguments
