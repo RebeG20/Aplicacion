@@ -1,20 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package gui.tablas;
-
+import java.util.List;
 import javax.swing.ImageIcon;
-
-/**
- *
- * @author rafae
- */
+import javax.swing.table.DefaultTableModel;
+import tda.DAO_Proveedores;
+import tda.Proveedores;
 public class VentanaProveedores extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaProveedores
-     */
+    DAO_Proveedores dao=new DAO_Proveedores();
+    Proveedores prov=new Proveedores();
+    DefaultTableModel dtm=new DefaultTableModel();
+    
     public VentanaProveedores() {
         initComponents();
         Agregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadir.png"));
@@ -24,6 +20,28 @@ public class VentanaProveedores extends javax.swing.JFrame {
         Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
         Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
         limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
+    }
+    
+    public void mostrar()
+    {
+        dtm= (DefaultTableModel) tablaProveedores.getModel();
+        List<Proveedores> lista=dao.listarProveedores();
+        Object[] fila=new Object[5];
+        for(Proveedores l:lista)
+        {
+            fila[0]=l.getIdProveedores();
+            fila[1]=l.getNombreProv();
+            fila[2]=l.getDiasQueSurte();
+            fila[3]=l.getNumTel();
+            fila[4]=l.getCiudadP();
+            dtm.addRow(fila);
+        }
+    }
+    
+    public void limpiarTabla() 
+    {
+        dtm = (DefaultTableModel) tablaProveedores.getModel();
+        dtm.setRowCount(0);
     }
 
     /**
@@ -71,7 +89,7 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaProveedores = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,7 +99,6 @@ public class VentanaProveedores extends javax.swing.JFrame {
         header.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Proveedores");
         header.add(jLabel1);
 
@@ -95,31 +112,26 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jPanel6.setLayout(new java.awt.GridLayout(5, 1, 0, 5));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("     ID Proveedor:");
         jPanel6.add(jLabel3);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("     Nombre Proveedor:");
         jPanel6.add(jLabel4);
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("     Dias que Surte:");
         jPanel6.add(jLabel5);
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("     Telefono Proveedor:");
         jPanel6.add(jLabel6);
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("     Ciudad Proveedor:");
         jPanel6.add(jLabel7);
@@ -129,7 +141,6 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans", 0, 15)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Ingresar Datos");
         jPanel7.add(jLabel2);
 
@@ -138,29 +149,19 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new java.awt.GridLayout(5, 1, 0, 5));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
         jTextField1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel8.add(jTextField1);
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
         jTextField2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel8.add(jTextField2);
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
         jTextField3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
         jPanel8.add(jTextField3);
 
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
         jTextField4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(0, 0, 0));
         jPanel8.add(jTextField4);
 
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
         jTextField5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(0, 0, 0));
         jPanel8.add(jTextField5);
 
         aside.add(jPanel8, java.awt.BorderLayout.CENTER);
@@ -174,7 +175,6 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jPanel9.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel8.setFont(new java.awt.Font("Lucida Sans", 0, 15)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Opciones");
         jPanel9.add(jLabel8);
 
@@ -205,6 +205,11 @@ public class VentanaProveedores extends javax.swing.JFrame {
         Mostrar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         Mostrar.setForeground(new java.awt.Color(255, 255, 255));
         Mostrar.setText("Mostrar");
+        Mostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MostrarActionPerformed(evt);
+            }
+        });
         jPanel10.add(Mostrar);
 
         center.add(jPanel10, java.awt.BorderLayout.CENTER);
@@ -246,7 +251,6 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jPanel13.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel9.setFont(new java.awt.Font("Lucida Sans", 0, 13)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Tabla Proveedores");
         jPanel13.add(jLabel9);
 
@@ -254,7 +258,7 @@ public class VentanaProveedores extends javax.swing.JFrame {
 
         jPanel14.setLayout(new javax.swing.BoxLayout(jPanel14, javax.swing.BoxLayout.LINE_AXIS));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -265,7 +269,7 @@ public class VentanaProveedores extends javax.swing.JFrame {
                 "ID Proveedor", "Nombre Proveedor", "Dias que Surte", "Telefono Proveedor", "Ciudad Proveedor"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaProveedores);
 
         jPanel14.add(jScrollPane1);
 
@@ -289,6 +293,11 @@ public class VentanaProveedores extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
+        limpiarTabla();
+        mostrar();
+    }//GEN-LAST:event_MostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -355,7 +364,6 @@ public class VentanaProveedores extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -363,5 +371,6 @@ public class VentanaProveedores extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JButton limpiar;
     private javax.swing.JPanel principal;
+    private javax.swing.JTable tablaProveedores;
     // End of variables declaration//GEN-END:variables
 }
