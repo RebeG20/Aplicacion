@@ -104,6 +104,29 @@ public class VentanaProveedores extends javax.swing.JFrame {
         }
     }
     
+    public void editar()
+    {
+        int filaSeleccionada=tablaProveedores.getSelectedRow();
+        if(filaSeleccionada==-1)
+        {
+            JOptionPane.showMessageDialog(null, "Selecciona la fila a eliminar");
+        }
+        else
+        {
+            String id=(String) tablaProveedores.getValueAt(filaSeleccionada, 0);
+            String nombre=(String) tablaProveedores.getValueAt(filaSeleccionada, 1);
+            String dias=(String) tablaProveedores.getValueAt(filaSeleccionada, 2);
+            String tel=(String) tablaProveedores.getValueAt(filaSeleccionada, 3);
+            String ciudad=(String) tablaProveedores.getValueAt(filaSeleccionada, 4);
+            
+            txtID.setText(id);
+            txtNombre.setText(nombre);
+            txtDias.setText(dias);
+            txtTel.setText(tel);
+            txtCiudad.setText(ciudad);
+        }
+    }
+    
     public void limpiarTabla() 
     {
         dtm = (DefaultTableModel) tablaProveedores.getModel();
@@ -308,6 +331,11 @@ public class VentanaProveedores extends javax.swing.JFrame {
         Regresar.setForeground(new java.awt.Color(255, 255, 255));
         Regresar.setText("Regresar");
         Regresar.setPreferredSize(new java.awt.Dimension(120, 35));
+        Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarActionPerformed(evt);
+            }
+        });
         jPanel11.add(Regresar);
 
         Editar.setBackground(new java.awt.Color(255, 102, 102));
@@ -315,6 +343,11 @@ public class VentanaProveedores extends javax.swing.JFrame {
         Editar.setForeground(new java.awt.Color(255, 255, 255));
         Editar.setText("Editar");
         Editar.setPreferredSize(new java.awt.Dimension(120, 35));
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
         jPanel11.add(Editar);
 
         limpiar.setBackground(new java.awt.Color(255, 102, 102));
@@ -411,6 +444,14 @@ public class VentanaProveedores extends javax.swing.JFrame {
         txtCiudad.setText("");
         limpiarTabla();
     }//GEN-LAST:event_limpiarActionPerformed
+
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+        editar();
+    }//GEN-LAST:event_EditarActionPerformed
+
+    private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
+        dispose();
+    }//GEN-LAST:event_RegresarActionPerformed
 
     /**
      * @param args the command line arguments
