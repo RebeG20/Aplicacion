@@ -13,16 +13,20 @@ public class Conexion {
     //String database="tienda";
     
     //Base de datos de Luis
-    String password = "G.umball37";
-    String database = "tienda";
+//    String password = "G.umball37";
+//    String database = "tienda";
 
 //    Base de datos de Rafa:
 //    String password = "R4f43l60$7";
 //    String database = "tienda";
 
+    //Base de datos lupita 
+    String password="rootmaria";
+    String database="tienda";
+    
     String ip = "localhost";
     String puerto = "3306";
-
+    
     String dir = "jdbc:mysql://" + ip + ":" + puerto + "/" + database;
 
     public Connection establecerConnection() {

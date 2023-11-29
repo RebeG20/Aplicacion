@@ -5,13 +5,19 @@
 package gui.tablas;
 
 import javax.swing.ImageIcon;
-
+import javax.swing.JOptionPane;
+import tda.*;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author rafae
  */
 public class VentanaRecargas extends javax.swing.JFrame {
 
+    Recargas obR=new Recargas();
+    DAO_Recargas obrec=new DAO_Recargas();
+    DefaultTableModel tabla = new DefaultTableModel();
+    
     /**
      * Creates new form VentanaRecargas
      */
@@ -24,6 +30,12 @@ public class VentanaRecargas extends javax.swing.JFrame {
         Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
         Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
         limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
+        
+        tabla.addColumn("idRecarga");
+        tabla.addColumn("Precio");
+        tabla.addColumn("Tipo");
+        jTable1.setModel(tabla);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -162,18 +174,33 @@ public class VentanaRecargas extends javax.swing.JFrame {
         Actualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Actualizar.setForeground(new java.awt.Color(255, 255, 255));
         Actualizar.setText("Actualizar");
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarActionPerformed(evt);
+            }
+        });
         jPanel5.add(Actualizar);
 
         Eliminar.setBackground(new java.awt.Color(255, 102, 102));
         Eliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Eliminar.setForeground(new java.awt.Color(255, 255, 255));
         Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
         jPanel5.add(Eliminar);
 
         Mostrar.setBackground(new java.awt.Color(255, 102, 102));
         Mostrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Mostrar.setForeground(new java.awt.Color(255, 255, 255));
         Mostrar.setText("Mostrar");
+        Mostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MostrarActionPerformed(evt);
+            }
+        });
         jPanel5.add(Mostrar);
 
         center.add(jPanel5, java.awt.BorderLayout.CENTER);
@@ -191,6 +218,11 @@ public class VentanaRecargas extends javax.swing.JFrame {
         Regresar.setForeground(new java.awt.Color(255, 255, 255));
         Regresar.setText("Regresar");
         Regresar.setPreferredSize(new java.awt.Dimension(120, 35));
+        Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarActionPerformed(evt);
+            }
+        });
         jPanel6.add(Regresar);
 
         Editar.setBackground(new java.awt.Color(255, 102, 102));
@@ -198,6 +230,11 @@ public class VentanaRecargas extends javax.swing.JFrame {
         Editar.setForeground(new java.awt.Color(255, 255, 255));
         Editar.setText("Editar");
         Editar.setPreferredSize(new java.awt.Dimension(120, 35));
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
         jPanel6.add(Editar);
 
         limpiar.setBackground(new java.awt.Color(255, 102, 102));
@@ -205,6 +242,11 @@ public class VentanaRecargas extends javax.swing.JFrame {
         limpiar.setForeground(new java.awt.Color(255, 255, 255));
         limpiar.setText("Limpiar");
         limpiar.setPreferredSize(new java.awt.Dimension(120, 35));
+        limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarActionPerformed(evt);
+            }
+        });
         jPanel6.add(limpiar);
 
         footer.add(jPanel6, java.awt.BorderLayout.PAGE_START);
@@ -271,8 +313,98 @@ public class VentanaRecargas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        // TODO add your handling code here:
+        String idR,tipo;
+        int precio;
+        
+        idR=jTextField1.getText();
+        precio=Integer.parseInt(jTextField2.getText());
+        tipo=jTextField3.getText();
+        
+        obR.setIdRec(idR);
+        obR.setPrecio(precio);
+        obR.setTipo(tipo);
+        
+        obrec.inserRec(obR);
+        tabla = (DefaultTableModel) jTable1.getModel();
+        tabla.setRowCount(0);
+        obrec.selRec(tabla);
     }//GEN-LAST:event_AgregarActionPerformed
+
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
+        String idR,tipo;
+        int precio;
+        
+        idR=jTextField1.getText();
+        precio=Integer.parseInt(jTextField2.getText());
+        tipo=jTextField3.getText();
+        
+        obR.setIdRec(idR);
+        obR.setPrecio(precio);
+        obR.setTipo(tipo);
+        
+        int r=obrec.actRec(obR);
+        if(r==1)
+        {
+            JOptionPane.showMessageDialog(null, "Actualizado");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "No actualizado");
+        }
+        obrec.selRec(tabla);
+    }//GEN-LAST:event_ActualizarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "Selecciona una fila");
+        } else {
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar la recarga?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                String rec = (String) jTable1.getValueAt(filaSeleccionada, 0);
+                obrec.elimRec(rec);
+                JOptionPane.showMessageDialog(null, "Articulo Eliminado");
+            }
+        }
+        obrec.selRec(tabla);
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
+        obrec.selRec(tabla);
+    }//GEN-LAST:event_MostrarActionPerformed
+
+    private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_RegresarActionPerformed
+
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+         int filaSeleccionada=jTable1.getSelectedRow();
+        if(filaSeleccionada==-1)
+        {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila ");
+        }
+        else
+        {
+           String idR=(String) jTable1.getValueAt(filaSeleccionada, 0);
+           int precio=(Integer) jTable1.getValueAt(filaSeleccionada, 1);
+           String tipo=(String) jTable1.getValueAt(filaSeleccionada, 2);
+           
+           jTextField1.setText(idR);
+           jTextField2.setText(String.valueOf(precio));
+           jTextField3.setText(tipo);
+        }
+        obrec.selRec(tabla);
+    }//GEN-LAST:event_EditarActionPerformed
+
+    private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
+        jTextField1.setText(" ");
+        jTextField2.setText(" ");
+        jTextField3.setText(" ");
+        
+        tabla = (DefaultTableModel) jTable1.getModel();
+        tabla.setRowCount(0);
+    }//GEN-LAST:event_limpiarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -19,8 +19,11 @@ public class Aplicacion {
 //       VentanaEmpleados obEmp = new VentanaEmpleados();
 //       obEmp.setVisible(true);
 
-        VentanaProveedores obProv=new VentanaProveedores();
-        obProv.setVisible(true);
+//        VentanaProveedores obProv=new VentanaProveedores();
+//        obProv.setVisible(true);
+
+        VentanaRecargas obRec=new VentanaRecargas();
+        obRec.setVisible(true);
             
     }
 }
