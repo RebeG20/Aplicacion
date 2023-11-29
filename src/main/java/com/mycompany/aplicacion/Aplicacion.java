@@ -7,8 +7,8 @@ public class Aplicacion {
 
     public static void main(String[] args) {
         //Ejecutar Ventanas para pruebas:
-       VentanaMarca obM = new VentanaMarca();
-       obM.setVisible(true);
+//       VentanaMarca obM = new VentanaMarca();
+//       obM.setVisible(true);
 
 //        VentanaTurno obTurno = new VentanaTurno();
 //        obTurno.setVisible(true);
@@ -19,5 +19,8 @@ public class Aplicacion {
 //       VentanaEmpleados obEmp = new VentanaEmpleados();
 //       obEmp.setVisible(true);
 
+        VentanaProveedores obProv=new VentanaProveedores();
+        obProv.setVisible(true);
+            
     }
 }
