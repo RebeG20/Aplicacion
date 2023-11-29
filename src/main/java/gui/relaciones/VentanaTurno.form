@@ -145,7 +145,7 @@
                 <Property name="verticalGap" type="int" value="15"/>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel3">
+                <Component class="javax.swing.JLabel" name="Nombre">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="13" style="0"/>
@@ -153,7 +153,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="     ID Empleado:"/>
+                    <Property name="text" type="java.lang.String" value="        Nombre: "/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
@@ -440,6 +440,9 @@
                       <Dimension value="[120, 35]"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RegresarActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="Editar">
                   <Properties>
@@ -538,8 +541,9 @@
                         <Component class="javax.swing.JTable" name="TablaT">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="3" rowCount="4">
-                                <Column editable="false" title="ID Empleados" type="java.lang.Object"/>
+                              <Table columnCount="4" rowCount="4">
+                                <Column editable="false" title="ID Empleado" type="java.lang.Object"/>
+                                <Column editable="true" title="Nombre" type="java.lang.Object"/>
                                 <Column editable="false" title="Horario Turno" type="java.lang.Object"/>
                                 <Column editable="false" title="Dias que Trabaja" type="java.lang.Object"/>
                               </Table>

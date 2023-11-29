@@ -6,10 +6,44 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 public class DAO_Empleados 
 {
+    public ArrayList<Empleados> datosEmp = new ArrayList<>();
     Conexion obConexion=new Conexion();
     Connection conectar;
     PreparedStatement ps;
     ResultSet rs; 
+    
+    public void guardarDatos()
+    {
+        //Obtener valores
+        try
+        {
+            conectar=obConexion.establecerConnection();
+            ps=conectar.prepareStatement("CALL mostrar_Empleados()");
+            rs=ps.executeQuery();
+            
+            while (rs.next()) 
+            {
+                Empleados emp= new Empleados();
+                emp.setIdEmpleado(rs.getString(1));
+                emp.setNombreE(rs.getString(2));
+                emp.setApellidoPE(rs.getString(3));
+                emp.setApellidoME(rs.getString(4));
+                emp.setCalle(rs.getString(5));
+                emp.setColonia(rs.getString(6));
+                emp.setNumCalle(rs.getInt(7));
+                datosEmp.add(emp);
+            }
+  
+        }
+        catch (Exception e) 
+        {
+            
+        }
+        
+        
+    }
+    
+    
     
     public void mostrarEmpleados(DefaultTableModel dtm)
     {
@@ -118,6 +152,10 @@ public class DAO_Empleados
             
             System.out.println("e "+e);    
         }return 0;
+    }
+
+    public ArrayList<Empleados> getDatosEmp() {
+        return datosEmp;
     }
   
     

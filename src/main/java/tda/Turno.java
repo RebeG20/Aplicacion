@@ -2,6 +2,7 @@ package tda;
 public class Turno 
 {
     String idEmpleado;
+    String nombre;
     String horario;
     String dias;
 
@@ -9,13 +10,18 @@ public class Turno
     {
         
     }
-    
-    public Turno(String idEmpleado, String horario, String dias) 
-    {
+
+    public Turno(String idEmpleado, String nombre, String horario, String dias) {
         this.idEmpleado = idEmpleado;
+        this.nombre = nombre;
         this.horario = horario;
         this.dias = dias;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
 
     public void setIdEmpleado(String idEmpleado) {
         this.idEmpleado = idEmpleado;
@@ -39,6 +45,10 @@ public class Turno
 
     public String getDias() {
         return dias;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
     
     

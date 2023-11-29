@@ -8,6 +8,7 @@ import gui.tablas.*;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import tda.DAO_Empleados;
 import tda.DAO_Turno;
 import tda.Turno;
 
@@ -38,6 +39,7 @@ public class VentanaTurno extends javax.swing.JFrame {
         
         TablaT.setModel(dtm);
         dtm.addColumn("ID Empleado");
+        dtm.addColumn("Nombre");
         dtm.addColumn("Horario Turno");
         dtm.addColumn("Dias Que trabaja");
         
@@ -59,7 +61,7 @@ public class VentanaTurno extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        Nombre = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -119,10 +121,10 @@ public class VentanaTurno extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(150, 389));
         jPanel2.setLayout(new java.awt.GridLayout(3, 1, 0, 15));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("     ID Empleado:");
-        jPanel2.add(jLabel3);
+        Nombre.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        Nombre.setForeground(new java.awt.Color(0, 0, 0));
+        Nombre.setText("        Nombre: ");
+        jPanel2.add(Nombre);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -238,6 +240,11 @@ public class VentanaTurno extends javax.swing.JFrame {
         Regresar.setForeground(new java.awt.Color(255, 255, 255));
         Regresar.setText("Regresar");
         Regresar.setPreferredSize(new java.awt.Dimension(120, 35));
+        Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarActionPerformed(evt);
+            }
+        });
         jPanel6.add(Regresar);
 
         Editar.setBackground(new java.awt.Color(255, 102, 102));
@@ -281,17 +288,17 @@ public class VentanaTurno extends javax.swing.JFrame {
 
         TablaT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID Empleados", "Horario Turno", "Dias que Trabaja"
+                "ID Empleado", "Nombre", "Horario Turno", "Dias que Trabaja"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -329,15 +336,12 @@ public class VentanaTurno extends javax.swing.JFrame {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
-        String idEmpleado=id.getText();
+        String Nombre=id.getText();
         String horarion=horario.getText();
         String diasn=dias.getText();
+       
+        dao.validarNombre(Nombre, horarion, diasn,dtm);
         
-        tur.setIdEmpleado(idEmpleado);
-        tur.setHorario(horarion);
-        tur.setDias(diasn);
-        dao.insertarTurno(tur);
-        dao.mostrarTurnos(dtm);
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
@@ -347,7 +351,7 @@ public class VentanaTurno extends javax.swing.JFrame {
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
         // TODO add your handling code here:
-        
+        Nombre.setText("ID Empleado");
         int filaSeleccionada = TablaT.getSelectedRow();
         if (filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(null, "Selecciona la fila a editar");
@@ -359,9 +363,9 @@ public class VentanaTurno extends javax.swing.JFrame {
 
             id.setText(idE);
             horario.setText(h);
-            dias.setText(d);
-            
+            dias.setText(d); 
         }
+        
     }//GEN-LAST:event_EditarActionPerformed
 
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
@@ -397,18 +401,32 @@ public class VentanaTurno extends javax.swing.JFrame {
         String horarion=horario.getText();
         String diasn=dias.getText();
         
-        tur.setIdEmpleado(idEmpleado);
-        tur.setHorario(horarion);
-        tur.setDias(diasn);
-
-        int r = dao.actualizarT(tur);
-        if (r == 1) {
-            JOptionPane.showMessageDialog(null, "Turno actualizado correctamente");
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al actualizar el turno");
+        if(idEmpleado.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Seleccionar el registro a actualizar");
         }
-        dao.mostrarTurnos(dtm);
+        else{
+            tur.setIdEmpleado(idEmpleado);
+            tur.setHorario(horarion);
+            tur.setDias(diasn);
+            
+            int r = dao.actualizarT(tur);
+        
+            if (r == 1) {
+                JOptionPane.showMessageDialog(null, "Turno actualizado correctamente");
+            } else 
+            {
+                JOptionPane.showMessageDialog(null, "Error al actualizar el turno");
+            }
+            
+            dao.mostrarTurnos(dtm);
+        }
+ 
     }//GEN-LAST:event_ActualizarActionPerformed
+
+    private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -454,6 +472,7 @@ public class VentanaTurno extends javax.swing.JFrame {
     private javax.swing.JButton Editar;
     private javax.swing.JButton Eliminar;
     private javax.swing.JButton Mostrar;
+    private javax.swing.JLabel Nombre;
     private javax.swing.JButton Regresar;
     private javax.swing.JTable TablaT;
     private javax.swing.JPanel aside;
@@ -465,7 +484,6 @@ public class VentanaTurno extends javax.swing.JFrame {
     private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
