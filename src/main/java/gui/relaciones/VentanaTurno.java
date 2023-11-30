@@ -123,7 +123,7 @@ public class VentanaTurno extends javax.swing.JFrame {
 
         Nombre.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         Nombre.setForeground(new java.awt.Color(0, 0, 0));
-        Nombre.setText("        Nombre: ");
+        Nombre.setText("  Nombre del empleado: ");
         jPanel2.add(Nombre);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
@@ -403,7 +403,7 @@ public class VentanaTurno extends javax.swing.JFrame {
         
         if(idEmpleado.equals(""))
         {
-            JOptionPane.showMessageDialog(null, "Seleccionar el registro a actualizar");
+            JOptionPane.showMessageDialog(null, "Seleccionar la fila a actualizar");
         }
         else{
             tur.setIdEmpleado(idEmpleado);

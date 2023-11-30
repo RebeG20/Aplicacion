@@ -10,7 +10,7 @@ public class Conexion {
     String user = "root";
     //Base de datos de Rebeca:
     String password="Rebecaga20";
-    String database="tienda";
+    String database="tiendav2";
     
     //Base de datos de Luis
 //    String password = "G.umball37";
