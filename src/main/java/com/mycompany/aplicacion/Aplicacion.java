@@ -10,8 +10,8 @@ public class Aplicacion {
 //       VentanaMarca obM = new VentanaMarca();
 //       obM.setVisible(true);
 
-        VentanaTurno obTurno = new VentanaTurno();
-        obTurno.setVisible(true);
+//        VentanaTurno obTurno = new VentanaTurno();
+//        obTurno.setVisible(true);
 
 //        VentanaArticulos obArt = new VentanaArticulos();
 //        obArt.setVisible(true);
@@ -24,6 +24,9 @@ public class Aplicacion {
 
 //        VentanaRecargas obRec=new VentanaRecargas();
 //        obRec.setVisible(true);
+
+          PuntoVenta obPV=new PuntoVenta();
+          obPV.setVisible(true);
             
     }
 }
