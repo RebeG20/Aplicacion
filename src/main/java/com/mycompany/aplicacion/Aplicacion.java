@@ -16,8 +16,8 @@ public class Aplicacion {
 //        VentanaArticulos obArt = new VentanaArticulos();
 //        obArt.setVisible(true);
 
-       VentanaEmpleados obEmp = new VentanaEmpleados();
-       obEmp.setVisible(true);
+//       VentanaEmpleados obEmp = new VentanaEmpleados();
+//       obEmp.setVisible(true);
 
 //        VentanaProveedores obProv=new VentanaProveedores();
 //        obProv.setVisible(true);
@@ -25,8 +25,12 @@ public class Aplicacion {
 //        VentanaRecargas obRec=new VentanaRecargas();
 //        obRec.setVisible(true);
 
-          PuntoVenta obPV=new PuntoVenta();
-          obPV.setVisible(true);
+//          PuntoVenta obPV=new PuntoVenta();
+//          obPV.setVisible(true);
+
+            VentanaPedido obPed=new VentanaPedido();
+            obPed.setVisible(true);
+                
             
     }
 }

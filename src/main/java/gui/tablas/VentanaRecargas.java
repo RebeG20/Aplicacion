@@ -379,7 +379,7 @@ public class VentanaRecargas extends javax.swing.JFrame {
     }//GEN-LAST:event_RegresarActionPerformed
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
-         int filaSeleccionada=jTable1.getSelectedRow();
+        int filaSeleccionada=jTable1.getSelectedRow();
         if(filaSeleccionada==-1)
         {
             JOptionPane.showMessageDialog(null, "Seleccione una fila ");

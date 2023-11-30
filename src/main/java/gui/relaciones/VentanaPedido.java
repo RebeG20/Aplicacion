@@ -5,6 +5,10 @@
 package gui.relaciones;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import tda.DAO_Pedido;
+import tda.Pedido;
 
 /**
  *
@@ -12,6 +16,9 @@ import javax.swing.ImageIcon;
  */
 public class VentanaPedido extends javax.swing.JFrame {
 
+    Pedido obP=new Pedido();
+    DAO_Pedido obped=new DAO_Pedido();
+    DefaultTableModel tabla = new DefaultTableModel();
     /**
      * Creates new form VentanaPedido
      */
@@ -21,9 +28,16 @@ public class VentanaPedido extends javax.swing.JFrame {
         Actualizar.setIcon(new ImageIcon("./src/main/java/Imagenes/actualizar.png"));
         Regresar.setIcon(new ImageIcon("./src/main/java/Imagenes/atras.png"));
         Mostrar.setIcon(new ImageIcon("./src/main/java/Imagenes/mostrar.png"));
-        Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
+//        Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
         Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
         limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
+        
+        tabla.addColumn("idArticulo");
+        tabla.addColumn("idProveedor");
+        tabla.addColumn("cantidad");
+        tabla.addColumn("fecha");
+        jTable1.setModel(tabla);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -57,7 +71,6 @@ public class VentanaPedido extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         Agregar = new javax.swing.JButton();
         Actualizar = new javax.swing.JButton();
-        Eliminar = new javax.swing.JButton();
         Mostrar = new javax.swing.JButton();
         footer = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -172,6 +185,11 @@ public class VentanaPedido extends javax.swing.JFrame {
         Agregar.setText("Agregar");
         Agregar.setIconTextGap(14);
         Agregar.setPreferredSize(new java.awt.Dimension(180, 35));
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarActionPerformed(evt);
+            }
+        });
         jPanel5.add(Agregar);
 
         Actualizar.setBackground(new java.awt.Color(255, 102, 102));
@@ -180,15 +198,12 @@ public class VentanaPedido extends javax.swing.JFrame {
         Actualizar.setText("Actualizar");
         Actualizar.setIconTextGap(14);
         Actualizar.setPreferredSize(new java.awt.Dimension(180, 35));
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarActionPerformed(evt);
+            }
+        });
         jPanel5.add(Actualizar);
-
-        Eliminar.setBackground(new java.awt.Color(255, 102, 102));
-        Eliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Eliminar.setForeground(new java.awt.Color(255, 255, 255));
-        Eliminar.setText("Eliminar");
-        Eliminar.setIconTextGap(14);
-        Eliminar.setPreferredSize(new java.awt.Dimension(180, 35));
-        jPanel5.add(Eliminar);
 
         Mostrar.setBackground(new java.awt.Color(255, 102, 102));
         Mostrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -196,6 +211,11 @@ public class VentanaPedido extends javax.swing.JFrame {
         Mostrar.setText("Mostrar");
         Mostrar.setIconTextGap(14);
         Mostrar.setPreferredSize(new java.awt.Dimension(180, 35));
+        Mostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MostrarActionPerformed(evt);
+            }
+        });
         jPanel5.add(Mostrar);
 
         center.add(jPanel5, java.awt.BorderLayout.CENTER);
@@ -213,6 +233,11 @@ public class VentanaPedido extends javax.swing.JFrame {
         Regresar.setForeground(new java.awt.Color(255, 255, 255));
         Regresar.setText("Regresar");
         Regresar.setPreferredSize(new java.awt.Dimension(120, 35));
+        Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarActionPerformed(evt);
+            }
+        });
         jPanel6.add(Regresar);
 
         Editar.setBackground(new java.awt.Color(255, 102, 102));
@@ -220,6 +245,11 @@ public class VentanaPedido extends javax.swing.JFrame {
         Editar.setForeground(new java.awt.Color(255, 255, 255));
         Editar.setText("Editar");
         Editar.setPreferredSize(new java.awt.Dimension(120, 35));
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
         jPanel6.add(Editar);
 
         limpiar.setBackground(new java.awt.Color(255, 102, 102));
@@ -227,6 +257,11 @@ public class VentanaPedido extends javax.swing.JFrame {
         limpiar.setForeground(new java.awt.Color(255, 255, 255));
         limpiar.setText("Limpiar");
         limpiar.setPreferredSize(new java.awt.Dimension(120, 35));
+        limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarActionPerformed(evt);
+            }
+        });
         jPanel6.add(limpiar);
 
         footer.add(jPanel6, java.awt.BorderLayout.PAGE_START);
@@ -280,6 +315,91 @@ public class VentanaPedido extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_RegresarActionPerformed
+
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+        int filaSeleccionada=jTable1.getSelectedRow();
+        if(filaSeleccionada==-1)
+        {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila ");
+        }
+        else
+        {
+           String idIA=(String) jTable1.getValueAt(filaSeleccionada, 0);
+           String idIPro=(String) jTable1.getValueAt(filaSeleccionada, 1);
+           int cantidad=(Integer) jTable1.getValueAt(filaSeleccionada, 2);
+           String fecha=(String) jTable1.getValueAt(filaSeleccionada, 3);
+           
+           jTextField1.setText(idIA);
+           jTextField2.setText(idIPro);
+           jTextField3.setText(String.valueOf(cantidad));
+           jTextField4.setText(fecha);
+        }
+        obped.selPed(tabla);
+    }//GEN-LAST:event_EditarActionPerformed
+
+    private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
+        jTextField1.setText(" ");
+        jTextField2.setText(" ");
+        jTextField3.setText(" ");
+        jTextField4.setText(" ");
+        
+        tabla = (DefaultTableModel) jTable1.getModel();
+        tabla.setRowCount(0);
+    }//GEN-LAST:event_limpiarActionPerformed
+
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
+        String idA,idPro,fecha;
+        int cantidad;
+        
+        idA=jTextField1.getText();
+        idPro=jTextField2.getText();
+        cantidad=Integer.parseInt(jTextField3.getText());
+        fecha=jTextField4.getText();
+        
+        obP.setIdArticulo(idA);
+        obP.setIdProveedor(idPro);
+        obP.setCantidad(cantidad);
+        obP.setFecha(fecha);
+        
+        obped.inserpedido(obP);
+        tabla = (DefaultTableModel) jTable1.getModel();
+        tabla.setRowCount(0);
+        obped.selPed(tabla);
+    }//GEN-LAST:event_AgregarActionPerformed
+
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
+        String idA,idPro,fecha;
+        int cantidad;
+        
+        idA=jTextField1.getText();
+        idPro=jTextField2.getText();
+        cantidad=Integer.parseInt(jTextField3.getText());
+        fecha=jTextField4.getText();
+        
+        obP.setIdArticulo(idA);
+        obP.setIdProveedor(idPro);
+        obP.setCantidad(cantidad);
+        obP.setFecha(fecha);
+        
+        int r=obped.actped(obP);
+        if(r==1)
+        {
+            JOptionPane.showMessageDialog(null, "Actualizado");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "No actualizado");
+        }
+        obped.selPed(tabla);
+    }//GEN-LAST:event_ActualizarActionPerformed
+
+    private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
+        obped.selPed(tabla);
+    }//GEN-LAST:event_MostrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -319,7 +439,6 @@ public class VentanaPedido extends javax.swing.JFrame {
     private javax.swing.JButton Actualizar;
     private javax.swing.JButton Agregar;
     private javax.swing.JButton Editar;
-    private javax.swing.JButton Eliminar;
     private javax.swing.JButton Mostrar;
     private javax.swing.JButton Regresar;
     private javax.swing.JPanel aside;
