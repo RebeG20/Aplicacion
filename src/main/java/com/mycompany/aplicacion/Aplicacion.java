@@ -28,8 +28,8 @@ public class Aplicacion {
 //          PuntoVenta obPV=new PuntoVenta();
 //          obPV.setVisible(true);
 
-            VentanaPedido obPed=new VentanaPedido();
-            obPed.setVisible(true);
+//            VentanaPedido obPed=new VentanaPedido();
+//            obPed.setVisible(true);
                 
 
             
