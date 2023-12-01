@@ -16,15 +16,13 @@ public class DAO_Pedido
     Connection conec;
     PreparedStatement ps;
     ResultSet rs;
-    DAO_Articulos obA=new DAO_Articulos();
-    DAO_Proveedores obP=new DAO_Proveedores();
     
     public int inserpedido(Pedido ped)
     {
         try
         {
             conec=obCon.establecerConnection();
-            ps=conec.prepareStatement("insert into pedido (Articulos_idArticulos,Proveedores_idProveedores,Cantidad,FechaP) + values(?,?,?,?)");
+            ps=conec.prepareStatement("insert into pedido (Articulos_idArticulos,Proveedores_idProveedores,Cantidad,FechaP) values (?,?,?,?)");
             ps.setString(1, ped.idArticulo);
             ps.setString(2, ped.idProveedor);
             ps.setInt(3, ped.cantidad);

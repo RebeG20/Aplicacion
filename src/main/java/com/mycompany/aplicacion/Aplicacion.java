@@ -22,14 +22,14 @@ public class Aplicacion {
 //        VentanaProveedores obProv=new VentanaProveedores();
 //        obProv.setVisible(true);
 
-        VentanaRecargas obRec=new VentanaRecargas();
-        obRec.setVisible(true);
+//        VentanaRecargas obRec=new VentanaRecargas();
+//        obRec.setVisible(true);
 
 //          PuntoVenta obPV=new PuntoVenta();
 //          obPV.setVisible(true);
 
-//            VentanaPedido obPed=new VentanaPedido();
-//            obPed.setVisible(true);
+            VentanaPedido obPed=new VentanaPedido();
+            obPed.setVisible(true);
                 
 
             
