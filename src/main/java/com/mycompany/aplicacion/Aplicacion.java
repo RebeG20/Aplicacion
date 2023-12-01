@@ -25,14 +25,18 @@ public class Aplicacion {
 //        VentanaRecargas obRec=new VentanaRecargas();
 //        obRec.setVisible(true);
 
-//          PuntoVenta obPV=new PuntoVenta();
-//          obPV.setVisible(true);
+//        PuntoVentaRecargas obPVR = new PuntoVentaRecargas();
+//        obPVR.setVisible(true);
+
 
 //          VentanaPedido obPed=new VentanaPedido();
 //          obPed.setVisible(true);
                 
             VentanaMarcaArticulos obA=new VentanaMarcaArticulos();
             obA.setVisible(true);
-            
+
+//          VentanaReporteVentas obRV=new VentanaReporteVentas();
+//          obRV.setVisible(true);
+
     }
 }

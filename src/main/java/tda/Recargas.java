@@ -1,22 +1,25 @@
 package tda;
-public class Recargas 
-{
+
+public class Recargas {
+
     String idRec;
     String tipo;
-    int precio;
-    
-    public Recargas()
-    {
-        
+    int monto;
+    String numero;
+    String compañia;
+
+    public Recargas() {
+
     }
-    
-    public Recargas(String idRec,String tipo,int precio)
-    {
-        this.idRec=idRec;
-        this.tipo=tipo;
-        this.precio=precio;
+
+    public Recargas(String idRec, String tipo, int monto, String numero, String compañia) {
+        this.idRec = idRec;
+        this.tipo = tipo;
+        this.monto = monto;
+        this.numero = numero;
+        this.compañia = compañia;
     }
-    
+
     public String getIdRec() {
         return idRec;
     }
@@ -33,11 +36,29 @@ public class Recargas
         this.tipo = tipo;
     }
 
-    public int getPrecio() {
-        return precio;
+    public int getMonto() {
+        return monto;
     }
 
-    public void setPrecio(int precio) {
-        this.precio = precio;
+    public void setMonto(int monto) {
+        this.monto = monto;
     }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getCompañia() {
+        return compañia;
+    }
+
+    public void setCompañia(String compañia) {
+        this.compañia = compañia;
+    }
+
+    
 }

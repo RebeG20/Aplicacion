@@ -380,7 +380,7 @@ public class VentanaTurno extends javax.swing.JFrame {
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         // TODO add your handling code here:
-         int filaSeleccionada = TablaT.getSelectedRow();
+        int filaSeleccionada = TablaT.getSelectedRow();
         if (filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(null, "Selecciona la fila a eliminar");
         } else {
