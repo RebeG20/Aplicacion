@@ -3,19 +3,28 @@ public class RegistrarVentas
 {
     String idEmpleado;
     String idArticulo;
+    String nombre;
+    double precio;
     int cantidad;
+    double total;
     String fecha;
+    
 
     public RegistrarVentas() {
     }
 
-    
-    public RegistrarVentas(String idEmpleado, String idArticulo, int cantidad, String fecha) {
-        this.idEmpleado = idEmpleado;
+    public RegistrarVentas(String idEmpleado,String idArticulo, String nombre,String fecha, int precio, int cantidad,double total) 
+    {
+        this.idEmpleado=idEmpleado;
         this.idArticulo = idArticulo;
+        this.nombre = nombre;
+        this.fecha=fecha;
+        this.precio = precio;
         this.cantidad = cantidad;
-        this.fecha = fecha;
+        this.total=total;
+        
     }
+
 
     public void setIdEmpleado(String idEmpleado) {
         this.idEmpleado = idEmpleado;
@@ -33,6 +42,20 @@ public class RegistrarVentas
         this.fecha = fecha;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+    
+    
+
     public String getIdEmpleado() {
         return idEmpleado;
     }
@@ -47,6 +70,18 @@ public class RegistrarVentas
 
     public String getFecha() {
         return fecha;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public double getTotal() {
+        return total;
     }
     
     

@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
 import tda.DAO_Ventas;
 import tda.Empleados;
 import tda.RegistrarVentas;
@@ -26,12 +27,22 @@ public class VentanaRegistroV extends javax.swing.JFrame {
      */
     DAO_Ventas dao=new DAO_Ventas();
     RegistrarVentas v=new RegistrarVentas();
+    DefaultTableModel dtm=new DefaultTableModel();
     public VentanaRegistroV() {
         initComponents();
         
         Agregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadircarrito.png"));
 //        Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/quitarcarrito.png"));
 //        Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
+
+        tablaV.setModel(dtm);
+        dtm.addColumn("ID Articulo");
+        dtm.addColumn("Nombre");
+        dtm.addColumn("Precio");
+        dtm.addColumn("Cantidad");
+        dtm.addColumn("Total");
+
+
     }
 
     /**
@@ -60,19 +71,18 @@ public class VentanaRegistroV extends javax.swing.JFrame {
         Totalizar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaV = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        efectivo = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        total = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(840, 530));
@@ -160,6 +170,11 @@ public class VentanaRegistroV extends javax.swing.JFrame {
         Totalizar.setForeground(new java.awt.Color(255, 255, 255));
         Totalizar.setText("Totalizar");
         Totalizar.setIconTextGap(9);
+        Totalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TotalizarActionPerformed(evt);
+            }
+        });
         jPanel8.add(Totalizar);
 
         jPanel4.add(jPanel8);
@@ -172,9 +187,9 @@ public class VentanaRegistroV extends javax.swing.JFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(255, 204, 204));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaV.setBackground(new java.awt.Color(255, 255, 255));
+        tablaV.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tablaV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -192,7 +207,7 @@ public class VentanaRegistroV extends javax.swing.JFrame {
                 "Id Articulo", "Nombre", "Precio", "Cantidad ", "Total"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaV);
 
         jPanel5.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -209,18 +224,23 @@ public class VentanaRegistroV extends javax.swing.JFrame {
         jLabel16.setText("Ingrece el efectivo:");
         jPanel9.add(jLabel16);
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        efectivo.setBackground(new java.awt.Color(255, 255, 255));
+        efectivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                efectivoActionPerformed(evt);
             }
         });
-        jPanel9.add(jTextField3);
+        jPanel9.add(efectivo);
 
         jButton5.setBackground(new java.awt.Color(255, 102, 102));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Cobrar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel9.add(jButton5);
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
@@ -229,26 +249,15 @@ public class VentanaRegistroV extends javax.swing.JFrame {
         jLabel14.setText("Total:");
         jPanel9.add(jLabel14);
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel18.setText("$");
-        jPanel9.add(jLabel18);
+        total.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        total.setForeground(new java.awt.Color(0, 0, 0));
+        total.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        total.setText("$");
+        jPanel9.add(total);
+        jPanel9.add(jLabel5);
         jPanel9.add(jLabel11);
         jPanel9.add(jLabel12);
         jPanel9.add(jLabel13);
-
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel17.setText("Cambio: ");
-        jPanel9.add(jLabel17);
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel15.setText("$ ");
-        jPanel9.add(jLabel15);
 
         jPanel6.add(jPanel9, java.awt.BorderLayout.CENTER);
 
@@ -261,9 +270,9 @@ public class VentanaRegistroV extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void efectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_efectivoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_efectivoActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
@@ -279,16 +288,29 @@ public class VentanaRegistroV extends javax.swing.JFrame {
         String idEmpleado=idEm.getText();
         int cant=Integer.parseInt(cantidad.getText());
         
-        v.setIdEmpleado(idEmpleado);
-        v.setIdArticulo(idA);
-        v.setCantidad(cant);
-        v.setFecha(fechaFormateada);
         try {
-            dao.guardarVentas(v);
+            dao.consultaSelect(idA, fechaFormateada, idEmpleado, cant);
         } catch (SQLException ex) {
             Logger.getLogger(VentanaRegistroV.class.getName()).log(Level.SEVERE, null, ex);
         }
+        dao.mostrar(dtm);  
     }//GEN-LAST:event_AgregarActionPerformed
+
+    private void TotalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalizarActionPerformed
+        // TODO add your handling code here:
+        dao.totalizar(total);
+        
+    }//GEN-LAST:event_TotalizarActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        double ef=Double.parseDouble(efectivo.getText());
+        
+        dao.cobrar(ef);
+        dtm.setRowCount(0);
+        efectivo.setText("");
+        total.setText("");
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,6 +353,7 @@ public class VentanaRegistroV extends javax.swing.JFrame {
     private javax.swing.JPanel PanelP;
     private javax.swing.JButton Totalizar;
     private javax.swing.JTextField cantidad;
+    private javax.swing.JTextField efectivo;
     private javax.swing.JTextField id;
     private javax.swing.JTextField idEm;
     private javax.swing.JButton jButton5;
@@ -339,13 +362,11 @@ public class VentanaRegistroV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -355,7 +376,7 @@ public class VentanaRegistroV extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable tablaV;
+    private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }

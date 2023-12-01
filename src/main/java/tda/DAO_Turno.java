@@ -32,13 +32,13 @@ public class DAO_Turno
                 tur.setDias(dias);
                 insertarTurno(tur);
                 v=1;
-                mostrarTurnos(dtm);
             }
         } 
         if(v==0)
         {
             JOptionPane.showMessageDialog(null, "El empleado no existe en el sistema");
         }
+        mostrarTurnos(dtm);
     }
 
     public void mostrarTurnos(DefaultTableModel dtm)
