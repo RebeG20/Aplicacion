@@ -24,10 +24,6 @@ public class Aplicacion {
 
 //        VentanaRecargas obRec=new VentanaRecargas();
 //        obRec.setVisible(true);
-
-          VentanaRegistroV ob=new VentanaRegistroV();
-          ob.setVisible(true);
-
-            
+     
     }
 }
