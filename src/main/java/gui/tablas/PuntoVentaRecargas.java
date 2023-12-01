@@ -4,17 +4,60 @@
  */
 package gui.tablas;
 
+import javax.swing.JOptionPane;
+import tda.DAO_Recargas;
+import tda.Recargas;
+
 /**
  *
  * @author rafae
  */
 public class PuntoVentaRecargas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PuntoVentaRecargas
-     */
+    Recargas obRec = new Recargas();
+    DAO_Recargas daoRec = new DAO_Recargas();
+
     public PuntoVentaRecargas() {
         initComponents();
+    }
+
+    public void agregar() {
+        String id = txtId.getText();
+        String numero = txtNum.getText();
+        String compañia = "";
+        String tipo = "";
+        int monto = 0;
+        int paga = Integer.parseInt(txtPago.getText());
+        int cambio = 0;
+
+        if (cbxComp.getSelectedIndex() == 0 || cbxTipo.getSelectedIndex() == 0 || cbxMonto.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Favor de seleccionar las opciones adecuadas");
+        } else {
+            monto = Integer.parseInt((String) cbxMonto.getSelectedItem());
+            tipo = (String) cbxTipo.getSelectedItem();
+            compañia = (String) cbxComp.getSelectedItem();
+            if (paga >= monto) {
+                cambio = paga - monto;
+                lblCambio.setText("$" + cambio);
+
+                obRec.setIdRec(id);
+                obRec.setNumero(numero);
+                obRec.setCompañia(compañia);
+                obRec.setTipo(tipo);
+                obRec.setMonto(monto);
+
+                int r = daoRec.agregarArticulos(obRec);
+                if (r == 1) {
+                    JOptionPane.showMessageDialog(null, "Recarga realizada correctamente");
+                } else if (r == 0) {
+                    JOptionPane.showMessageDialog(null, "Error: Ya existe una recarga con el mismo ID");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al hacer la recarga");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Pago insuficiente");
+            }
+        }
     }
 
     /**
@@ -26,21 +69,269 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        principal = new javax.swing.JPanel();
+        header = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        aside = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        txtId = new javax.swing.JTextField();
+        txtNum = new javax.swing.JTextField();
+        cbxComp = new javax.swing.JComboBox<>();
+        cbxTipo = new javax.swing.JComboBox<>();
+        cbxMonto = new javax.swing.JComboBox<>();
+        center = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        txtPago = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        lblCambio = new javax.swing.JLabel();
+        btnAgregar = new javax.swing.JButton();
+        footer = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        btnMostrar = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        principal.setBackground(new java.awt.Color(255, 255, 255));
+        principal.setLayout(new java.awt.BorderLayout(10, 10));
+
+        header.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Recargas");
+        header.add(jLabel1);
+
+        principal.add(header, java.awt.BorderLayout.PAGE_START);
+
+        aside.setBackground(new java.awt.Color(255, 255, 255));
+        aside.setPreferredSize(new java.awt.Dimension(350, 366));
+        aside.setLayout(new java.awt.BorderLayout(5, 5));
+
+        jPanel1.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel2.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Datos de la Recarga");
+        jPanel1.add(jLabel2);
+
+        aside.add(jPanel1, java.awt.BorderLayout.PAGE_START);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setPreferredSize(new java.awt.Dimension(150, 340));
+        jPanel3.setLayout(new java.awt.GridLayout(5, 1, 0, 5));
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(new java.awt.BorderLayout());
+
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel7.setText("     ID Recarga:");
+        jPanel5.add(jLabel7, java.awt.BorderLayout.CENTER);
+
+        jPanel3.add(jPanel5);
+
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel9.setLayout(new java.awt.BorderLayout());
+
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel11.setText("     Numero:");
+        jPanel9.add(jLabel11, java.awt.BorderLayout.CENTER);
+
+        jPanel3.add(jPanel9);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setLayout(new java.awt.BorderLayout());
+
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel8.setText("     Compañia:");
+        jPanel6.add(jLabel8, java.awt.BorderLayout.CENTER);
+
+        jPanel3.add(jPanel6);
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setLayout(new java.awt.BorderLayout());
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel9.setText("     Tipo de Recarga:");
+        jPanel7.add(jLabel9, java.awt.BorderLayout.CENTER);
+
+        jPanel3.add(jPanel7);
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setLayout(new java.awt.BorderLayout());
+
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel10.setText("     Monto:");
+        jPanel8.add(jLabel10, java.awt.BorderLayout.CENTER);
+
+        jPanel3.add(jPanel8);
+
+        jPanel2.add(jPanel3, java.awt.BorderLayout.LINE_START);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new java.awt.GridLayout(5, 1, 0, 5));
+
+        txtId.setBackground(new java.awt.Color(250, 195, 195));
+        txtId.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel4.add(txtId);
+
+        txtNum.setBackground(new java.awt.Color(250, 195, 195));
+        txtNum.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel4.add(txtNum);
+
+        cbxComp.setBackground(new java.awt.Color(250, 195, 195));
+        cbxComp.setForeground(new java.awt.Color(0, 0, 0));
+        cbxComp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Selecciona una opcion--", "Telcel", "Movistar", "Unefon", "AT&T", "Weex" }));
+        jPanel4.add(cbxComp);
+
+        cbxTipo.setBackground(new java.awt.Color(250, 195, 195));
+        cbxTipo.setForeground(new java.awt.Color(0, 0, 0));
+        cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Selecciona una opcion--", "Normal", "Paquete", "Recarga Amigo" }));
+        jPanel4.add(cbxTipo);
+
+        cbxMonto.setBackground(new java.awt.Color(250, 195, 195));
+        cbxMonto.setForeground(new java.awt.Color(0, 0, 0));
+        cbxMonto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Selecciona una opcion--", "20", "30", "50", "100", "200", "500" }));
+        jPanel4.add(cbxMonto);
+
+        jPanel2.add(jPanel4, java.awt.BorderLayout.CENTER);
+
+        aside.add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        principal.add(aside, java.awt.BorderLayout.LINE_START);
+
+        center.setBackground(new java.awt.Color(255, 255, 255));
+        center.setLayout(new java.awt.BorderLayout());
+
+        jPanel10.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel3.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Seccion de Cobro");
+        jPanel10.add(jLabel3);
+
+        center.add(jPanel10, java.awt.BorderLayout.PAGE_START);
+
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel12.setLayout(new java.awt.GridLayout(5, 1));
+
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Paga con:");
+        jPanel12.add(jLabel4);
+
+        txtPago.setBackground(new java.awt.Color(250, 195, 195));
+        txtPago.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel12.add(txtPago);
+
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Cambio:");
+        jPanel12.add(jLabel5);
+
+        lblCambio.setForeground(new java.awt.Color(0, 0, 0));
+        lblCambio.setText("$");
+        jPanel12.add(lblCambio);
+
+        btnAgregar.setBackground(new java.awt.Color(255, 102, 102));
+        btnAgregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setText("Cobrar y Realizar Recarga");
+        btnAgregar.setPreferredSize(new java.awt.Dimension(120, 30));
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+        jPanel12.add(btnAgregar);
+
+        center.add(jPanel12, java.awt.BorderLayout.CENTER);
+
+        principal.add(center, java.awt.BorderLayout.CENTER);
+
+        footer.setBackground(new java.awt.Color(255, 153, 153));
+        footer.setPreferredSize(new java.awt.Dimension(637, 50));
+        footer.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 20, 10));
+
+        jButton2.setBackground(new java.awt.Color(255, 102, 102));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Regresar");
+        jButton2.setPreferredSize(new java.awt.Dimension(120, 30));
+        footer.add(jButton2);
+
+        btnMostrar.setBackground(new java.awt.Color(255, 102, 102));
+        btnMostrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnMostrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnMostrar.setText("Mostrar Recargas");
+        btnMostrar.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarActionPerformed(evt);
+            }
+        });
+        footer.add(btnMostrar);
+
+        jButton4.setBackground(new java.awt.Color(255, 102, 102));
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Reportes Recargas");
+        jButton4.setPreferredSize(new java.awt.Dimension(150, 30));
+        footer.add(jButton4);
+
+        principal.add(footer, java.awt.BorderLayout.PAGE_END);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        agregar();
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+        VentanaRecargasQuerys obVR = new VentanaRecargasQuerys();
+        obVR.setVisible(true);
+    }//GEN-LAST:event_btnMostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +369,42 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel aside;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnMostrar;
+    private javax.swing.JComboBox<String> cbxComp;
+    private javax.swing.JComboBox<String> cbxMonto;
+    private javax.swing.JComboBox<String> cbxTipo;
+    private javax.swing.JPanel center;
+    private javax.swing.JPanel footer;
+    private javax.swing.JPanel header;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel lblCambio;
+    private javax.swing.JPanel principal;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtNum;
+    private javax.swing.JTextField txtPago;
     // End of variables declaration//GEN-END:variables
 }

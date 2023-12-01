@@ -6,9 +6,7 @@ import gui.tablas.*;
 public class Aplicacion {
 
     public static void main(String[] args) {
-        //Ejecutar Ventanas para pruebas:
-
-
+        //Ejecutar Ventanas para prueba
 //        VentanaTurno obTurno = new VentanaTurno();
 //        obTurno.setVisible(true);
 
