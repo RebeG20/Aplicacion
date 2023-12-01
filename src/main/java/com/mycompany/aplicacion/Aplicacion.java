@@ -7,8 +7,7 @@ public class Aplicacion {
 
     public static void main(String[] args) {
         //Ejecutar Ventanas para pruebas:
-//       VentanaMarca obM = new VentanaMarca();
-//       obM.setVisible(true);
+
 
 //        VentanaTurno obTurno = new VentanaTurno();
 //        obTurno.setVisible(true);
@@ -25,8 +24,7 @@ public class Aplicacion {
 //        VentanaRecargas obRec=new VentanaRecargas();
 //        obRec.setVisible(true);
 
-        //PuntoVentaRecargas obPVR = new PuntoVentaRecargas();
-       //obPVR.setVisible(true);
+
 
 
 //          VentanaReporteVentas obRV=new VentanaReporteVentas();
@@ -39,8 +37,8 @@ public class Aplicacion {
 //          VentanaMarcaArticulos obA=new VentanaMarcaArticulos();
 //          obA.setVisible(true);
 
-          VentanaReporteVentas obRV=new VentanaReporteVentas();
-          obRV.setVisible(true);
+//          VentanaReporteVentas obRV=new VentanaReporteVentas();
+//          obRV.setVisible(true);
 
 
     }
