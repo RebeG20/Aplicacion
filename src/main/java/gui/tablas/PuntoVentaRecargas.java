@@ -59,8 +59,6 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
                 obRec.setCompañia(comp);
                 obRec.setTipo(tipo);
                 obRec.setMonto(monto);
-                
-                agregarVentaR();
 
                 int r = daoRec.agregarArticulos(obRec);
                 if (r == 1) {
@@ -152,7 +150,8 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         btnMostrar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         principal.setBackground(new java.awt.Color(255, 255, 255));
         principal.setLayout(new java.awt.BorderLayout(10, 10));
@@ -350,6 +349,11 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Reportes Recargas");
         jButton4.setPreferredSize(new java.awt.Dimension(150, 30));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         footer.add(jButton4);
 
         principal.add(footer, java.awt.BorderLayout.PAGE_END);
@@ -377,6 +381,10 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         VentanaRecargasQuerys obVR = new VentanaRecargasQuerys();
         obVR.setVisible(true);
     }//GEN-LAST:event_btnMostrarActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        agregarVentaR();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

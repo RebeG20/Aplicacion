@@ -38,6 +38,7 @@ public class Aplicacion {
 //          VentanaReporteVentas obRV=new VentanaReporteVentas();
 //          obRV.setVisible(true);
 
-
+//        PuntoVentaRecargas obPVR = new PuntoVentaRecargas();
+//        obPVR.setVisible(true);
     }
 }

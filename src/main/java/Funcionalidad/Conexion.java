@@ -9,8 +9,8 @@ public class Conexion {
     Connection conexion = null;
     String user = "root";
     //Base de datos de Rebeca:
-    String password="Rebecaga20";
-    String database="tiendav2";
+//    String password="Rebecaga20";
+//    String database="tiendav2";
     
 //    //Base de datos de Rebeca:
 //    String password="Rebecaga20";
@@ -25,8 +25,8 @@ public class Conexion {
 //    String database = "tiendav2";
 
 //    Base de datos de Rafa:
-//    String password = "R4f43l60$7";
-//    String database = "tiendav2";
+    String password = "R4f43l60$7";
+    String database = "tiendav2";
 
     //Base de datos lupita 
 //    String password="rootmaria";
