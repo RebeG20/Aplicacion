@@ -83,54 +83,67 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
 
         jPanel4.add(jPanel10, java.awt.BorderLayout.SOUTH);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new java.awt.GridLayout(6, 2, 15, 0));
 
+        jLabel2.setBackground(new java.awt.Color(255, 204, 204));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("Articulo Mas Vendido");
+        jLabel2.setOpaque(true);
         jPanel3.add(jLabel2);
 
+        jLabel3.setBackground(new java.awt.Color(255, 204, 204));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("jLabel3");
+        jLabel3.setText("Articulo Menos Vendido");
+        jLabel3.setOpaque(true);
         jPanel3.add(jLabel3);
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("jLabel4");
+        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.add(jLabel4);
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("jLabel5");
+        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.add(jLabel5);
 
+        jLabel6.setBackground(new java.awt.Color(255, 204, 204));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("jLabel6");
+        jLabel6.setText("Promedio de Articulos en Stock");
+        jLabel6.setOpaque(true);
         jPanel3.add(jLabel6);
 
+        jLabel7.setBackground(new java.awt.Color(255, 204, 204));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("jLabel7");
+        jLabel7.setText("Numero de Ventas Realizadas");
+        jLabel7.setOpaque(true);
         jPanel3.add(jLabel7);
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("jLabel8");
+        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.add(jLabel8);
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("jLabel9");
+        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.add(jLabel9);
 
+        jLabel10.setBackground(new java.awt.Color(255, 204, 204));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("jLabel10");
+        jLabel10.setText("Total de Articulos en Existencia");
+        jLabel10.setOpaque(true);
         jPanel3.add(jLabel10);
 
+        jLabel11.setBackground(new java.awt.Color(255, 204, 204));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("jLabel11");
+        jLabel11.setText("Tipos de Articulos en Venta");
+        jLabel11.setOpaque(true);
         jPanel3.add(jLabel11);
 
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("jLabel12");
+        jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.add(jLabel12);
 
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("jLabel13");
+        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.add(jLabel13);
 
         jPanel4.add(jPanel3, java.awt.BorderLayout.CENTER);
