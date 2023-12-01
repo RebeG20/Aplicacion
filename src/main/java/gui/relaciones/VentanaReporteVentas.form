@@ -131,7 +131,7 @@
                       <Color blue="cc" green="cc" red="ff" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Articulo Mas Vendido"/>
+                    <Property name="text" type="java.lang.String" value="Articulo  con Mayor Cantidad Vendida"/>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                 </Component>
@@ -141,7 +141,7 @@
                       <Color blue="cc" green="cc" red="ff" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Articulo Menos Vendido"/>
+                    <Property name="text" type="java.lang.String" value="Articulo con Menor Cantidad Vendida"/>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                 </Component>

@@ -111,13 +111,13 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(255, 204, 204));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Articulo Mas Vendido");
+        jLabel2.setText("Articulo  con Mayor Cantidad Vendida");
         jLabel2.setOpaque(true);
         jPanel3.add(jLabel2);
 
         jLabel3.setBackground(new java.awt.Color(255, 204, 204));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Articulo Menos Vendido");
+        jLabel3.setText("Articulo con Menor Cantidad Vendida");
         jLabel3.setOpaque(true);
         jPanel3.add(jLabel3);
 
