@@ -42,7 +42,7 @@ public class VentanaRegistroV extends javax.swing.JFrame {
         dtm.addColumn("Cantidad");
         dtm.addColumn("Total");
 
-
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -84,7 +84,7 @@ public class VentanaRegistroV extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(840, 530));
 
         PanelP.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));

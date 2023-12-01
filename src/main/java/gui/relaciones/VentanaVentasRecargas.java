@@ -25,6 +25,8 @@ public class VentanaVentasRecargas extends javax.swing.JFrame {
         Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
         Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
         limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
+        
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -70,7 +72,8 @@ public class VentanaVentasRecargas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         principal.setBackground(new java.awt.Color(255, 255, 255));
         principal.setLayout(new java.awt.BorderLayout(10, 10));

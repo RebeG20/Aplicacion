@@ -41,7 +41,7 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         dtm.addColumn("Calle Empleado");
         dtm.addColumn("Colonia Empleado");
         dtm.addColumn("Num Casa");
-        
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -99,7 +99,8 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaE = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         principal.setBackground(new java.awt.Color(255, 255, 255));
         principal.setLayout(new java.awt.BorderLayout(10, 10));

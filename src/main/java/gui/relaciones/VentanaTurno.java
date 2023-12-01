@@ -42,6 +42,7 @@ public class VentanaTurno extends javax.swing.JFrame {
         dtm.addColumn("Nombre");
         dtm.addColumn("Horario Turno");
         dtm.addColumn("Dias Que trabaja");
+        this.setLocationRelativeTo(null);
         
     }
 
@@ -88,9 +89,10 @@ public class VentanaTurno extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaT = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(560, 540));
         setPreferredSize(new java.awt.Dimension(570, 550));
+        setResizable(false);
 
         principal.setBackground(new java.awt.Color(255, 255, 255));
         principal.setLayout(new java.awt.BorderLayout(10, 10));

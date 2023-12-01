@@ -23,6 +23,7 @@ public class VentanaRecargasQuerys extends javax.swing.JFrame {
         initComponents();
         tablaRecargas.fixTable(jScrollPane2);
         mostrar();
+        this.setLocationRelativeTo(null);
     }
     
     public void mostrar() {

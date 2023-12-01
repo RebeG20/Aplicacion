@@ -27,6 +27,8 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
     String comp;
     int monto = 0;
     String fecha;
+    
+    
 
     public PuntoVentaRecargas() {
         initComponents();
@@ -152,7 +154,8 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         btnMostrar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         principal.setBackground(new java.awt.Color(255, 255, 255));
         principal.setLayout(new java.awt.BorderLayout(10, 10));

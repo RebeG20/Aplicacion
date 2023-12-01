@@ -29,6 +29,8 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
         btnMostrar.setIcon(new ImageIcon("./src/main/java/Imagenes/mostrar.png"));
         btnEliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
         btnLimpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
+        
+        this.setLocationRelativeTo(null);
     }
     
     public void mostrar() {
@@ -121,7 +123,8 @@ public class VentanaCompaniasTel extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCT = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         principal.setBackground(new java.awt.Color(255, 255, 255));
         principal.setLayout(new java.awt.BorderLayout(10, 10));
