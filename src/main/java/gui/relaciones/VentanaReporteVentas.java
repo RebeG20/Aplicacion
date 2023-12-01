@@ -40,6 +40,16 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
         dtm.setRowCount(0);
     }
     
+    public void generarReporte()
+    {
+        max.setText(dao.max());
+        min.setText(dao.min());
+        prom.setText(""+dao.prom());
+        total.setText(""+dao.sum());
+        nArt.setText(""+dao.filasArt());
+        nVentas.setText(""+dao.filasVentas());
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -54,16 +64,16 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        max = new javax.swing.JLabel();
+        min = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        prom = new javax.swing.JLabel();
+        nVentas = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        total = new javax.swing.JLabel();
+        nArt = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaVentas = new javax.swing.JTable();
@@ -121,13 +131,13 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
         jLabel3.setOpaque(true);
         jPanel3.add(jLabel3);
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.add(jLabel4);
+        max.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        max.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.add(max);
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.add(jLabel5);
+        min.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        min.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.add(min);
 
         jLabel6.setBackground(new java.awt.Color(255, 204, 204));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -141,13 +151,13 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
         jLabel7.setOpaque(true);
         jPanel3.add(jLabel7);
 
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.add(jLabel8);
+        prom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        prom.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.add(prom);
 
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.add(jLabel9);
+        nVentas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nVentas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.add(nVentas);
 
         jLabel10.setBackground(new java.awt.Color(255, 204, 204));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -161,13 +171,13 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
         jLabel11.setOpaque(true);
         jPanel3.add(jLabel11);
 
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.add(jLabel12);
+        total.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        total.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.add(total);
 
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.add(jLabel13);
+        nArt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nArt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.add(nArt);
 
         jPanel4.add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -204,6 +214,7 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         limpiarTabla();
         mostrarLista();
+        generarReporte();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -247,16 +258,10 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -264,6 +269,12 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel max;
+    private javax.swing.JLabel min;
+    private javax.swing.JLabel nArt;
+    private javax.swing.JLabel nVentas;
+    private javax.swing.JLabel prom;
     private javax.swing.JTable tablaVentas;
+    private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }
