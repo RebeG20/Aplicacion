@@ -4,9 +4,13 @@
  */
 package gui.tablas;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import tda.DAO_Recargas;
+import tda.DAO_VentasRecargas;
 import tda.Recargas;
+import tda.VentasRecargas;
 
 /**
  *
@@ -16,17 +20,24 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
 
     Recargas obRec = new Recargas();
     DAO_Recargas daoRec = new DAO_Recargas();
+    VentasRecargas obVRec = new VentasRecargas();
+    DAO_VentasRecargas daoVRec = new DAO_VentasRecargas();
+    String idEmp;
+    String id;
+    String comp;
+    int monto = 0;
+    String fecha;
 
     public PuntoVentaRecargas() {
         initComponents();
     }
 
     public void agregar() {
-        String id = txtId.getText();
+        id = txtId.getText();
         String numero = txtNum.getText();
-        String compañia = "";
+        comp = "";
         String tipo = "";
-        int monto = 0;
+        monto = 0;
         int paga = Integer.parseInt(txtPago.getText());
         int cambio = 0;
 
@@ -35,16 +46,21 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         } else {
             monto = Integer.parseInt((String) cbxMonto.getSelectedItem());
             tipo = (String) cbxTipo.getSelectedItem();
-            compañia = (String) cbxComp.getSelectedItem();
+            comp = (String) cbxComp.getSelectedItem();
             if (paga >= monto) {
+                idEmp = JOptionPane.showInputDialog("Ingresa ID del empleado");
+                fecha = obtenerFechaFormateada();
+
                 cambio = paga - monto;
                 lblCambio.setText("$" + cambio);
 
                 obRec.setIdRec(id);
                 obRec.setNumero(numero);
-                obRec.setCompañia(compañia);
+                obRec.setCompañia(comp);
                 obRec.setTipo(tipo);
                 obRec.setMonto(monto);
+                
+                agregarVentaR();
 
                 int r = daoRec.agregarArticulos(obRec);
                 if (r == 1) {
@@ -58,6 +74,35 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Pago insuficiente");
             }
         }
+    }
+
+    private void agregarVentaR() {
+        obVRec.setIdEmpleado(idEmp);
+        obVRec.setIdRecarga(id);
+        obVRec.setFechaVenta(fecha);
+        obVRec.setNombreCT(comp);
+        obVRec.setTotal(monto);
+
+        int r = daoVRec.agregarVentaRecarga(obVRec);
+        if (r == 1) {
+            JOptionPane.showMessageDialog(null, "Recarga realizada correctamente");
+        } else if (r == 0) {
+            JOptionPane.showMessageDialog(null, "Error: Ya existe una recarga con el mismo ID");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al hacer la recarga");
+        }
+    }
+
+    // Método que retorna la fecha formateada
+    public static String obtenerFechaFormateada() {
+        // Obtén la fecha actual
+        LocalDate fechaActual = LocalDate.now();
+
+        // Crea un formateador para el formato "AAAA-MM-DD"
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        // Formatea la fecha actual como una cadena en el formato deseado y retorna la cadena
+        return fechaActual.format(formateador);
     }
 
     /**

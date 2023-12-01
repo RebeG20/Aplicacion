@@ -14,7 +14,7 @@ public class DAO_VentasRecargas {
     PreparedStatement ps;
     ResultSet rs;
     
-    public int agregarArticulos(VentasRecargas venRec) {
+    public int agregarVentaRecarga(VentasRecargas venRec) {
         String insertSQL = "INSERT INTO ventasrecargas(Empleados_idEmpleados, Recargas_idRecargas, FechaVentaR, NombreCT, Total) VALUES(?,?,?,?,?)";
         try {
             con = obConectar.establecerConnection();
