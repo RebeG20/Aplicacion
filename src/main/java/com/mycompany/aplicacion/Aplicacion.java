@@ -24,14 +24,6 @@ public class Aplicacion {
 
 //        VentanaRecargas obRec=new VentanaRecargas();
 //        obRec.setVisible(true);
-
-//          PuntoVenta obPV=new PuntoVenta();
-//          obPV.setVisible(true);
-
-            VentanaPedido obPed=new VentanaPedido();
-            obPed.setVisible(true);
-                
-
-            
+     
     }
 }

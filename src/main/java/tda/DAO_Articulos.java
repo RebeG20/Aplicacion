@@ -1,5 +1,4 @@
 package tda;
-
 import Funcionalidad.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
