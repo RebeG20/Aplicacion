@@ -16,31 +16,47 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
 
     Recargas obRec = new Recargas();
     DAO_Recargas daoRec = new DAO_Recargas();
-    
+
     public PuntoVentaRecargas() {
         initComponents();
     }
-    
-    public void agregar(){
+
+    public void agregar() {
         String id = txtId.getText();
         String numero = txtNum.getText();
-        String compañia = (String)cbxComp.getSelectedItem();
-        String tipo = (String)cbxTipo.getSelectedItem();
-        int monto = Integer.parseInt((String)cbxMonto.getSelectedItem());
-        
-        obRec.setIdRec(id);
-        obRec.setNumero(numero);
-        obRec.setCompañia(compañia);
-        obRec.setTipo(tipo);
-        obRec.setMonto(monto);
-        
-        int r = daoRec.agregarArticulos(obRec);
-        if (r == 1) {
-            JOptionPane.showMessageDialog(null, "Articulo agregado correctamente");
-        } else if (r == 0) {
-            JOptionPane.showMessageDialog(null, "Error: Ya existe un artículo con el mismo ID");
+        String compañia = "";
+        String tipo = "";
+        int monto = 0;
+        int paga = Integer.parseInt(txtPago.getText());
+        int cambio = 0;
+
+        if (cbxComp.getSelectedIndex() == 0 || cbxTipo.getSelectedIndex() == 0 || cbxMonto.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Favor de seleccionar las opciones adecuadas");
         } else {
-            JOptionPane.showMessageDialog(null, "Error al agregar el articulo");
+            monto = Integer.parseInt((String) cbxMonto.getSelectedItem());
+            tipo = (String) cbxTipo.getSelectedItem();
+            compañia = (String) cbxComp.getSelectedItem();
+            if (paga >= monto) {
+                cambio = paga - monto;
+                lblCambio.setText("$" + cambio);
+
+                obRec.setIdRec(id);
+                obRec.setNumero(numero);
+                obRec.setCompañia(compañia);
+                obRec.setTipo(tipo);
+                obRec.setMonto(monto);
+
+                int r = daoRec.agregarArticulos(obRec);
+                if (r == 1) {
+                    JOptionPane.showMessageDialog(null, "Recarga realizada correctamente");
+                } else if (r == 0) {
+                    JOptionPane.showMessageDialog(null, "Error: Ya existe una recarga con el mismo ID");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al hacer la recarga");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Pago insuficiente");
+            }
         }
     }
 
@@ -82,9 +98,9 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtPago = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblCambio = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
         footer = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
@@ -233,17 +249,17 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         jLabel4.setText("Paga con:");
         jPanel12.add(jLabel4);
 
-        jTextField3.setBackground(new java.awt.Color(250, 195, 195));
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel12.add(jTextField3);
+        txtPago.setBackground(new java.awt.Color(250, 195, 195));
+        txtPago.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel12.add(txtPago);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Cambio:");
         jPanel12.add(jLabel5);
 
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("$");
-        jPanel12.add(jLabel6);
+        lblCambio.setForeground(new java.awt.Color(0, 0, 0));
+        lblCambio.setText("$");
+        jPanel12.add(lblCambio);
 
         btnAgregar.setBackground(new java.awt.Color(255, 102, 102));
         btnAgregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -371,7 +387,6 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -386,9 +401,10 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lblCambio;
     private javax.swing.JPanel principal;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNum;
+    private javax.swing.JTextField txtPago;
     // End of variables declaration//GEN-END:variables
 }
