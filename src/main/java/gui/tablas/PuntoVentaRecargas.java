@@ -35,6 +35,18 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
 
     public void agregar() {
 
+
+        id = txtId.getText();
+        String numero = txtNum.getText();
+        comp = "";
+        String tipo = "";
+        monto = 0;
+        int paga = Integer.parseInt(txtPago.getText());
+        int cambio = 0;
+        
+        
+
+
         if (!txtId.getText().trim().isEmpty() && !txtNum.getText().trim().isEmpty() && !txtPago.getText().trim().isEmpty()) {
             if (txtNum.getText().equals(10)) {
                 id = txtId.getText();
