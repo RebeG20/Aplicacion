@@ -32,11 +32,11 @@ public class Aplicacion {
 //          VentanaPedido obPed=new VentanaPedido();
 //          obPed.setVisible(true);
                 
-            VentanaMarcaArticulos obA=new VentanaMarcaArticulos();
-            obA.setVisible(true);
+//          VentanaMarcaArticulos obA=new VentanaMarcaArticulos();
+//          obA.setVisible(true);
 
-//          VentanaReporteVentas obRV=new VentanaReporteVentas();
-//          obRV.setVisible(true);
+          VentanaReporteVentas obRV=new VentanaReporteVentas();
+          obRV.setVisible(true);
 
     }
 }

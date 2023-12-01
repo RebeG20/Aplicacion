@@ -16,6 +16,7 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
     
     public VentanaReporteVentas() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public void mostrarLista()
@@ -79,6 +80,7 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
         tablaVentas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(677, 541));
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 153));
 
