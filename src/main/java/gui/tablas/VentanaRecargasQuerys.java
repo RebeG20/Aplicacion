@@ -21,6 +21,7 @@ public class VentanaRecargasQuerys extends javax.swing.JFrame {
     
     public VentanaRecargasQuerys() {
         initComponents();
+        tablaRecargas.fixTable(jScrollPane2);
         mostrar();
     }
     
@@ -75,21 +76,38 @@ public class VentanaRecargasQuerys extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaRecargas = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaRecargas = new componentes.TablaCustom();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
+        jPanel2.setBackground(new java.awt.Color(255, 153, 153));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Registros de Recargas");
         jPanel2.add(jLabel1);
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
+        jPanel3.setBackground(new java.awt.Color(255, 153, 153));
+
+        btnRegresar.setBackground(new java.awt.Color(255, 102, 102));
+        btnRegresar.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(0, 0, 0));
         btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnRegresar);
 
+        btnEliminar.setBackground(new java.awt.Color(255, 102, 102));
+        btnEliminar.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,8 +118,10 @@ public class VentanaRecargasQuerys extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
 
+        tablaRecargas.setBackground(new java.awt.Color(255, 102, 102));
         tablaRecargas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -110,9 +130,10 @@ public class VentanaRecargasQuerys extends javax.swing.JFrame {
                 "ID Recarga", "Monto", "Tipo", "Numero", "Compañia"
             }
         ));
-        jScrollPane1.setViewportView(tablaRecargas);
+        tablaRecargas.setGridColor(new java.awt.Color(255, 102, 102));
+        jScrollPane2.setViewportView(tablaRecargas);
 
-        jPanel4.add(jScrollPane1);
+        jPanel4.add(jScrollPane2);
 
         jPanel1.add(jPanel4, java.awt.BorderLayout.CENTER);
 
@@ -136,6 +157,10 @@ public class VentanaRecargasQuerys extends javax.swing.JFrame {
         limpiarTabla();
         mostrar();
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,7 +205,7 @@ public class VentanaRecargasQuerys extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaRecargas;
+    private javax.swing.JScrollPane jScrollPane2;
+    private componentes.TablaCustom tablaRecargas;
     // End of variables declaration//GEN-END:variables
 }
