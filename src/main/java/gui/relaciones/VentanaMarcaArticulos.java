@@ -324,19 +324,33 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
     }//GEN-LAST:event_limpiarActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        String idMarca,idArticulos;
+        if (!jTextField1.getText().trim().isEmpty() && !jTextField2.getText().trim().isEmpty()) 
+        {
+            if(jTextField1.getText().length()<=8 && jTextField2.getText().length()<=8)
+            {
+                String idMarca,idArticulos;
         
-        idMarca=jTextField1.getText();
-        idArticulos=jTextField2.getText();
-        
-        obMA.setIdMar(idMarca);
-        obMA.setIdArt(idArticulos);
-        
-        obma.inserMA(obMA);
-        
-        tabla = (DefaultTableModel) jTable1.getModel();
-        tabla.setRowCount(0);
-        obma.selMA(tabla);
+                idMarca=jTextField1.getText();
+                idArticulos=jTextField2.getText();
+
+                obMA.setIdMar(idMarca);
+                obMA.setIdArt(idArticulos);
+
+                obma.inserMA(obMA);
+
+                tabla = (DefaultTableModel) jTable1.getModel();
+                tabla.setRowCount(0);
+                obma.selMA(tabla);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Error. Ingrese claves con menos de 8 caracteres.");
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Error. Por favor llene todos los campos.");
+        }
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
