@@ -58,14 +58,11 @@ public class DAO_Proveedores
             ps.executeUpdate();
             return 1;   //Exito
         }
-        catch(SQLIntegrityConstraintViolationException e)
-        {
-            return 0;   //ID Duplicado
-        }
-        catch(Exception e)
-        {
+        catch (SQLIntegrityConstraintViolationException e) {
+            return 0; // ID duplicado
+        } catch (Exception e) {
             e.printStackTrace();
-            return -1;  //Otro tipo de error
+            return -1; // Otro tipo de error
         }
     }
     

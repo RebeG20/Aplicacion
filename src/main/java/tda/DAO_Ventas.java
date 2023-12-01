@@ -114,7 +114,7 @@ public class DAO_Ventas
     }
      
     
-    public void totalizar(JLabel tot)
+    public double totalizar(JLabel tot)
     {
         
         for (int i = 0; i < datosV.size(); i++) 
@@ -125,6 +125,7 @@ public class DAO_Ventas
        
         tot.setText("$ "+String.valueOf(total));
         datosV.clear();
+        return total;
     }
     
     public void cobrar(double cant)

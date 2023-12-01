@@ -29,11 +29,12 @@ public class DAO_Pedido
             ps.setString(4, ped.fecha);
             ps.executeUpdate();
             return 1;
-        }catch (Exception e)
-        {
-            
+        }catch (SQLIntegrityConstraintViolationException e) {
+            return 0; // ID duplicado
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1; // Otro tipo de error
         }
-        return 0;
     }
     
     public int actped(Pedido ped)

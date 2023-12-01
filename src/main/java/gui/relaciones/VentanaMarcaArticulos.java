@@ -111,12 +111,12 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("     ID Marca:");
+        jLabel3.setText("Clave de la marca");
         jPanel2.add(jLabel3);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("     ID Articulo:");
+        jLabel4.setText("Codigo del articulo");
         jPanel2.add(jLabel4);
 
         aside.add(jPanel2, java.awt.BorderLayout.LINE_START);
@@ -333,6 +333,7 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
         obMA.setIdArt(idArticulos);
         
         obma.inserMA(obMA);
+        
         tabla = (DefaultTableModel) jTable1.getModel();
         tabla.setRowCount(0);
         obma.selMA(tabla);

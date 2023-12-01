@@ -95,10 +95,6 @@ public class DAO_Turno
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se registro de manera exitosa");
             
-        } 
-        catch (SQLIntegrityConstraintViolationException e) 
-        {
-            JOptionPane.showMessageDialog(null, "El empleado ya cuenta con un registro de horario");
         } catch (Exception e) 
         {
             e.printStackTrace();  

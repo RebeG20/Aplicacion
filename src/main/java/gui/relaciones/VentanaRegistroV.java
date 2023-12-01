@@ -4,6 +4,7 @@
  */
 package gui.relaciones;
 
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -11,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import tda.DAO_Ventas;
 import tda.Empleados;
@@ -85,7 +87,6 @@ public class VentanaRegistroV extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(840, 530));
 
         PanelP.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         PanelP.setLayout(new java.awt.BorderLayout(10, 10));
@@ -133,13 +134,18 @@ public class VentanaRegistroV extends javax.swing.JFrame {
         cantidad.setColumns(150);
         cantidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cantidad.setForeground(new java.awt.Color(0, 0, 0));
+        cantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cantidadKeyTyped(evt);
+            }
+        });
         jPanel7.add(cantidad);
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Id Empleado");
+        jLabel4.setText("Clave del Empleado");
         jPanel7.add(jLabel4);
 
         idEm.setBackground(new java.awt.Color(255, 255, 255));
@@ -272,6 +278,7 @@ public class VentanaRegistroV extends javax.swing.JFrame {
 
     private void efectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_efectivoActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_efectivoActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
@@ -305,12 +312,31 @@ public class VentanaRegistroV extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         double ef=Double.parseDouble(efectivo.getText());
+        double totalV=dao.totalizar(jLabel1);
         
-        dao.cobrar(ef);
-        dtm.setRowCount(0);
-        efectivo.setText("");
-        total.setText("");
+        if(ef<totalV)
+        {
+            JOptionPane.showMessageDialog(null, "Pago insuficiente");
+        }
+        else
+        {
+            dao.cobrar(ef);
+            dtm.setRowCount(0);
+            efectivo.setText("");
+            total.setText("");
+        }
+        
+        
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void cantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantidadKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_cantidadKeyTyped
 
     /**
      * @param args the command line arguments

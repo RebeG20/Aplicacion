@@ -1,5 +1,6 @@
 package gui.tablas;
 
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -48,11 +49,17 @@ public class VentanaArticulos extends javax.swing.JFrame {
         double precio = Double.parseDouble(txtPrecio.getText());
         int stock = Integer.parseInt(txtStock.getText());
 
+        
+      
+            
         art.setIdArt(id);
         art.setNomArt(nombre);
         art.setPrecio(precio);
         art.setStock(stock);
 
+        
+        
+        
         int r = dao.agregarArticulos(art);
         if (r == 1) {
             JOptionPane.showMessageDialog(null, "Articulo agregado correctamente");
@@ -228,9 +235,19 @@ public class VentanaArticulos extends javax.swing.JFrame {
         jPanel3.add(txtNombre);
 
         txtPrecio.setBackground(new java.awt.Color(255, 255, 255));
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
         jPanel3.add(txtPrecio);
 
         txtStock.setBackground(new java.awt.Color(255, 255, 255));
+        txtStock.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtStockKeyTyped(evt);
+            }
+        });
         jPanel3.add(txtStock);
 
         aside.add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -432,6 +449,24 @@ public class VentanaArticulos extends javax.swing.JFrame {
         limpiarTabla();
         mostrar();
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioKeyTyped
+
+    private void txtStockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStockKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtStockKeyTyped
 
     /**
      * @param args the command line arguments

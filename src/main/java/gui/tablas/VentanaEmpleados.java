@@ -4,6 +4,7 @@
  */
 package gui.tablas;
 
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -189,6 +190,11 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         jPanel3.add(colonia);
 
         num.setBackground(new java.awt.Color(255, 255, 255));
+        num.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numKeyTyped(evt);
+            }
+        });
         jPanel3.add(num);
 
         aside.add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -401,7 +407,16 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         emp.setColonia(col);
         emp.setNumCalle(numcalle);
         
-        dao.insertarEmpleados(emp);
+        
+        
+        int r = dao.insertarEmpleados(emp);
+        if (r == 1) {
+            JOptionPane.showMessageDialog(null, "Articulo agregado correctamente");
+        } else if (r == 0) {
+            JOptionPane.showMessageDialog(null, "Error: Ya existe un artículo con el mismo ID");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al agregar el articulo");
+        }
         dao.mostrarEmpleados(dtm);
     }//GEN-LAST:event_AgregarActionPerformed
 
@@ -487,6 +502,15 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_RegresarActionPerformed
+
+    private void numKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_numKeyTyped
 
     /**
      * @param args the command line arguments

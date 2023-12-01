@@ -1,5 +1,6 @@
 
 package gui.tablas;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -39,11 +40,11 @@ public class VentanaProveedores extends javax.swing.JFrame {
         
         int r = dao.agregarProveedores(prov);
         if (r == 1) {
-            JOptionPane.showMessageDialog(null, "Articulo agregado correctamente");
+            JOptionPane.showMessageDialog(null, "Proveedores agregado correctamente");
         } else if (r == 0) {
-            JOptionPane.showMessageDialog(null, "Error: Ya existe un artículo con el mismo ID");
+            JOptionPane.showMessageDialog(null, "Error: Ya existe un proveedor con el mismo ID");
         } else {
-            JOptionPane.showMessageDialog(null, "Error al agregar el articulo");
+            JOptionPane.showMessageDialog(null, "Error al agregar el proveedor");
         }
     }
     
@@ -249,6 +250,16 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jPanel8.add(txtDias);
 
         txtTel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtTel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelActionPerformed(evt);
+            }
+        });
+        txtTel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelKeyTyped(evt);
+            }
+        });
         jPanel8.add(txtTel);
 
         txtCiudad.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -453,6 +464,19 @@ public class VentanaProveedores extends javax.swing.JFrame {
     private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
         dispose();
     }//GEN-LAST:event_RegresarActionPerformed
+
+    private void txtTelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelKeyTyped
+
+    private void txtTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelActionPerformed
 
     /**
      * @param args the command line arguments

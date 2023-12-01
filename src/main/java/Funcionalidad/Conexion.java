@@ -9,8 +9,8 @@ public class Conexion {
     Connection conexion = null;
     String user = "root";
     //Base de datos de Rebeca:
-//    String password="Rebecaga20";
-//    String database="tiendav2";
+    String password="Rebecaga20";
+    String database="tiendav2";
     
 //    //Base de datos de Rebeca:
 //    String password="Rebecaga20";
@@ -29,8 +29,8 @@ public class Conexion {
 //    String database = "tiendav2";
 
     //Base de datos lupita 
-    String password="rootmaria";
-    String database="tiendav2";
+//    String password="rootmaria";
+//    String database="tiendav2";
 //    Base de datos lupita 
 //    String password="rootmaria";
 //    String database="tienda";
@@ -45,11 +45,8 @@ public class Conexion {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = DriverManager.getConnection(dir, user, password);
 
-            System.out.println("Conexion Exitosa");
-
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("Conexion Fallida");
-
+           
         }
         return conexion;
     }

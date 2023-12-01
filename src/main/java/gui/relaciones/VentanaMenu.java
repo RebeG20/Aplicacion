@@ -38,23 +38,20 @@ public class VentanaMenu extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem16 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 153));
 
@@ -62,7 +59,7 @@ public class VentanaMenu extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 153));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO V\\Documents\\GitHub\\Aplicacion\\src\\main\\java\\Imagenes\\tienda.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\rebec\\OneDrive\\Documentos\\Aplicacion\\src\\main\\java\\Imagenes\\tienda.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -71,7 +68,7 @@ public class VentanaMenu extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +123,7 @@ public class VentanaMenu extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("Ventanas");
+        jMenu1.setText("Menu");
 
         jMenu3.setText("Tablas");
 
@@ -145,14 +142,6 @@ public class VentanaMenu extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem2);
-
-        jMenuItem4.setText("Compañias Telefonicas");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem4);
 
         jMenuItem3.setText("Empleados");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -178,14 +167,6 @@ public class VentanaMenu extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem7);
 
-        jMenuItem9.setText("Recargas");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem9);
-
         jMenu1.add(jMenu3);
 
         jMenu4.setText("Relaciones");
@@ -205,14 +186,6 @@ public class VentanaMenu extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem10);
-
-        jMenuItem11.setText("RecargasCT");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem11);
 
         jMenuItem12.setText("Registro de Venta");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
@@ -237,14 +210,6 @@ public class VentanaMenu extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem14);
-
-        jMenuItem15.setText("Venta recargas");
-        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem15ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem15);
 
         jMenu1.add(jMenu4);
 
@@ -299,11 +264,6 @@ public class VentanaMenu extends javax.swing.JFrame {
         obA.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        VentanaCompaniasTel obct=new VentanaCompaniasTel();
-        obct.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         VentanaEmpleados obE=new VentanaEmpleados();
         obE.setVisible(rootPaneCheckingEnabled);
@@ -314,11 +274,6 @@ public class VentanaMenu extends javax.swing.JFrame {
         obPro.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        VentanaRecargasQuerys obR=new VentanaRecargasQuerys();
-        obR.setVisible(true);
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
-
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         VentanaMarcaArticulos obma=new VentanaMarcaArticulos();
         obma.setVisible(true);
@@ -328,11 +283,6 @@ public class VentanaMenu extends javax.swing.JFrame {
         VentanaPedido obPe=new VentanaPedido();
         obPe.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
-
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        VentanaRecargasCT obrct=new VentanaRecargasCT();
-        obrct.setVisible(true);
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         VentanaRegistroV obrv=new VentanaRegistroV();
@@ -348,11 +298,6 @@ public class VentanaMenu extends javax.swing.JFrame {
         VentanaTurno obT=new VentanaTurno();
         obT.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
-
-    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        VentanaVentasRecargas obVR=new VentanaVentasRecargas();
-        obVR.setVisible(true);
-    }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         this.dispose();
@@ -402,20 +347,16 @@ public class VentanaMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -4,6 +4,7 @@
  */
 package gui.relaciones;
 
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,7 +30,7 @@ public class VentanaPedido extends javax.swing.JFrame {
         Regresar.setIcon(new ImageIcon("./src/main/java/Imagenes/atras.png"));
         Mostrar.setIcon(new ImageIcon("./src/main/java/Imagenes/mostrar.png"));
 //        Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
-        Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
+        
         limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
         
         tabla.addColumn("idArticulo");
@@ -75,7 +76,6 @@ public class VentanaPedido extends javax.swing.JFrame {
         footer = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         Regresar = new javax.swing.JButton();
-        Editar = new javax.swing.JButton();
         limpiar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -118,12 +118,12 @@ public class VentanaPedido extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("     ID Articulo:");
+        jLabel3.setText("     Codigo del Articulo:");
         jPanel2.add(jLabel3);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("     ID Proveedor:");
+        jLabel4.setText("     Clave del Proveedor:");
         jPanel2.add(jLabel4);
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
@@ -154,6 +154,11 @@ public class VentanaPedido extends javax.swing.JFrame {
         jTextField3.setBackground(new java.awt.Color(255, 255, 255));
         jTextField3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
         jPanel3.add(jTextField3);
 
         jTextField4.setBackground(new java.awt.Color(255, 255, 255));
@@ -241,18 +246,6 @@ public class VentanaPedido extends javax.swing.JFrame {
         });
         jPanel6.add(Regresar);
 
-        Editar.setBackground(new java.awt.Color(255, 102, 102));
-        Editar.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        Editar.setForeground(new java.awt.Color(255, 255, 255));
-        Editar.setText("Editar");
-        Editar.setPreferredSize(new java.awt.Dimension(120, 35));
-        Editar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditarActionPerformed(evt);
-            }
-        });
-        jPanel6.add(Editar);
-
         limpiar.setBackground(new java.awt.Color(255, 102, 102));
         limpiar.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         limpiar.setForeground(new java.awt.Color(255, 255, 255));
@@ -320,27 +313,6 @@ public class VentanaPedido extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_RegresarActionPerformed
 
-    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
-        int filaSeleccionada=jTable1.getSelectedRow();
-        if(filaSeleccionada==-1)
-        {
-            JOptionPane.showMessageDialog(null, "Seleccione una fila ");
-        }
-        else
-        {
-           String idIA=(String) jTable1.getValueAt(filaSeleccionada, 0);
-           String idIPro=(String) jTable1.getValueAt(filaSeleccionada, 1);
-           int cantidad=(Integer) jTable1.getValueAt(filaSeleccionada, 2);
-           String fecha=(String) jTable1.getValueAt(filaSeleccionada, 3);
-           
-           jTextField1.setText(idIA);
-           jTextField2.setText(idIPro);
-           jTextField3.setText(String.valueOf(cantidad));
-           jTextField4.setText(fecha);
-        }
-        obped.selPed(tabla);
-    }//GEN-LAST:event_EditarActionPerformed
-
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
         jTextField1.setText(" ");
         jTextField2.setText(" ");
@@ -401,6 +373,16 @@ public class VentanaPedido extends javax.swing.JFrame {
         obped.selPed(tabla);
     }//GEN-LAST:event_MostrarActionPerformed
 
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)))
+        {
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_jTextField3KeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -439,7 +421,6 @@ public class VentanaPedido extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Actualizar;
     private javax.swing.JButton Agregar;
-    private javax.swing.JButton Editar;
     private javax.swing.JButton Mostrar;
     private javax.swing.JButton Regresar;
     private javax.swing.JPanel aside;

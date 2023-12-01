@@ -109,11 +109,12 @@ public class DAO_Empleados
             System.out.println("se inserto");
             return 1;
         }
-        catch(Exception e)
-        {
-            
-                
-        }return 0;
+        catch (SQLIntegrityConstraintViolationException e) {
+            return 0; // ID duplicado
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1; // Otro tipo de error
+        }
     }
     
     

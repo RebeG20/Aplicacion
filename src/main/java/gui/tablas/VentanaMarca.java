@@ -276,6 +276,16 @@ public class VentanaMarca extends javax.swing.JFrame {
         m.setNombreM(nombre);
         
         dao.insertarMarca(m);
+
+        
+        int r = dao.insertarMarca(m);
+        if (r == 1) {
+            JOptionPane.showMessageDialog(null, "Articulo agregado correctamente");
+        } else if (r == 0) {
+            JOptionPane.showMessageDialog(null, "Error: Ya existe un artículo con el mismo ID");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al agregar el articulo");
+        }
         dao.mostrarMarcas(dtm);
         
     }//GEN-LAST:event_AgregarActionPerformed

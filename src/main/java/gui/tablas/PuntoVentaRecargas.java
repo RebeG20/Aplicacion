@@ -4,6 +4,7 @@
  */
 package gui.tablas;
 
+import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
@@ -27,55 +28,63 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
     String comp;
     int monto = 0;
     String fecha;
-    
-    
 
     public PuntoVentaRecargas() {
         initComponents();
     }
 
     public void agregar() {
-        id = txtId.getText();
-        String numero = txtNum.getText();
-        comp = "";
-        String tipo = "";
-        monto = 0;
-        int paga = Integer.parseInt(txtPago.getText());
-        int cambio = 0;
 
-        if (cbxComp.getSelectedIndex() == 0 || cbxTipo.getSelectedIndex() == 0 || cbxMonto.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Favor de seleccionar las opciones adecuadas");
-        } else {
-            monto = Integer.parseInt((String) cbxMonto.getSelectedItem());
-            tipo = (String) cbxTipo.getSelectedItem();
-            comp = (String) cbxComp.getSelectedItem();
-            if (paga >= monto) {
-                idEmp = JOptionPane.showInputDialog("Ingresa ID del empleado");
-                fecha = obtenerFechaFormateada();
+        if (!txtId.getText().trim().isEmpty() && !txtNum.getText().trim().isEmpty() && !txtPago.getText().trim().isEmpty()) {
+            if (txtNum.getText().equals(10)) {
+                id = txtId.getText();
+                String numero = txtNum.getText();
+                comp = "";
+                String tipo = "";
+                monto = 0;
+                int paga = Integer.parseInt(txtPago.getText());
+                int cambio = 0;
 
-                cambio = paga - monto;
-                lblCambio.setText("$" + cambio);
-
-                obRec.setIdRec(id);
-                obRec.setNumero(numero);
-                obRec.setCompañia(comp);
-                obRec.setTipo(tipo);
-                obRec.setMonto(monto);
-                
-                agregarVentaR();
-
-                int r = daoRec.agregarArticulos(obRec);
-                if (r == 1) {
-                    JOptionPane.showMessageDialog(null, "Recarga realizada correctamente");
-                } else if (r == 0) {
-                    JOptionPane.showMessageDialog(null, "Error: Ya existe una recarga con el mismo ID");
+                if (cbxComp.getSelectedIndex() == 0 || cbxTipo.getSelectedIndex() == 0 || cbxMonto.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(null, "Favor de seleccionar las opciones adecuadas");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error al hacer la recarga");
+                    monto = Integer.parseInt((String) cbxMonto.getSelectedItem());
+                    tipo = (String) cbxTipo.getSelectedItem();
+                    comp = (String) cbxComp.getSelectedItem();
+                    if (paga >= monto) {
+                        idEmp = JOptionPane.showInputDialog("Ingresa ID del empleado");
+                        fecha = obtenerFechaFormateada();
+
+                        cambio = paga - monto;
+                        lblCambio.setText("$" + cambio);
+
+                        obRec.setIdRec(id);
+                        obRec.setNumero(numero);
+                        obRec.setCompañia(comp);
+                        obRec.setTipo(tipo);
+                        obRec.setMonto(monto);
+
+                        //agregarVentaR();
+                        int r = daoRec.agregarArticulos(obRec);
+                        if (r == 1) {
+                            JOptionPane.showMessageDialog(null, "Recarga realizada correctamente");
+                        } else if (r == 0) {
+                            JOptionPane.showMessageDialog(null, "Error: Ya existe una recarga con el mismo ID");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error al hacer la recarga");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Pago insuficiente");
+                    }
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Pago insuficiente");
+                JOptionPane.showMessageDialog(null, "Numero Invalido");
             }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese datos en todos los campos");
         }
+
     }
 
     private void agregarVentaR() {
@@ -152,7 +161,6 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         footer = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         btnMostrar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -195,7 +203,7 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setText("     ID Recarga:");
+        jLabel7.setText("     Folio de recarga:");
         jPanel5.add(jLabel7, java.awt.BorderLayout.CENTER);
 
         jPanel3.add(jPanel5);
@@ -255,6 +263,11 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
 
         txtNum.setBackground(new java.awt.Color(250, 195, 195));
         txtNum.setForeground(new java.awt.Color(0, 0, 0));
+        txtNum.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumKeyTyped(evt);
+            }
+        });
         jPanel4.add(txtNum);
 
         cbxComp.setBackground(new java.awt.Color(250, 195, 195));
@@ -294,11 +307,16 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         jPanel12.setLayout(new java.awt.GridLayout(5, 1));
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Paga con:");
+        jLabel4.setText("Ingrese cantidad de efectivo:");
         jPanel12.add(jLabel4);
 
         txtPago.setBackground(new java.awt.Color(250, 195, 195));
         txtPago.setForeground(new java.awt.Color(0, 0, 0));
+        txtPago.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPagoKeyTyped(evt);
+            }
+        });
         jPanel12.add(txtPago);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
@@ -334,6 +352,11 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Regresar");
         jButton2.setPreferredSize(new java.awt.Dimension(120, 30));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         footer.add(jButton2);
 
         btnMostrar.setBackground(new java.awt.Color(255, 102, 102));
@@ -347,13 +370,6 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
             }
         });
         footer.add(btnMostrar);
-
-        jButton4.setBackground(new java.awt.Color(255, 102, 102));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Reportes Recargas");
-        jButton4.setPreferredSize(new java.awt.Dimension(150, 30));
-        footer.add(jButton4);
 
         principal.add(footer, java.awt.BorderLayout.PAGE_END);
 
@@ -373,13 +389,46 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        agregar();
+        try {
+            agregar();
+        } catch (Exception e) {
+
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         VentanaRecargasQuerys obVR = new VentanaRecargasQuerys();
         obVR.setVisible(true);
     }//GEN-LAST:event_btnMostrarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtNumKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumKeyTyped
+        // TODO add your handling code here:char c=evt.getKeyChar();
+        char c = evt.getKeyChar();
+
+        // Permitir solo dígitos, la tecla de retroceso o la tecla de suprimir
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+            evt.consume(); // Consumir el evento si no es un dígito o tecla de control
+        }
+
+        // Limitar la longitud del texto a 10 caracteres
+        if (txtNum.getText().length() >= 10) {
+            evt.consume(); // Consumir el evento si ya hay 10 caracteres
+        }
+
+    }//GEN-LAST:event_txtNumKeyTyped
+
+    private void txtPagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPagoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPagoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -427,7 +476,6 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

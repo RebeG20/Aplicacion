@@ -3,6 +3,7 @@ import Funcionalidad.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -62,11 +63,12 @@ public class DAO_Marca
             ps.executeUpdate();
             return 1;
         }
-        catch(Exception e)
-        {
-            System.out.println("e "+e);
-                
-        }return 0;
+        catch (SQLIntegrityConstraintViolationException e) {
+            return 0; // ID duplicado
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1; // Otro tipo de error
+        }
     }
     
      public void eliminarMarca(String Eliminar)

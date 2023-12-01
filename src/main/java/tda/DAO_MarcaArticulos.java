@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import Funcionalidad.Conexion;
 import java.sql.PreparedStatement;
+import java.sql.SQLIntegrityConstraintViolationException;
 import javax.swing.table.DefaultTableModel;
 public class DAO_MarcaArticulos 
 {
@@ -23,12 +24,14 @@ public class DAO_MarcaArticulos
             ps.setString(1, ma.idMar);
             ps.setString(2, ma.idArt);
             ps.executeUpdate();
-            return 1;
-        }catch (Exception e)
-        {
             
+            return 1;
+        }catch (SQLIntegrityConstraintViolationException e) {
+            return 0; // ID duplicado
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1; // Otro tipo de error
         }
-        return 0;
     }
     
     public int actMA(MarcaArticulos ma)
@@ -40,6 +43,7 @@ public class DAO_MarcaArticulos
             ps.setString(1, ma.idMar);
             ps.setString(2, ma.idArt);
             ps.executeUpdate();
+            
             return 1;
         }catch(Exception e)
         {
