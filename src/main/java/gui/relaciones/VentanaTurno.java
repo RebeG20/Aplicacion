@@ -86,8 +86,8 @@ public class VentanaTurno extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TablaT = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TablaT = new componentes.TablaCustom();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(560, 540));
@@ -296,25 +296,12 @@ public class VentanaTurno extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID Empleado", "Nombre", "Horario Turno", "Dias que Trabaja"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, false, false
-            };
+        ));
+        jScrollPane2.setViewportView(TablaT);
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(TablaT);
-        if (TablaT.getColumnModel().getColumnCount() > 0) {
-            TablaT.getColumnModel().getColumn(0).setResizable(false);
-            TablaT.getColumnModel().getColumn(1).setResizable(false);
-            TablaT.getColumnModel().getColumn(2).setResizable(false);
-        }
-
-        jPanel9.add(jScrollPane1);
+        jPanel9.add(jScrollPane2);
 
         jPanel7.add(jPanel9, java.awt.BorderLayout.CENTER);
 
@@ -476,7 +463,7 @@ public class VentanaTurno extends javax.swing.JFrame {
     private javax.swing.JButton Mostrar;
     private javax.swing.JLabel Nombre;
     private javax.swing.JButton Regresar;
-    private javax.swing.JTable TablaT;
+    private componentes.TablaCustom TablaT;
     private javax.swing.JPanel aside;
     private javax.swing.JPanel center;
     private javax.swing.JTextField dias;
@@ -499,7 +486,7 @@ public class VentanaTurno extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton limpiar;
     private javax.swing.JPanel principal;
     // End of variables declaration//GEN-END:variables

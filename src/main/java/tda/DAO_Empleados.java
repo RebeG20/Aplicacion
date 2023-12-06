@@ -150,8 +150,7 @@ public class DAO_Empleados
         }
         catch(Exception e)
         {
-            
-            System.out.println("e "+e);    
+              System.out.println("");  
         }return 0;
     }
 

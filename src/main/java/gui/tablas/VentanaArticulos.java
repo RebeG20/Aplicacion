@@ -168,8 +168,8 @@ public class VentanaArticulos extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaArticulos = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaArticulos = new componentes.TablaCustom();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -381,15 +381,18 @@ public class VentanaArticulos extends javax.swing.JFrame {
 
         tablaArticulos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID Articulo", "Nombre Articulo", "Precio", "Stock"
+                "Codigo", "Nombre", "Precio ", "Stock"
             }
         ));
-        jScrollPane1.setViewportView(tablaArticulos);
+        jScrollPane2.setViewportView(tablaArticulos);
 
-        jPanel9.add(jScrollPane1);
+        jPanel9.add(jScrollPane2);
 
         jPanel7.add(jPanel9, java.awt.BorderLayout.CENTER);
 
@@ -532,9 +535,9 @@ public class VentanaArticulos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel principal;
-    private javax.swing.JTable tablaArticulos;
+    private componentes.TablaCustom tablaArticulos;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;

@@ -97,8 +97,8 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TablaE = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TablaE = new componentes.TablaCustom();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -172,21 +172,51 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         jPanel3.setLayout(new java.awt.GridLayout(7, 1, 0, 5));
 
         id.setBackground(new java.awt.Color(255, 255, 255));
+        id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                idKeyTyped(evt);
+            }
+        });
         jPanel3.add(id);
 
         nombre.setBackground(new java.awt.Color(255, 255, 255));
+        nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreKeyTyped(evt);
+            }
+        });
         jPanel3.add(nombre);
 
         aP.setBackground(new java.awt.Color(255, 255, 255));
+        aP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                aPKeyTyped(evt);
+            }
+        });
         jPanel3.add(aP);
 
         aM.setBackground(new java.awt.Color(255, 255, 255));
+        aM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                aMKeyTyped(evt);
+            }
+        });
         jPanel3.add(aM);
 
         calle.setBackground(new java.awt.Color(255, 255, 255));
+        calle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                calleKeyTyped(evt);
+            }
+        });
         jPanel3.add(calle);
 
         colonia.setBackground(new java.awt.Color(255, 255, 255));
+        colonia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                coloniaKeyTyped(evt);
+            }
+        });
         jPanel3.add(colonia);
 
         num.setBackground(new java.awt.Color(255, 255, 255));
@@ -343,29 +373,18 @@ public class VentanaEmpleados extends javax.swing.JFrame {
 
         TablaE.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID Empleado", "Nombre", "Apellido Paterno", "Apellido Materno", "Calle Empleado", "Colonia Empleado", "Num Casa"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true
-            };
+        ));
+        jScrollPane2.setViewportView(TablaE);
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(TablaE);
-        if (TablaE.getColumnModel().getColumnCount() > 0) {
-            TablaE.getColumnModel().getColumn(0).setResizable(false);
-        }
-
-        jPanel9.add(jScrollPane1);
+        jPanel9.add(jScrollPane2);
 
         jPanel7.add(jPanel9, java.awt.BorderLayout.CENTER);
 
@@ -395,29 +414,39 @@ public class VentanaEmpleados extends javax.swing.JFrame {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
-        String idEmpleado=id.getText(),nom=nombre.getText(),ap=aP.getText(),am=aM.getText();
-        String c=calle.getText(),col=colonia.getText();
-        int numcalle=Integer.parseInt(num.getText());
         
-        emp.setIdEmpleado(idEmpleado);
-        emp.setNombreE(nom);
-        emp.setApellidoPE(ap);
-        emp.setApellidoME(am);
-        emp.setCalle(c);
-        emp.setColonia(col);
-        emp.setNumCalle(numcalle);
-        
-        
-        
-        int r = dao.insertarEmpleados(emp);
-        if (r == 1) {
-            JOptionPane.showMessageDialog(null, "Articulo agregado correctamente");
-        } else if (r == 0) {
-            JOptionPane.showMessageDialog(null, "Error: Ya existe un artículo con el mismo ID");
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al agregar el articulo");
+        if (!id.getText().trim().isEmpty() && !nombre.getText().trim().isEmpty() && !aP.getText().trim().isEmpty() &&
+            !aM.getText().trim().isEmpty() && !calle.getText().trim().isEmpty() && !colonia.getText().trim().isEmpty()
+            &&!num.getText().trim().isEmpty()) 
+        {
+         
+            String idEmpleado = id.getText(), nom = nombre.getText(), ap = aP.getText(), am = aM.getText();
+            String c = calle.getText(), col = colonia.getText();
+            int numcalle = Integer.parseInt(num.getText());
+
+            emp.setIdEmpleado(idEmpleado);
+            emp.setNombreE(nom);
+            emp.setApellidoPE(ap);
+            emp.setApellidoME(am);
+            emp.setCalle(c);
+            emp.setColonia(col);
+            emp.setNumCalle(numcalle);
+
+            int r = dao.insertarEmpleados(emp);
+            if (r == 1) {
+                JOptionPane.showMessageDialog(null, "El empleado se registrpo exitosamente");
+            } else if (r == 0) {
+                JOptionPane.showMessageDialog(null, "Error: Ya existe esa clave de empleado");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al registrar, intente nuevamente");
+            }
+            dao.mostrarEmpleados(dtm);
+
         }
-        dao.mostrarEmpleados(dtm);
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
+        }
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
@@ -440,23 +469,31 @@ public class VentanaEmpleados extends javax.swing.JFrame {
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
         // TODO add your handling code here:
         
-        String idEmpleado=id.getText();
-        String c=calle.getText(),col=colonia.getText();
-        int numcalle=Integer.parseInt(num.getText());
-        
-        
-        emp.setCalle(c);
-        emp.setColonia(col);
-        emp.setNumCalle(numcalle);
-        emp.setIdEmpleado(idEmpleado);
+        try{
+            String idEmpleado = id.getText();
+            String c = calle.getText(), col = colonia.getText();
+            int numcalle = Integer.parseInt(num.getText());
 
-        int r = dao.actualizarE(emp);
-        if (r == 1) {
-            JOptionPane.showMessageDialog(null, "Los datos del empleado se actualizaron correctamente");
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al actualizar los datos del empleado");
+            emp.setCalle(c);
+            emp.setColonia(col);
+            emp.setNumCalle(numcalle);
+            emp.setIdEmpleado(idEmpleado);
+
+            int r = dao.actualizarE(emp);
+            if (r == 1) {
+                JOptionPane.showMessageDialog(null, "Los datos del empleado se actualizaron correctamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al actualizar los datos del empleado");
+            }
+            dao.mostrarEmpleados(dtm);
         }
-        dao.mostrarEmpleados(dtm);
+        catch(Exception  e)
+        {
+            
+        }
+        nombre.setVisible(true);
+        aP.setVisible(true);
+        aM.setVisible(true);
         
     }//GEN-LAST:event_ActualizarActionPerformed
 
@@ -481,6 +518,9 @@ public class VentanaEmpleados extends javax.swing.JFrame {
             colonia.setText(col);
             num.setText(String.valueOf(numC));
         }
+        
+        
+        
     }//GEN-LAST:event_EditarActionPerformed
 
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
@@ -510,7 +550,58 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         {
             evt.consume();
         }
+        if (num.getText().length() >= 4) {
+            evt.consume(); 
+        }
     }//GEN-LAST:event_numKeyTyped
+
+    private void idKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyTyped
+        // TODO add your handling code here:
+        if (id.getText().length() >= 8) {
+            evt.consume(); 
+        }
+    }//GEN-LAST:event_idKeyTyped
+
+    private void nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isLetter(c) && !Character.isSpaceChar(c)) {
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_nombreKeyTyped
+
+    private void aPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aPKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isLetter(c) && !Character.isSpaceChar(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_aPKeyTyped
+
+    private void aMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aMKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isLetter(c) && !Character.isSpaceChar(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_aMKeyTyped
+
+    private void calleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calleKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isLetter(c) && !Character.isSpaceChar(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_calleKeyTyped
+
+    private void coloniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coloniaKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isLetter(c) && !Character.isSpaceChar(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_coloniaKeyTyped
 
     /**
      * @param args the command line arguments
@@ -554,7 +645,7 @@ public class VentanaEmpleados extends javax.swing.JFrame {
     private javax.swing.JButton Eliminar;
     private javax.swing.JButton Mostrar;
     private javax.swing.JButton Regresar;
-    private javax.swing.JTable TablaE;
+    private componentes.TablaCustom TablaE;
     private javax.swing.JTextField aM;
     private javax.swing.JTextField aP;
     private javax.swing.JPanel aside;
@@ -588,7 +679,7 @@ public class VentanaEmpleados extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton limpiar;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField num;

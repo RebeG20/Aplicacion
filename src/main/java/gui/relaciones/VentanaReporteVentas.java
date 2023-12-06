@@ -76,8 +76,8 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
         total = new javax.swing.JLabel();
         nArt = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaVentas = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaVentas = new componentes.TablaCustom();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(677, 541));
@@ -86,6 +86,7 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Reporte de Ventas");
         jPanel1.add(jLabel1);
 
@@ -99,6 +100,7 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +111,7 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Generar Reporte de Ventas");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,61 +126,73 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
         jPanel3.setLayout(new java.awt.GridLayout(6, 2, 15, 0));
 
         jLabel2.setBackground(new java.awt.Color(255, 204, 204));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Articulo  con Mayor Cantidad Vendida");
         jLabel2.setOpaque(true);
         jPanel3.add(jLabel2);
 
         jLabel3.setBackground(new java.awt.Color(255, 204, 204));
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Articulo con Menor Cantidad Vendida");
         jLabel3.setOpaque(true);
         jPanel3.add(jLabel3);
 
+        max.setForeground(new java.awt.Color(0, 0, 0));
         max.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         max.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.add(max);
 
+        min.setForeground(new java.awt.Color(0, 0, 0));
         min.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         min.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.add(min);
 
         jLabel6.setBackground(new java.awt.Color(255, 204, 204));
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Promedio de Articulos en Stock");
         jLabel6.setOpaque(true);
         jPanel3.add(jLabel6);
 
         jLabel7.setBackground(new java.awt.Color(255, 204, 204));
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Numero de Ventas Realizadas");
         jLabel7.setOpaque(true);
         jPanel3.add(jLabel7);
 
+        prom.setForeground(new java.awt.Color(0, 0, 0));
         prom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         prom.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.add(prom);
 
+        nVentas.setForeground(new java.awt.Color(0, 0, 0));
         nVentas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nVentas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.add(nVentas);
 
         jLabel10.setBackground(new java.awt.Color(255, 204, 204));
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Total de Articulos en Existencia");
         jLabel10.setOpaque(true);
         jPanel3.add(jLabel10);
 
         jLabel11.setBackground(new java.awt.Color(255, 204, 204));
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Tipos de Articulos en Venta");
         jLabel11.setOpaque(true);
         jPanel3.add(jLabel11);
 
+        total.setForeground(new java.awt.Color(0, 0, 0));
         total.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         total.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.add(total);
 
+        nArt.setForeground(new java.awt.Color(0, 0, 0));
         nArt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nArt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.add(nArt);
@@ -196,12 +211,12 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID Articulo", "Articulo", "Empleado", "Cantidad Vendida", "Fecha de la Venta"
+                "Codigo Art.", "Nombre", "Empleado", "Cantidad Vendida", "Fecha de venta"
             }
         ));
-        jScrollPane1.setViewportView(tablaVentas);
+        jScrollPane2.setViewportView(tablaVentas);
 
-        jPanel9.add(jScrollPane1);
+        jPanel9.add(jScrollPane2);
 
         jPanel2.add(jPanel9);
 
@@ -272,13 +287,13 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel max;
     private javax.swing.JLabel min;
     private javax.swing.JLabel nArt;
     private javax.swing.JLabel nVentas;
     private javax.swing.JLabel prom;
-    private javax.swing.JTable tablaVentas;
+    private componentes.TablaCustom tablaVentas;
     private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }

@@ -77,8 +77,8 @@ public class VentanaMarca extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TablaM = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TablaM = new componentes.TablaCustom();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -214,6 +214,11 @@ public class VentanaMarca extends javax.swing.JFrame {
         limpiar.setForeground(new java.awt.Color(255, 255, 255));
         limpiar.setText("Limpiar");
         limpiar.setPreferredSize(new java.awt.Dimension(120, 35));
+        limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarActionPerformed(evt);
+            }
+        });
         jPanel6.add(limpiar);
 
         footer.add(jPanel6, java.awt.BorderLayout.PAGE_START);
@@ -233,18 +238,18 @@ public class VentanaMarca extends javax.swing.JFrame {
 
         TablaM.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID Marca", "Nombre Marca"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(TablaM);
+        jScrollPane2.setViewportView(TablaM);
 
-        jPanel9.add(jScrollPane1);
+        jPanel9.add(jScrollPane2);
 
         jPanel7.add(jPanel9, java.awt.BorderLayout.CENTER);
 
@@ -313,6 +318,17 @@ public class VentanaMarca extends javax.swing.JFrame {
         
     }//GEN-LAST:event_EliminarActionPerformed
 
+    private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
+        // TODO add your handling code here:
+        
+        dtm = (DefaultTableModel) TablaM.getModel();
+        dtm.setRowCount(0);
+        
+        idM.setText("");
+        nomM.setText("");
+        
+    }//GEN-LAST:event_limpiarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -353,7 +369,7 @@ public class VentanaMarca extends javax.swing.JFrame {
     private javax.swing.JButton Eliminar;
     private javax.swing.JButton Mostrar;
     private javax.swing.JButton Regresar;
-    private javax.swing.JTable TablaM;
+    private componentes.TablaCustom TablaM;
     private javax.swing.JPanel aside;
     private javax.swing.JPanel center;
     private javax.swing.JPanel footer;
@@ -378,7 +394,7 @@ public class VentanaMarca extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton limpiar;
     private javax.swing.JTextField nomM;
     private javax.swing.JPanel principal;
