@@ -4,6 +4,7 @@
  */
 package gui.relaciones;
 
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -86,7 +87,6 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
         header.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 17)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Marca Articulos");
         header.add(jLabel1);
 
@@ -99,7 +99,6 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Ingresar Datos");
         jPanel1.add(jLabel2);
 
@@ -110,12 +109,10 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.GridLayout(2, 1, 0, 15));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Clave de la marca");
         jPanel2.add(jLabel3);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Codigo del articulo");
         jPanel2.add(jLabel4);
 
@@ -124,14 +121,20 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new java.awt.GridLayout(2, 1, 0, 15));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
         jTextField1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
         jPanel3.add(jTextField1);
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
         jTextField2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
         jPanel3.add(jTextField2);
 
         aside.add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -144,7 +147,6 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel5.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Opciones");
         jPanel4.add(jLabel5);
 
@@ -250,7 +252,6 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel6.setFont(new java.awt.Font("Lucida Sans", 1, 13)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Tabla Marca Articulos");
         jPanel8.add(jLabel6);
 
@@ -326,26 +327,19 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         if (!jTextField1.getText().trim().isEmpty() && !jTextField2.getText().trim().isEmpty()) 
         {
-            if(jTextField1.getText().length()<=8 && jTextField2.getText().length()<=8)
-            {
-                String idMarca,idArticulos;
+            String idMarca,idArticulos;
         
-                idMarca=jTextField1.getText();
-                idArticulos=jTextField2.getText();
+            idMarca=jTextField1.getText();
+            idArticulos=jTextField2.getText();
 
-                obMA.setIdMar(idMarca);
-                obMA.setIdArt(idArticulos);
+            obMA.setIdMar(idMarca);
+            obMA.setIdArt(idArticulos);
 
-                obma.inserMA(obMA);
+            obma.inserMA(obMA);
 
-                tabla = (DefaultTableModel) jTable1.getModel();
-                tabla.setRowCount(0);
-                obma.selMA(tabla);
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Error. Ingrese claves con menos de 8 caracteres.");
-            }
+            tabla = (DefaultTableModel) jTable1.getModel();
+            tabla.setRowCount(0);
+            obma.selMA(tabla);
         }
         else
         {
@@ -394,6 +388,34 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
     private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
         obma.selMA(tabla);
     }//GEN-LAST:event_MostrarActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        char c = evt.getKeyChar();
+
+        // Permitir solo dígitos, la tecla de retroceso o la tecla de suprimir
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+            evt.consume(); // Consumir el evento si no es un dígito o tecla de control
+        }
+
+        // Limitar la longitud del texto a 10 caracteres
+        if (jTextField1.getText().length() >= 8) {
+            evt.consume(); // Consumir el evento si ya hay 10 caracteres
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        char c = evt.getKeyChar();
+
+        // Permitir solo dígitos, la tecla de retroceso o la tecla de suprimir
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+            evt.consume(); // Consumir el evento si no es un dígito o tecla de control
+        }
+
+        // Limitar la longitud del texto a 10 caracteres
+        if (jTextField2.getText().length() >= 8) {
+            evt.consume(); // Consumir el evento si ya hay 10 caracteres
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
 
     /**
      * @param args the command line arguments
