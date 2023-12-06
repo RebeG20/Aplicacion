@@ -22,13 +22,12 @@ public class VentanaTurno extends javax.swing.JFrame {
      * Creates new form VentanaRecargas
      */
     DefaultTableModel dtm = new DefaultTableModel();
-    DAO_Turno dao=new DAO_Turno();
-    Turno tur=new Turno();
-    
-    
+    DAO_Turno dao = new DAO_Turno();
+    Turno tur = new Turno();
+
     public VentanaTurno() {
         initComponents();
-        
+
         Agregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadir.png"));
         Actualizar.setIcon(new ImageIcon("./src/main/java/Imagenes/actualizar.png"));
         Regresar.setIcon(new ImageIcon("./src/main/java/Imagenes/atras.png"));
@@ -36,14 +35,14 @@ public class VentanaTurno extends javax.swing.JFrame {
         Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
         Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
         limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
-        
+
         TablaT.setModel(dtm);
         dtm.addColumn("ID Empleado");
         dtm.addColumn("Nombre");
         dtm.addColumn("Horario Turno");
         dtm.addColumn("Dias Que trabaja");
         this.setLocationRelativeTo(null);
-        
+
     }
 
     /**
@@ -125,7 +124,7 @@ public class VentanaTurno extends javax.swing.JFrame {
 
         Nombre.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         Nombre.setForeground(new java.awt.Color(0, 0, 0));
-        Nombre.setText("  Nombre del empleado: ");
+        Nombre.setText("     Nombre del empleado: ");
         jPanel2.add(Nombre);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
@@ -324,13 +323,17 @@ public class VentanaTurno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        // TODO add your handling code here:
-        String Nombre=id.getText();
-        String horarion=horario.getText();
-        String diasn=dias.getText();
-       
-        dao.validarNombre(Nombre, horarion, diasn,dtm);
-        
+        if (!id.getText().trim().isEmpty() && !horario.getText().trim().isEmpty() && !dias.getText().trim().isEmpty()) {
+            String Nombre = id.getText();
+            String horarion = horario.getText();
+            String diasn = dias.getText();
+
+            dao.validarNombre(Nombre, horarion, diasn, dtm);
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese datos en todos los campos");
+        }
+
+
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
@@ -347,21 +350,20 @@ public class VentanaTurno extends javax.swing.JFrame {
         } else {
             String idE = (String) TablaT.getValueAt(filaSeleccionada, 0);
             String h = (String) TablaT.getValueAt(filaSeleccionada, 1);
-            String d = (String )TablaT.getValueAt(filaSeleccionada, 2);
-            
+            String d = (String) TablaT.getValueAt(filaSeleccionada, 2);
 
             id.setText(idE);
             horario.setText(h);
-            dias.setText(d); 
+            dias.setText(d);
         }
-        
+
     }//GEN-LAST:event_EditarActionPerformed
 
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
         // TODO add your handling code here:
         dtm = (DefaultTableModel) TablaT.getModel();
         dtm.setRowCount(0);
-        
+
         id.setText("");
         horario.setText("");
         dias.setText("");
@@ -385,32 +387,29 @@ public class VentanaTurno extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
-        // TODO add your handling code here:
-        String idEmpleado=id.getText();
-        String horarion=horario.getText();
-        String diasn=dias.getText();
         
-        if(idEmpleado.equals(""))
-        {
+        String idEmpleado = id.getText();
+        String horarion = horario.getText();
+        String diasn = dias.getText();
+
+        if (idEmpleado.equals("")) {
             JOptionPane.showMessageDialog(null, "Seleccionar la fila a actualizar");
-        }
-        else{
+        } else {
             tur.setIdEmpleado(idEmpleado);
             tur.setHorario(horarion);
             tur.setDias(diasn);
-            
+
             int r = dao.actualizarT(tur);
-        
+
             if (r == 1) {
                 JOptionPane.showMessageDialog(null, "Turno actualizado correctamente");
-            } else 
-            {
+            } else {
                 JOptionPane.showMessageDialog(null, "Error al actualizar el turno");
             }
-            
+
             dao.mostrarTurnos(dtm);
         }
- 
+
     }//GEN-LAST:event_ActualizarActionPerformed
 
     private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed

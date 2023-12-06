@@ -90,15 +90,15 @@ public class TablaCustom extends JTable{
             Component com = super.getTableCellRendererComponent(jtable, o, bln, bln1, row, column);
             if (isCellSelected(row, column)) {
                 if (row % 2 == 0) {
-                    com.setBackground(new Color(33, 103, 153));
+                    com.setBackground(new Color(33, 103, 153)); // Color 1 de la fila cuando se selecciona
                 } else {
-                    com.setBackground(new Color(29, 86, 127));
+                    com.setBackground(new Color(29, 86, 127)); // COlor 2 de la fila cuando se selecciona
                 }
             } else {
                 if (row % 2 == 0) {
-                    com.setBackground(new Color(250,195,195));
+                    com.setBackground(new Color(250,195,195)); //Color 1 de la fila
                 } else {
-                    com.setBackground(new Color(255,153,153));
+                    com.setBackground(new Color(255,153,153)); // Color 2 de la fila
                 }
             }
             com.setForeground(new Color(0, 0, 0));

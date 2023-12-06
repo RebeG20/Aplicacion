@@ -4,6 +4,7 @@
  */
 package gui.relaciones;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -27,12 +28,13 @@ public class VentanaRegistroV extends javax.swing.JFrame {
     /**
      * Creates new form VentanaRegistroventas
      */
-    DAO_Ventas dao=new DAO_Ventas();
-    RegistrarVentas v=new RegistrarVentas();
-    DefaultTableModel dtm=new DefaultTableModel();
+    DAO_Ventas dao = new DAO_Ventas();
+    RegistrarVentas v = new RegistrarVentas();
+    DefaultTableModel dtm = new DefaultTableModel();
+
     public VentanaRegistroV() {
         initComponents();
-        
+
         Agregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadircarrito.png"));
 //        Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/quitarcarrito.png"));
 //        Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
@@ -236,6 +238,11 @@ public class VentanaRegistroV extends javax.swing.JFrame {
                 efectivoActionPerformed(evt);
             }
         });
+        efectivo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                efectivoKeyTyped(evt);
+            }
+        });
         jPanel9.add(efectivo);
 
         jButton5.setBackground(new java.awt.Color(255, 102, 102));
@@ -278,65 +285,84 @@ public class VentanaRegistroV extends javax.swing.JFrame {
 
     private void efectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_efectivoActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_efectivoActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        // TODO add your handling code here:
-         LocalDate fechaActual = LocalDate.now();
+        if (!id.getText().trim().isEmpty() && !cantidad.getText().trim().isEmpty() && !idEm.getText().trim().isEmpty()) {
+            // TODO add your handling code here:
+            LocalDate fechaActual = LocalDate.now();
 
-        // Definir el formato deseado (yyyy-MM-dd)
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            // Definir el formato deseado (yyyy-MM-dd)
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        // Formatear la fecha según el formato deseado
-        String fechaFormateada = fechaActual.format(formato);
-        
-        String idA=id.getText();
-        String idEmpleado=idEm.getText();
-        int cant=Integer.parseInt(cantidad.getText());
-        
-        try {
-            dao.consultaSelect(idA, fechaFormateada, idEmpleado, cant);
-        } catch (SQLException ex) {
-            Logger.getLogger(VentanaRegistroV.class.getName()).log(Level.SEVERE, null, ex);
+            // Formatear la fecha según el formato deseado
+            String fechaFormateada = fechaActual.format(formato);
+
+            String idA = id.getText();
+            String idEmpleado = idEm.getText();
+            int cant = Integer.parseInt(cantidad.getText());
+
+            try {
+                dao.consultaSelect(idA, fechaFormateada, idEmpleado, cant);
+            } catch (SQLException ex) {
+                Logger.getLogger(VentanaRegistroV.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            dao.mostrar(dtm);
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese datos en todos los campos");
         }
-        dao.mostrar(dtm);  
+
     }//GEN-LAST:event_AgregarActionPerformed
 
+    public void asd(Color... color) {
+
+    }
+
     private void TotalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalizarActionPerformed
-        // TODO add your handling code here:
-        dao.totalizar(total);
-        
+        if (!efectivo.getText().trim().isEmpty()) {
+            dao.totalizar(total);
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese datos en todos los campos");
+        }
+
+
     }//GEN-LAST:event_TotalizarActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        double ef=Double.parseDouble(efectivo.getText());
-        double totalV=dao.totalizar(jLabel1);
-        
-        if(ef<totalV)
-        {
-            JOptionPane.showMessageDialog(null, "Pago insuficiente");
+        if (!efectivo.getText().trim().isEmpty()) {
+            double ef = Double.parseDouble(efectivo.getText());
+            double totalV = dao.totalizar(jLabel1);
+
+            if (ef < totalV) {
+                JOptionPane.showMessageDialog(null, "Pago insuficiente");
+            } else {
+                dao.cobrar(ef);
+                dtm.setRowCount(0);
+                efectivo.setText("");
+                total.setText("");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese el efectivo en el campo correspondiente");
         }
-        else
-        {
-            dao.cobrar(ef);
-            dtm.setRowCount(0);
-            efectivo.setText("");
-            total.setText("");
-        }
-        
-        
+
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void cantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantidadKeyTyped
         // TODO add your handling code here:
-        char c=evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)))
-        {
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
         }
     }//GEN-LAST:event_cantidadKeyTyped
+
+    private void efectivoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_efectivoKeyTyped
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_efectivoKeyTyped
 
     /**
      * @param args the command line arguments
