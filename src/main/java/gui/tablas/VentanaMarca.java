@@ -36,6 +36,7 @@ public class VentanaMarca extends javax.swing.JFrame {
         dtm.addColumn("ID Marca");
         dtm.addColumn("Nombre Marca");
         this.setLocationRelativeTo(null);
+        TablaM.fixTable(jScrollPane2);
     }
 
     /**
@@ -78,8 +79,8 @@ public class VentanaMarca extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TablaM = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TablaM = new componentes.TablaCustom();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -116,7 +117,7 @@ public class VentanaMarca extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("     ID Marca:");
+        jLabel3.setText("     Codigo Marca:");
         jPanel2.add(jLabel3);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -254,18 +255,23 @@ public class VentanaMarca extends javax.swing.JFrame {
 
         TablaM.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2"
+                "Codigo Marca", "Nombre Marca"
             }
-        ));
-        jScrollPane1.setViewportView(TablaM);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
-        jPanel9.add(jScrollPane1);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(TablaM);
+
+        jPanel9.add(jScrollPane2);
 
         jPanel7.add(jPanel9, java.awt.BorderLayout.CENTER);
 
@@ -420,7 +426,7 @@ public class VentanaMarca extends javax.swing.JFrame {
     private javax.swing.JButton Eliminar;
     private javax.swing.JButton Mostrar;
     private javax.swing.JButton Regresar;
-    private javax.swing.JTable TablaM;
+    private componentes.TablaCustom TablaM;
     private javax.swing.JPanel aside;
     private javax.swing.JPanel center;
     private javax.swing.JPanel footer;
@@ -445,7 +451,7 @@ public class VentanaMarca extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton limpiar;
     private javax.swing.JTextField nomM;
     private javax.swing.JPanel principal;

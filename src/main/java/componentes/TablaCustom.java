@@ -48,9 +48,9 @@ public class TablaCustom extends JTable{
     public void fixTable(JScrollPane scroll) {
         scroll.setVerticalScrollBar(new ScrollBarCustom());
         JPanel panel = new JPanel();
-        panel.setBackground(new Color(70, 70, 70));
+        panel.setBackground(new Color(255,102,102)); // Pedazito de barra sin colorear
         scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, panel);
-        scroll.getViewport().setBackground(new Color(30, 30, 30));
+        scroll.getViewport().setBackground(new Color(250,195,195)); // Color fondo tabla cuando no muestra nada
         scroll.setBorder(BorderFactory.createLineBorder(new Color(60, 60, 60), 2));
     }
 
