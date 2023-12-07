@@ -36,6 +36,7 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
         jTable1.setModel(tabla);
         this.setLocationRelativeTo(null);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -327,19 +328,27 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         if (!jTextField1.getText().trim().isEmpty() && !jTextField2.getText().trim().isEmpty()) 
         {
-            String idMarca,idArticulos;
+            int r=obma.comprobarExistencia(jTextField1.getText(), jTextField2.getText());
+            if(r==1)
+            {
+                String idMarca,idArticulos;
         
-            idMarca=jTextField1.getText();
-            idArticulos=jTextField2.getText();
+                idMarca=jTextField1.getText();
+                idArticulos=jTextField2.getText();
 
-            obMA.setIdMar(idMarca);
-            obMA.setIdArt(idArticulos);
+                obMA.setIdMar(idMarca);
+                obMA.setIdArt(idArticulos);
 
-            obma.inserMA(obMA);
+                obma.inserMA(obMA);
 
-            tabla = (DefaultTableModel) jTable1.getModel();
-            tabla.setRowCount(0);
-            obma.selMA(tabla);
+                tabla = (DefaultTableModel) jTable1.getModel();
+                tabla.setRowCount(0);
+                obma.selMA(tabla);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Error. No existe articulo y/o marca asociados a los ID ingresados.");
+            }
         }
         else
         {
