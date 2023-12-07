@@ -25,12 +25,12 @@ public class Conexion {
 //    String database = "tiendav2";
 
 //    Base de datos de Rafa:
-    String password = "R4f43l60$7";
-    String database = "tiendav2";
+//    String password = "R4f43l60$7";
+//    String database = "tiendav2";
 
-    //Base de datos lupita 
-//    String password="rootmaria";
-//    String database="tiendav2";
+//    Base de datos lupita 
+    String password="rootmaria";
+    String database="tiendav2";
 //    Base de datos lupita 
 //    String password="rootmaria";
 //    String database="tienda";

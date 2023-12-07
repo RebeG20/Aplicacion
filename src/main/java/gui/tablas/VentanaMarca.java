@@ -4,6 +4,7 @@
  */
 package gui.tablas;
 
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -77,8 +78,8 @@ public class VentanaMarca extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        TablaM = new componentes.TablaCustom();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaM = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -131,9 +132,19 @@ public class VentanaMarca extends javax.swing.JFrame {
         jPanel3.add(jLabel10);
 
         idM.setBackground(new java.awt.Color(255, 255, 255));
+        idM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                idMKeyTyped(evt);
+            }
+        });
         jPanel3.add(idM);
 
         nomM.setBackground(new java.awt.Color(255, 255, 255));
+        nomM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nomMKeyTyped(evt);
+            }
+        });
         jPanel3.add(nomM);
         jPanel3.add(jLabel9);
 
@@ -207,6 +218,11 @@ public class VentanaMarca extends javax.swing.JFrame {
         Regresar.setForeground(new java.awt.Color(255, 255, 255));
         Regresar.setText("Regresar");
         Regresar.setPreferredSize(new java.awt.Dimension(120, 35));
+        Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarActionPerformed(evt);
+            }
+        });
         jPanel6.add(Regresar);
 
         limpiar.setBackground(new java.awt.Color(255, 102, 102));
@@ -238,18 +254,18 @@ public class VentanaMarca extends javax.swing.JFrame {
 
         TablaM.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2"
             }
         ));
-        jScrollPane2.setViewportView(TablaM);
+        jScrollPane1.setViewportView(TablaM);
 
-        jPanel9.add(jScrollPane2);
+        jPanel9.add(jScrollPane1);
 
         jPanel7.add(jPanel9, java.awt.BorderLayout.CENTER);
 
@@ -274,24 +290,30 @@ public class VentanaMarca extends javax.swing.JFrame {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
-        String id=idM.getText();
-        String nombre=nomM.getText();
-        
-        m.setIdMarca(id);
-        m.setNombreM(nombre);
-        
-        dao.insertarMarca(m);
+        if(!idM.getText().trim().isEmpty() && !nomM.getText().trim().isEmpty())
+        {
+            String id=idM.getText();
+            String nombre=nomM.getText();
+            m.setIdMarca(id);
+            m.setNombreM(nombre);
 
-        
-        int r = dao.insertarMarca(m);
-        if (r == 1) {
-            JOptionPane.showMessageDialog(null, "Articulo agregado correctamente");
-        } else if (r == 0) {
-            JOptionPane.showMessageDialog(null, "Error: Ya existe un artículo con el mismo ID");
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al agregar el articulo");
+            dao.insertarMarca(m);
+
+
+            int r = dao.insertarMarca(m);
+            if (r == 0) {
+                JOptionPane.showMessageDialog(null, "Articulo agregado correctamente");
+            } else if (r == 1) {
+                JOptionPane.showMessageDialog(null, "Error: Ya existe un artículo con el mismo ID");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al agregar el articulo");
+            }
+            dao.mostrarMarcas(dtm);
         }
-        dao.mostrarMarcas(dtm);
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese todos los datos por favor ");
+        }
         
     }//GEN-LAST:event_AgregarActionPerformed
 
@@ -328,6 +350,35 @@ public class VentanaMarca extends javax.swing.JFrame {
         nomM.setText("");
         
     }//GEN-LAST:event_limpiarActionPerformed
+
+    private void idMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idMKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+       
+        if(idM.getText().length()>=8)
+        {
+            evt.consume();
+        }
+        if(!(Character.isDigit(c)||(c==KeyEvent.VK_BACK_SPACE)||(c==KeyEvent.VK_DELETE)))
+        {
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_idMKeyTyped
+
+    private void nomMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomMKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        if(!(Character.isAlphabetic(c)))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_nomMKeyTyped
+
+    private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_RegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -369,7 +420,7 @@ public class VentanaMarca extends javax.swing.JFrame {
     private javax.swing.JButton Eliminar;
     private javax.swing.JButton Mostrar;
     private javax.swing.JButton Regresar;
-    private componentes.TablaCustom TablaM;
+    private javax.swing.JTable TablaM;
     private javax.swing.JPanel aside;
     private javax.swing.JPanel center;
     private javax.swing.JPanel footer;
@@ -394,7 +445,7 @@ public class VentanaMarca extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton limpiar;
     private javax.swing.JTextField nomM;
     private javax.swing.JPanel principal;
