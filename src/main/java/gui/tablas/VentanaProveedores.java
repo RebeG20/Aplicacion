@@ -1,5 +1,5 @@
-
 package gui.tablas;
+
 import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -7,12 +7,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import tda.DAO_Proveedores;
 import tda.Proveedores;
+
 public class VentanaProveedores extends javax.swing.JFrame {
 
-    DAO_Proveedores dao=new DAO_Proveedores();
-    Proveedores prov=new Proveedores();
-    DefaultTableModel dtm=new DefaultTableModel();
-    
+    DAO_Proveedores dao = new DAO_Proveedores();
+    Proveedores prov = new Proveedores();
+    DefaultTableModel dtm = new DefaultTableModel();
+
     public VentanaProveedores() {
         initComponents();
         Agregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadir.png"));
@@ -22,29 +23,25 @@ public class VentanaProveedores extends javax.swing.JFrame {
         Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
         Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
         limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
+        tablaProveedores.fixTable(jScrollPane2);
     }
-    
-    public void agregar()
-    {
-        if(!txtID.getText().trim().isEmpty() && !txtNombre.getText().trim().isEmpty() 
-          && !txtDias.getText().trim().isEmpty() && !txtTel.getText().trim().isEmpty()
-          && !txtCiudad.getText().trim().isEmpty())
-        {
-            String id=txtID.getText();
-            String nombre=txtNombre.getText();
-            String dias=txtDias.getText();
-            String tel=txtTel.getText();
-            String ciudad=txtCiudad.getText();
+
+    public void agregar() {
+        if (!txtID.getText().trim().isEmpty() && !txtNombre.getText().trim().isEmpty()
+                && !txtDias.getText().trim().isEmpty() && !txtTel.getText().trim().isEmpty()
+                && !txtCiudad.getText().trim().isEmpty()) {
+            String id = txtID.getText();
+            String nombre = txtNombre.getText();
+            String dias = txtDias.getText();
+            String tel = txtTel.getText();
+            String ciudad = txtCiudad.getText();
 
             prov.setIdProveedores(id);
             prov.setNombreProv(nombre);
             prov.setDiasQueSurte(dias);
-            if(txtTel.getText().length()==10)
-            {
+            if (txtTel.getText().length() == 10) {
                 prov.setNumTel(tel);
-            }
-            else
-            {
+            } else {
                 JOptionPane.showMessageDialog(null, "Ingrese completo el número");
             }
             prov.setCiudadP(ciudad);
@@ -52,90 +49,87 @@ public class VentanaProveedores extends javax.swing.JFrame {
             int r = dao.agregarProveedores(prov);
             if (r == 1) {
                 JOptionPane.showMessageDialog(null, "Proveedores agregado correctamente");
+                limpiarTabla();
+                mostrar();
             } else if (r == 0) {
                 JOptionPane.showMessageDialog(null, "Error al agregar el proveedor");
             } else {
                 JOptionPane.showMessageDialog(null, "Error: Ya existe un proveedor con el mismo ID");
             }
-        }
-        else
-        {
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese todos los datos");
         }
     }
-    
-    public void actualizar() 
-    {
-        String id=txtID.getText();
-        String nombre=txtNombre.getText();
-        String dias=txtDias.getText();
-        String tel=txtTel.getText();
-        String ciudad=txtCiudad.getText();
-        
-        prov.setIdProveedores(id);
-        prov.setNombreProv(nombre);
-        prov.setDiasQueSurte(dias);
-        prov.setNumTel(tel);
-        prov.setCiudadP(ciudad);
 
-        int r = dao.actualizarProveedores(prov);
-        if (r == 1) {
-            JOptionPane.showMessageDialog(null, "Artículo actualizado correctamente");
+    public void actualizar() {
+        if (!txtID.getText().trim().isEmpty() && !txtNombre.getText().trim().isEmpty()
+                && !txtDias.getText().trim().isEmpty() && !txtTel.getText().trim().isEmpty()
+                && !txtCiudad.getText().trim().isEmpty()) {
+            String id = txtID.getText();
+            String nombre = txtNombre.getText();
+            String dias = txtDias.getText();
+            String tel = txtTel.getText();
+            String ciudad = txtCiudad.getText();
+
+            prov.setIdProveedores(id);
+            prov.setNombreProv(nombre);
+            prov.setDiasQueSurte(dias);
+            prov.setNumTel(tel);
+            prov.setCiudadP(ciudad);
+
+            int r = dao.actualizarProveedores(prov);
+            if (r == 1) {
+                JOptionPane.showMessageDialog(null, "Artículo actualizado correctamente");
+                limpiarTabla();
+                mostrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al actualizar el artículo");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Error al actualizar el artículo");
+            JOptionPane.showMessageDialog(null, "Ingrese todos los datos");
         }
+
     }
-    
-    public void eliminar()
-    {
+
+    public void eliminar() {
         int filaSeleccionada = tablaProveedores.getSelectedRow();
-        if(filaSeleccionada==-1)
-        {
+        if (filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(null, "Selecciona la fila a eliminar");
-        }
-        else
-        {
+        } else {
             int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar al proveedor?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
-            if (confirmacion == JOptionPane.YES_OPTION) 
-            {
+            if (confirmacion == JOptionPane.YES_OPTION) {
                 String id = (String) tablaProveedores.getValueAt(filaSeleccionada, 0);
                 dao.eliminarProveedores(id);
                 JOptionPane.showMessageDialog(null, "Proveedor Eliminado");
             }
         }
     }
-    
-    public void mostrar()
-    {
-        dtm= (DefaultTableModel) tablaProveedores.getModel();
-        List<Proveedores> lista=dao.listarProveedores();
-        Object[] fila=new Object[5];
-        for(Proveedores l:lista)
-        {
-            fila[0]=l.getIdProveedores();
-            fila[1]=l.getNombreProv();
-            fila[2]=l.getDiasQueSurte();
-            fila[3]=l.getNumTel();
-            fila[4]=l.getCiudadP();
+
+    public void mostrar() {
+        dtm = (DefaultTableModel) tablaProveedores.getModel();
+        List<Proveedores> lista = dao.listarProveedores();
+        Object[] fila = new Object[5];
+        for (Proveedores l : lista) {
+            fila[0] = l.getIdProveedores();
+            fila[1] = l.getNombreProv();
+            fila[2] = l.getDiasQueSurte();
+            fila[3] = l.getNumTel();
+            fila[4] = l.getCiudadP();
             dtm.addRow(fila);
         }
     }
-    
-    public void editar()
-    {
-        int filaSeleccionada=tablaProveedores.getSelectedRow();
-        if(filaSeleccionada==-1)
-        {
-            JOptionPane.showMessageDialog(null, "Selecciona la fila a eliminar");
-        }
-        else
-        {
-            String id=(String) tablaProveedores.getValueAt(filaSeleccionada, 0);
-            String nombre=(String) tablaProveedores.getValueAt(filaSeleccionada, 1);
-            String dias=(String) tablaProveedores.getValueAt(filaSeleccionada, 2);
-            String tel=(String) tablaProveedores.getValueAt(filaSeleccionada, 3);
-            String ciudad=(String) tablaProveedores.getValueAt(filaSeleccionada, 4);
-            
+
+    public void editar() {
+        int filaSeleccionada = tablaProveedores.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "Selecciona la fila a editar");
+        } else {
+            String id = (String) tablaProveedores.getValueAt(filaSeleccionada, 0);
+            String nombre = (String) tablaProveedores.getValueAt(filaSeleccionada, 1);
+            String dias = (String) tablaProveedores.getValueAt(filaSeleccionada, 2);
+            String tel = (String) tablaProveedores.getValueAt(filaSeleccionada, 3);
+            String ciudad = (String) tablaProveedores.getValueAt(filaSeleccionada, 4);
+
             txtID.setText(id);
             txtNombre.setText(nombre);
             txtDias.setText(dias);
@@ -143,9 +137,8 @@ public class VentanaProveedores extends javax.swing.JFrame {
             txtCiudad.setText(ciudad);
         }
     }
-    
-    public void limpiarTabla() 
-    {
+
+    public void limpiarTabla() {
         dtm = (DefaultTableModel) tablaProveedores.getModel();
         dtm.setRowCount(0);
     }
@@ -194,8 +187,8 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaProveedores = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaProveedores = new componentes.TablaCustom();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -222,7 +215,7 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("     ID Proveedor:");
+        jLabel3.setText("     Clave Proveedor:");
         jPanel6.add(jLabel3);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -436,18 +429,23 @@ public class VentanaProveedores extends javax.swing.JFrame {
 
         tablaProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Clave Proveedor", "Nombre Proveedor", "Dias que Surte", "Num Telefono", "Ciudad Proveedor"
             }
-        ));
-        jScrollPane1.setViewportView(tablaProveedores);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false
+            };
 
-        jPanel14.add(jScrollPane1);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tablaProveedores);
+
+        jPanel14.add(jScrollPane2);
 
         jPanel12.add(jPanel14, java.awt.BorderLayout.CENTER);
 
@@ -477,14 +475,10 @@ public class VentanaProveedores extends javax.swing.JFrame {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         agregar();
-        limpiarTabla();
-        mostrar();
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
         actualizar();
-        limpiarTabla();
-        mostrar();
     }//GEN-LAST:event_ActualizarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
@@ -512,14 +506,12 @@ public class VentanaProveedores extends javax.swing.JFrame {
 
     private void txtTelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelKeyTyped
         // TODO add your handling code here:
-        char c=evt.getKeyChar();
-        
-        if(txtTel.getText().length()==10)
-        {
+        char c = evt.getKeyChar();
+
+        if (txtTel.getText().length() == 10) {
             evt.consume();
         }
-        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)))
-        {
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
         }
     }//GEN-LAST:event_txtTelKeyTyped
@@ -530,44 +522,39 @@ public class VentanaProveedores extends javax.swing.JFrame {
 
     private void txtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyTyped
         // TODO add your handling code here:
-        char c=evt.getKeyChar();
-        
-        if(txtID.getText().length()>=8)
-        {
+        char c = evt.getKeyChar();
+
+        if (txtID.getText().length() >= 8) {
             evt.consume();
         }
-        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)))
-        {
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
         }
     }//GEN-LAST:event_txtIDKeyTyped
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         // TODO add your handling code here:
-        char c=evt.getKeyChar();
-        
-        if(!(Character.isAlphabetic(c)))
-        {
+        char c = evt.getKeyChar();
+
+        if (!(Character.isAlphabetic(c))) {
             evt.consume();
         }
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtDiasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiasKeyTyped
         // TODO add your handling code here:
-        char c=evt.getKeyChar();
-        
-        if(!(Character.isAlphabetic(c)))
-        {
+        char c = evt.getKeyChar();
+
+        if (!(Character.isAlphabetic(c))) {
             evt.consume();
         }
     }//GEN-LAST:event_txtDiasKeyTyped
 
     private void txtCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiudadKeyTyped
         // TODO add your handling code here:
-        char c=evt.getKeyChar();
-        
-        if(!(Character.isAlphabetic(c)))
-        {
+        char c = evt.getKeyChar();
+
+        if (!(Character.isAlphabetic(c))) {
             evt.consume();
         }
     }//GEN-LAST:event_txtCiudadKeyTyped
@@ -636,10 +623,10 @@ public class VentanaProveedores extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton limpiar;
     private javax.swing.JPanel principal;
-    private javax.swing.JTable tablaProveedores;
+    private componentes.TablaCustom tablaProveedores;
     private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtDias;
     private javax.swing.JTextField txtID;

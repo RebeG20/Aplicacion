@@ -35,9 +35,8 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
 
     public void agregar() {
 
-
         if (!txtId.getText().trim().isEmpty() && !txtNum.getText().trim().isEmpty() && !txtPago.getText().trim().isEmpty()) {
-            if (txtNum.getText().equals(10)) {
+            if (txtNum.getText().length() == 10) {
                 id = txtId.getText();
                 String numero = txtNum.getText();
                 comp = "";
@@ -53,8 +52,8 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
                     tipo = (String) cbxTipo.getSelectedItem();
                     comp = (String) cbxComp.getSelectedItem();
                     if (paga >= monto) {
-                        idEmp = JOptionPane.showInputDialog("Ingresa ID del empleado");
-                        fecha = obtenerFechaFormateada();
+                        //idEmp = JOptionPane.showInputDialog("Ingresa ID del empleado");
+                        //fecha = obtenerFechaFormateada();
 
                         cambio = paga - monto;
                         lblCambio.setText("$" + cambio);
@@ -106,17 +105,16 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
     }
 
     // Método que retorna la fecha formateada
-    public static String obtenerFechaFormateada() {
-        // Obtén la fecha actual
-        LocalDate fechaActual = LocalDate.now();
-
-        // Crea un formateador para el formato "AAAA-MM-DD"
-        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        // Formatea la fecha actual como una cadena en el formato deseado y retorna la cadena
-        return fechaActual.format(formateador);
-    }
-
+//    public static String obtenerFechaFormateada() {
+//        // Obtén la fecha actual
+//        LocalDate fechaActual = LocalDate.now();
+//
+//        // Crea un formateador para el formato "AAAA-MM-DD"
+//        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//
+//        // Formatea la fecha actual como una cadena en el formato deseado y retorna la cadena
+//        return fechaActual.format(formateador);
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -390,11 +388,7 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        try {
-            agregar();
-        } catch (Exception e) {
-
-        }
+        agregar();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed

@@ -51,7 +51,7 @@ public class VentanaRecargasQuerys extends javax.swing.JFrame {
             if (confirmacion == JOptionPane.YES_OPTION) {
                 String id = (String) tablaRecargas.getValueAt(filaSeleccionada, 0);
                 daoRec.eliminarArticulos(id);
-                JOptionPane.showMessageDialog(null, "Articulo Eliminado");
+                JOptionPane.showMessageDialog(null, "Registro de Recarga Eliminado");
             }
         }
     }
