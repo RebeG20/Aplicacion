@@ -374,24 +374,39 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
-        String idMarca,idArticulos;
-        
-        idMarca=jTextField1.getText();
-        idArticulos=jTextField2.getText();
-        
-        obMA.setIdMar(idMarca);
-        obMA.setIdArt(idArticulos);
-        
-        int r=obma.actMA(obMA);
-        if(r==1)
+        if (!jTextField1.getText().trim().isEmpty() && !jTextField2.getText().trim().isEmpty()) 
         {
-            JOptionPane.showMessageDialog(null, "Actualizado");
+            int re=obma.comprobarExistencia(jTextField1.getText(), jTextField2.getText());
+            if(re==1)
+            {
+                String idMarca,idArticulos;
+        
+                idMarca=jTextField1.getText();
+                idArticulos=jTextField2.getText();
+
+                obMA.setIdMar(idMarca);
+                obMA.setIdArt(idArticulos);
+
+                int r=obma.actMA(obMA);
+                if(r==1)
+                {
+                    JOptionPane.showMessageDialog(null, "Actualizado");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "No actualizado");
+                }
+                obma.selMA(tabla);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Error. No existe articulo y/o marca asociados a los ID ingresados.");
+            }
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "No actualizado");
+            JOptionPane.showMessageDialog(null, "Error. Por favor llene todos los campos.");
         }
-        obma.selMA(tabla);
     }//GEN-LAST:event_ActualizarActionPerformed
 
     private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
