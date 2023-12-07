@@ -37,7 +37,7 @@ public class VentanaPedido extends javax.swing.JFrame {
         tabla.addColumn("idProveedor");
         tabla.addColumn("cantidad");
         tabla.addColumn("fecha");
-        jTable1.setModel(tabla);
+        tablaPedido.setModel(tabla);
         this.setLocationRelativeTo(null);
     }
 
@@ -82,7 +82,7 @@ public class VentanaPedido extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new componentes.TablaCustom();
+        tablaPedido = new componentes.TablaCustom();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -273,18 +273,23 @@ public class VentanaPedido extends javax.swing.JFrame {
 
         jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Codigo Articulo", "Clave Proveedor", "Cantidad", "Fecha Pedido"
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tablaPedido);
 
         jPanel9.add(jScrollPane2);
 
@@ -319,7 +324,7 @@ public class VentanaPedido extends javax.swing.JFrame {
         jTextField3.setText(" ");
         jTextField4.setText(" ");
         
-        tabla = (DefaultTableModel) jTable1.getModel();
+        tabla = (DefaultTableModel) tablaPedido.getModel();
         tabla.setRowCount(0);
     }//GEN-LAST:event_limpiarActionPerformed
 
@@ -338,7 +343,7 @@ public class VentanaPedido extends javax.swing.JFrame {
         obP.setFecha(fecha);
         
         obped.inserpedido(obP);
-        tabla = (DefaultTableModel) jTable1.getModel();
+        tabla = (DefaultTableModel) tablaPedido.getModel();
         tabla.setRowCount(0);
         obped.selPed(tabla);
     }//GEN-LAST:event_AgregarActionPerformed
@@ -445,12 +450,12 @@ public class VentanaPedido extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
-    private componentes.TablaCustom jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JButton limpiar;
     private javax.swing.JPanel principal;
+    private componentes.TablaCustom tablaPedido;
     // End of variables declaration//GEN-END:variables
 }

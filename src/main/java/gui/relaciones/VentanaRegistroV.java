@@ -74,8 +74,8 @@ public class VentanaRegistroV extends javax.swing.JFrame {
         Agregar = new javax.swing.JButton();
         Totalizar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaV = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaV = new componentes.TablaCustom();
         jPanel6 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -193,31 +193,25 @@ public class VentanaRegistroV extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 20, 15, 20));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 204, 204));
-
-        tablaV.setBackground(new java.awt.Color(255, 255, 255));
-        tablaV.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tablaV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Id Articulo", "Nombre", "Precio", "Cantidad ", "Total"
+                "Codigo Articulo", "Nombre", "Precio", "Cantidad", "Total"
             }
-        ));
-        jScrollPane1.setViewportView(tablaV);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
-        jPanel5.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tablaV);
+
+        jPanel5.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
         jPanel3.add(jPanel5, java.awt.BorderLayout.CENTER);
 
@@ -427,8 +421,8 @@ public class VentanaRegistroV extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaV;
+    private javax.swing.JScrollPane jScrollPane2;
+    private componentes.TablaCustom tablaV;
     private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }

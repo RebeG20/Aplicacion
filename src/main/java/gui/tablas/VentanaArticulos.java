@@ -17,7 +17,7 @@ public class VentanaArticulos extends javax.swing.JFrame {
 
     public VentanaArticulos() {
         initComponents();
-        
+
         btnAgregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadir.png"));
         btnActualizar.setIcon(new ImageIcon("./src/main/java/Imagenes/actualizar.png"));
         btnRegresar.setIcon(new ImageIcon("./src/main/java/Imagenes/atras.png"));
@@ -25,7 +25,7 @@ public class VentanaArticulos extends javax.swing.JFrame {
         btnEliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
         btnEditar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
         btnLimpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
-        
+
         this.setLocationRelativeTo(null);
     }
 
@@ -44,30 +44,31 @@ public class VentanaArticulos extends javax.swing.JFrame {
     }
 
     public void agregar() {
-        String id = txtID.getText();
-        String nombre = txtNombre.getText();
-        double precio = Double.parseDouble(txtPrecio.getText());
-        int stock = Integer.parseInt(txtStock.getText());
+        if (!txtID.getText().trim().isEmpty() && !txtNombre.getText().trim().isEmpty() && !txtPrecio.getText().trim().isEmpty() && !txtStock.getText().trim().isEmpty()) {
+            String id = txtID.getText();
+            String nombre = txtNombre.getText();
+            double precio = Double.parseDouble(txtPrecio.getText());
+            int stock = Integer.parseInt(txtStock.getText());
 
-        
-      
-            
-        art.setIdArt(id);
-        art.setNomArt(nombre);
-        art.setPrecio(precio);
-        art.setStock(stock);
+            art.setIdArt(id);
+            art.setNomArt(nombre);
+            art.setPrecio(precio);
+            art.setStock(stock);
 
-        
-        
-        
-        int r = dao.agregarArticulos(art);
-        if (r == 1) {
-            JOptionPane.showMessageDialog(null, "Articulo agregado correctamente");
-        } else if (r == 0) {
-            JOptionPane.showMessageDialog(null, "Error: Ya existe un artículo con el mismo ID");
+            int r = dao.agregarArticulos(art);
+            if (r == 1) {
+                JOptionPane.showMessageDialog(null, "Articulo agregado correctamente");
+                limpiarTabla();
+                mostrar();
+            } else if (r == 0) {
+                JOptionPane.showMessageDialog(null, "Error: Ya existe un artículo con el mismo ID");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al agregar el articulo");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Error al agregar el articulo");
+            JOptionPane.showMessageDialog(null, "Ingrese datos en todos los campos");
         }
+
     }
 
     public void editar() {
@@ -88,22 +89,29 @@ public class VentanaArticulos extends javax.swing.JFrame {
     }
 
     public void actualizar() {
-        String id = txtID.getText();
-        String nombre = txtNombre.getText();
-        double precio = Double.parseDouble(txtPrecio.getText());
-        int stock = Integer.parseInt(txtStock.getText());
+        if (!txtID.getText().trim().isEmpty() && !txtNombre.getText().trim().isEmpty() && !txtPrecio.getText().trim().isEmpty() && !txtStock.getText().trim().isEmpty()) {
+            String id = txtID.getText();
+            String nombre = txtNombre.getText();
+            double precio = Double.parseDouble(txtPrecio.getText());
+            int stock = Integer.parseInt(txtStock.getText());
 
-        art.setIdArt(id);
-        art.setNomArt(nombre);
-        art.setPrecio(precio);
-        art.setStock(stock);
+            art.setIdArt(id);
+            art.setNomArt(nombre);
+            art.setPrecio(precio);
+            art.setStock(stock);
 
-        int r = dao.actualizarArticulos(art);
-        if (r == 1) {
-            JOptionPane.showMessageDialog(null, "Artículo actualizado correctamente");
+            int r = dao.actualizarArticulos(art);
+            if (r == 1) {
+                JOptionPane.showMessageDialog(null, "Artículo actualizado correctamente");
+                limpiarTabla();
+                mostrar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al actualizar el artículo");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Error al actualizar el artículo");
+            JOptionPane.showMessageDialog(null, "Ingrese datos en todos los campos");
         }
+
     }
 
     public void eliminar() {
@@ -421,8 +429,8 @@ public class VentanaArticulos extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         agregar();
-        limpiarTabla();
-        mostrar();
+//        limpiarTabla();
+//        mostrar();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -431,8 +439,8 @@ public class VentanaArticulos extends javax.swing.JFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         actualizar();
-        limpiarTabla();
-        mostrar();
+//        limpiarTabla();
+//        mostrar();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -455,18 +463,16 @@ public class VentanaArticulos extends javax.swing.JFrame {
 
     private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
         // TODO add your handling code here:
-        char c=evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)))
-        {
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
         }
     }//GEN-LAST:event_txtPrecioKeyTyped
 
     private void txtStockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStockKeyTyped
         // TODO add your handling code here:
-        char c=evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)))
-        {
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
         }
     }//GEN-LAST:event_txtStockKeyTyped
