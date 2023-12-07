@@ -92,4 +92,48 @@ public class DAO_MarcaArticulos
 
             }
     }
+    
+    public int comprobarExistencia(String marca, String art)
+    {
+        List<String> lMarca=new ArrayList<String>();
+        List<String> lArt=new ArrayList<String>();
+        try
+        {
+            conec=obCon.establecerConnection();
+            ps=conec.prepareStatement("SELECT idMarca from marca");
+            rs=ps.executeQuery();
+            while(rs.next())
+            {
+                lMarca.add(rs.getString(1));
+            }
+        }
+        catch(Exception e)
+        {
+            
+        }
+        
+        try
+        {
+            conec=obCon.establecerConnection();
+            ps=conec.prepareStatement("SELECT idArticulos from articulos");
+            rs=ps.executeQuery();
+            while(rs.next())
+            {
+                lArt.add(rs.getString(1));
+            }
+        }
+        catch(Exception e)
+        {
+            
+        }
+        
+        if(lMarca.contains(marca) && lArt.contains(art))
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }
