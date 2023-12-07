@@ -23,7 +23,7 @@ public class VentanaProveedores extends javax.swing.JFrame {
         Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
         Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
         limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
-        tablaProveedores.fixTable(jScrollPane2);
+//        tablaProveedores.fixTable(jScrollPane2);
     }
 
     public void agregar() {
@@ -84,8 +84,10 @@ public class VentanaProveedores extends javax.swing.JFrame {
                 mostrar();
             } else {
                 JOptionPane.showMessageDialog(null, "Error al actualizar el artículo");
+                JOptionPane.showMessageDialog(null, "Necesitas primero seleccionar 'Editar'");
             }
         } else {
+            JOptionPane.showMessageDialog(null, "Necesitas primero seleccionar 'Editar'");
             JOptionPane.showMessageDialog(null, "Ingrese todos los datos");
         }
 
@@ -187,8 +189,8 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tablaProveedores = new componentes.TablaCustom();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaProveedores = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -429,23 +431,18 @@ public class VentanaProveedores extends javax.swing.JFrame {
 
         tablaProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Clave Proveedor", "Nombre Proveedor", "Dias que Surte", "Num Telefono", "Ciudad Proveedor"
+                "Clave Proveedor", "Nombre Proveedor", "Dias que Surte ", "Telefono Proveedor", "Ciudad Proveedor"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, true, false
-            };
+        ));
+        jScrollPane1.setViewportView(tablaProveedores);
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(tablaProveedores);
-
-        jPanel14.add(jScrollPane2);
+        jPanel14.add(jScrollPane1);
 
         jPanel12.add(jPanel14, java.awt.BorderLayout.CENTER);
 
@@ -623,10 +620,10 @@ public class VentanaProveedores extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton limpiar;
     private javax.swing.JPanel principal;
-    private componentes.TablaCustom tablaProveedores;
+    private javax.swing.JTable tablaProveedores;
     private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtDias;
     private javax.swing.JTextField txtID;
