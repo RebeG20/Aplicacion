@@ -11,7 +11,7 @@
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="jMenu3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Tablas"/>
+                <Property name="text" type="java.lang.String" value="Control"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
@@ -58,7 +58,7 @@
             </Menu>
             <Menu class="javax.swing.JMenu" name="jMenu4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Relaciones"/>
+                <Property name="text" type="java.lang.String" value="Procesos"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
