@@ -26,25 +26,41 @@ public class VentanaProveedores extends javax.swing.JFrame {
     
     public void agregar()
     {
-        String id=txtID.getText();
-        String nombre=txtNombre.getText();
-        String dias=txtDias.getText();
-        String tel=txtTel.getText();
-        String ciudad=txtCiudad.getText();
-        
-        prov.setIdProveedores(id);
-        prov.setNombreProv(nombre);
-        prov.setDiasQueSurte(dias);
-        prov.setNumTel(tel);
-        prov.setCiudadP(ciudad);
-        
-        int r = dao.agregarProveedores(prov);
-        if (r == 1) {
-            JOptionPane.showMessageDialog(null, "Proveedores agregado correctamente");
-        } else if (r == 0) {
-            JOptionPane.showMessageDialog(null, "Error: Ya existe un proveedor con el mismo ID");
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al agregar el proveedor");
+        if(!txtID.getText().trim().isEmpty() && !txtNombre.getText().trim().isEmpty() 
+          && !txtDias.getText().trim().isEmpty() && !txtTel.getText().trim().isEmpty()
+          && !txtCiudad.getText().trim().isEmpty())
+        {
+            String id=txtID.getText();
+            String nombre=txtNombre.getText();
+            String dias=txtDias.getText();
+            String tel=txtTel.getText();
+            String ciudad=txtCiudad.getText();
+
+            prov.setIdProveedores(id);
+            prov.setNombreProv(nombre);
+            prov.setDiasQueSurte(dias);
+            if(txtTel.getText().length()==10)
+            {
+                prov.setNumTel(tel);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Ingrese completo el número");
+            }
+            prov.setCiudadP(ciudad);
+
+            int r = dao.agregarProveedores(prov);
+            if (r == 1) {
+                JOptionPane.showMessageDialog(null, "Proveedores agregado correctamente");
+            } else if (r == 0) {
+                JOptionPane.showMessageDialog(null, "Error al agregar el proveedor");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error: Ya existe un proveedor con el mismo ID");
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese todos los datos");
         }
     }
     
@@ -178,8 +194,8 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tablaProveedores = new componentes.TablaCustom();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaProveedores = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -248,12 +264,27 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jPanel8.setLayout(new java.awt.GridLayout(5, 1, 0, 5));
 
         txtID.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIDKeyTyped(evt);
+            }
+        });
         jPanel8.add(txtID);
 
         txtNombre.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         jPanel8.add(txtNombre);
 
         txtDias.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtDias.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDiasKeyTyped(evt);
+            }
+        });
         jPanel8.add(txtDias);
 
         txtTel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -270,6 +301,11 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jPanel8.add(txtTel);
 
         txtCiudad.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCiudadKeyTyped(evt);
+            }
+        });
         jPanel8.add(txtCiudad);
 
         aside.add(jPanel8, java.awt.BorderLayout.CENTER);
@@ -406,12 +442,12 @@ public class VentanaProveedores extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Clave", "Nombre", "Dias que surte", "Num. Telefono", "Ciudad"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
-        jScrollPane2.setViewportView(tablaProveedores);
+        jScrollPane1.setViewportView(tablaProveedores);
 
-        jPanel14.add(jScrollPane2);
+        jPanel14.add(jScrollPane1);
 
         jPanel12.add(jPanel14, java.awt.BorderLayout.CENTER);
 
@@ -477,6 +513,11 @@ public class VentanaProveedores extends javax.swing.JFrame {
     private void txtTelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelKeyTyped
         // TODO add your handling code here:
         char c=evt.getKeyChar();
+        
+        if(txtTel.getText().length()==10)
+        {
+            evt.consume();
+        }
         if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)))
         {
             evt.consume();
@@ -486,6 +527,50 @@ public class VentanaProveedores extends javax.swing.JFrame {
     private void txtTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelActionPerformed
+
+    private void txtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        
+        if(txtID.getText().length()>=8)
+        {
+            evt.consume();
+        }
+        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIDKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        
+        if(!(Character.isAlphabetic(c)))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtDiasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiasKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        
+        if(!(Character.isAlphabetic(c)))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDiasKeyTyped
+
+    private void txtCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiudadKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        
+        if(!(Character.isAlphabetic(c)))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCiudadKeyTyped
 
     /**
      * @param args the command line arguments
@@ -551,10 +636,10 @@ public class VentanaProveedores extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton limpiar;
     private javax.swing.JPanel principal;
-    private componentes.TablaCustom tablaProveedores;
+    private javax.swing.JTable tablaProveedores;
     private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtDias;
     private javax.swing.JTextField txtID;
