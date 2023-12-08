@@ -497,6 +497,10 @@ public class VentanaProveedores extends javax.swing.JFrame {
         txtTel.setText("");
         txtCiudad.setText("");
         limpiarTabla();
+        
+        txtID.setEditable(true);
+        txtNombre.setEditable(true);
+        Actualizar.setEnabled(false);
     }//GEN-LAST:event_limpiarActionPerformed
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
