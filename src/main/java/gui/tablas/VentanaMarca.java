@@ -308,11 +308,11 @@ public class VentanaMarca extends javax.swing.JFrame {
 
             int r = dao.insertarMarca(m);
             if (r == 0) {
-                JOptionPane.showMessageDialog(null, "Articulo agregado correctamente");
+                JOptionPane.showMessageDialog(null, "Marca agregada correctamente");
             } else if (r == 1) {
-                JOptionPane.showMessageDialog(null, "Error: Ya existe un artículo con el mismo ID");
+                JOptionPane.showMessageDialog(null, "Error: Ya existe una marca con el mismo ID");
             } else {
-                JOptionPane.showMessageDialog(null, "Error al agregar el articulo");
+                JOptionPane.showMessageDialog(null, "Error al agregar la marca");
             }
             dao.mostrarMarcas(dtm);
         }
