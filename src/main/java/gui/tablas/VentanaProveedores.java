@@ -23,7 +23,7 @@ public class VentanaProveedores extends javax.swing.JFrame {
         Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
         Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
         limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
-//        tablaProveedores.fixTable(jScrollPane2);
+        tablaProveedores.fixTable(jScrollPane2);
     }
 
     public void agregar() {
@@ -189,8 +189,8 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaProveedores = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaProveedores = new componentes.TablaCustom();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -215,31 +215,26 @@ public class VentanaProveedores extends javax.swing.JFrame {
         jPanel6.setLayout(new java.awt.GridLayout(5, 1, 0, 5));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("     Clave Proveedor:");
         jPanel6.add(jLabel3);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("     Nombre Proveedor:");
         jPanel6.add(jLabel4);
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("     Dias que Surte:");
         jPanel6.add(jLabel5);
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("     Telefono Proveedor:");
         jPanel6.add(jLabel6);
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("     Ciudad Proveedor:");
         jPanel6.add(jLabel7);
@@ -431,18 +426,23 @@ public class VentanaProveedores extends javax.swing.JFrame {
 
         tablaProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Clave Proveedor", "Nombre Proveedor", "Dias que Surte ", "Telefono Proveedor", "Ciudad Proveedor"
+                "Clave Proveedor", "Nombre Proveedor", "Dias que Surte", "Telefono Proveedor", "Ciudad Proveedor"
             }
-        ));
-        jScrollPane1.setViewportView(tablaProveedores);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
-        jPanel14.add(jScrollPane1);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tablaProveedores);
+
+        jPanel14.add(jScrollPane2);
 
         jPanel12.add(jPanel14, java.awt.BorderLayout.CENTER);
 
@@ -620,10 +620,10 @@ public class VentanaProveedores extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton limpiar;
     private javax.swing.JPanel principal;
-    private javax.swing.JTable tablaProveedores;
+    private componentes.TablaCustom tablaProveedores;
     private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtDias;
     private javax.swing.JTextField txtID;
