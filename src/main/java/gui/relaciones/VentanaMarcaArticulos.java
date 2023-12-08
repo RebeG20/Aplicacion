@@ -31,8 +31,9 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
         //Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
         limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
         
-        tabla= (DefaultTableModel) jTable1.getModel();
+        tabla= (DefaultTableModel)tablaMA.getModel();
         this.setLocationRelativeTo(null);
+        tablaMA.fixTable(jScrollPane2);
     }
     
 
@@ -72,8 +73,8 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaMA = new componentes.TablaCustom();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -233,17 +234,25 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
 
         jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaMA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID Marca", "Marca", "ID Articulo", "Articulo"
+                "Clave Marca", "Marca", "Codigo Articulo", "Articulo"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
-        jPanel9.add(jScrollPane1);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tablaMA);
+
+        jPanel9.add(jScrollPane2);
 
         jPanel7.add(jPanel9, java.awt.BorderLayout.CENTER);
 
@@ -274,7 +283,7 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
         jTextField1.setText(" ");
         jTextField2.setText(" ");
         
-        tabla = (DefaultTableModel) jTable1.getModel();
+        tabla = (DefaultTableModel) tablaMA.getModel();
         tabla.setRowCount(0);
     }//GEN-LAST:event_limpiarActionPerformed
 
@@ -302,7 +311,7 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Error al asociar el articulo y marca ingresados");
                 }
 
-                tabla = (DefaultTableModel) jTable1.getModel();
+                tabla = (DefaultTableModel) tablaMA.getModel();
                 tabla.setRowCount(0);
                 obma.selMA(tabla);
             }
@@ -318,15 +327,15 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        int filaSeleccionada = jTable1.getSelectedRow();
+        int filaSeleccionada = tablaMA.getSelectedRow();
         if (filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(null, "Selecciona una fila");
         } else {
             int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar la recarga?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
 
             if (confirmacion == JOptionPane.YES_OPTION) {
-                String idMar = (String) jTable1.getValueAt(filaSeleccionada, 0);
-                String idAr = (String) jTable1.getValueAt(filaSeleccionada, 2);
+                String idMar = (String) tablaMA.getValueAt(filaSeleccionada, 0);
+                String idAr = (String) tablaMA.getValueAt(filaSeleccionada, 2);
                 obma.elimMA(idMar, idAr);
                 JOptionPane.showMessageDialog(null, "Articulo Eliminado");
             }
@@ -426,11 +435,11 @@ public class VentanaMarcaArticulos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JButton limpiar;
     private javax.swing.JPanel principal;
+    private componentes.TablaCustom tablaMA;
     // End of variables declaration//GEN-END:variables
 }

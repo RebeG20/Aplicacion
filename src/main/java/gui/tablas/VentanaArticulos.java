@@ -76,6 +76,7 @@ public class VentanaArticulos extends javax.swing.JFrame {
         int filaSeleccionada = tablaArticulos.getSelectedRow();
         if (filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(null, "Selecciona la fila a editar");
+            mostrar();
         } else {
             String id = (String) tablaArticulos.getValueAt(filaSeleccionada, 0);
             String nombre = (String) tablaArticulos.getValueAt(filaSeleccionada, 1);

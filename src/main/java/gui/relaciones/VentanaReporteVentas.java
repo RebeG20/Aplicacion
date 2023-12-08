@@ -16,7 +16,9 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
     
     public VentanaReporteVentas() {
         initComponents();
+        tablaVentas.fixTable(jScrollPane2);
         this.setLocationRelativeTo(null);
+        
     }
 
     public void mostrarLista()
@@ -191,10 +193,7 @@ public class VentanaReporteVentas extends javax.swing.JFrame {
 
         tablaVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Codigo Art.", "Nombre", "Empleado", "Cantidad Vendida", "Fecha de venta"
