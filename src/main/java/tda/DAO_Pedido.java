@@ -56,6 +56,7 @@ public class DAO_Pedido
         return 0;
     }
     
+    
     public void selPed(DefaultTableModel t1)
     {
         List<Pedido> pedi=new ArrayList<>();

@@ -26,7 +26,7 @@ public class VentanaPedido extends javax.swing.JFrame {
     public VentanaPedido() {
         initComponents();
         Agregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadir.png"));
-        Actualizar.setIcon(new ImageIcon("./src/main/java/Imagenes/actualizar.png"));
+//        Actualizar.setIcon(new ImageIcon("./src/main/java/Imagenes/actualizar.png"));
         Regresar.setIcon(new ImageIcon("./src/main/java/Imagenes/atras.png"));
         Mostrar.setIcon(new ImageIcon("./src/main/java/Imagenes/mostrar.png"));
 //        Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
@@ -71,7 +71,6 @@ public class VentanaPedido extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         Agregar = new javax.swing.JButton();
-        Actualizar = new javax.swing.JButton();
         Mostrar = new javax.swing.JButton();
         footer = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -81,8 +80,8 @@ public class VentanaPedido extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tablaPedido = new componentes.TablaCustom();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaPedido = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -144,16 +143,31 @@ public class VentanaPedido extends javax.swing.JFrame {
         jTextField1.setBackground(new java.awt.Color(255, 255, 255));
         jTextField1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
         jPanel3.add(jTextField1);
 
         jTextField2.setBackground(new java.awt.Color(255, 255, 255));
         jTextField2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
         jPanel3.add(jTextField2);
 
         jTextField3.setBackground(new java.awt.Color(255, 255, 255));
         jTextField3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField3KeyTyped(evt);
@@ -164,6 +178,11 @@ public class VentanaPedido extends javax.swing.JFrame {
         jTextField4.setBackground(new java.awt.Color(255, 255, 255));
         jTextField4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTextField4.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField4KeyTyped(evt);
+            }
+        });
         jPanel3.add(jTextField4);
 
         aside.add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -197,19 +216,6 @@ public class VentanaPedido extends javax.swing.JFrame {
             }
         });
         jPanel5.add(Agregar);
-
-        Actualizar.setBackground(new java.awt.Color(255, 102, 102));
-        Actualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Actualizar.setForeground(new java.awt.Color(255, 255, 255));
-        Actualizar.setText("Actualizar");
-        Actualizar.setIconTextGap(14);
-        Actualizar.setPreferredSize(new java.awt.Dimension(180, 35));
-        Actualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActualizarActionPerformed(evt);
-            }
-        });
-        jPanel5.add(Actualizar);
 
         Mostrar.setBackground(new java.awt.Color(255, 102, 102));
         Mostrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -275,23 +281,18 @@ public class VentanaPedido extends javax.swing.JFrame {
 
         tablaPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Codigo Articulo", "Clave Proveedor", "Cantidad", "Fecha Pedido"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
+        ));
+        jScrollPane1.setViewportView(tablaPedido);
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(tablaPedido);
-
-        jPanel9.add(jScrollPane2);
+        jPanel9.add(jScrollPane1);
 
         jPanel7.add(jPanel9, java.awt.BorderLayout.CENTER);
 
@@ -329,50 +330,40 @@ public class VentanaPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_limpiarActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        String idA,idPro,fecha;
-        int cantidad;
-        
-        idA=jTextField1.getText();
-        idPro=jTextField2.getText();
-        cantidad=Integer.parseInt(jTextField3.getText());
-        fecha=jTextField4.getText();
-        
-        obP.setIdArticulo(idA);
-        obP.setIdProveedor(idPro);
-        obP.setCantidad(cantidad);
-        obP.setFecha(fecha);
-        
-        obped.inserpedido(obP);
-        tabla = (DefaultTableModel) tablaPedido.getModel();
-        tabla.setRowCount(0);
-        obped.selPed(tabla);
-    }//GEN-LAST:event_AgregarActionPerformed
-
-    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
-        String idA,idPro,fecha;
-        int cantidad;
-        
-        idA=jTextField1.getText();
-        idPro=jTextField2.getText();
-        cantidad=Integer.parseInt(jTextField3.getText());
-        fecha=jTextField4.getText();
-        
-        obP.setIdArticulo(idA);
-        obP.setIdProveedor(idPro);
-        obP.setCantidad(cantidad);
-        obP.setFecha(fecha);
-        
-        int r=obped.actped(obP);
-        if(r==1)
+        if (!jTextField1.getText().trim().isEmpty() && !jTextField2.getText().trim().isEmpty() &&
+            !jTextField3.getText().trim().isEmpty() && !jTextField4.getText().trim().isEmpty()) 
         {
-            JOptionPane.showMessageDialog(null, "Actualizado");
+            
+            String idA,idPro,fecha;
+            int cantidad;
+
+            idA=jTextField1.getText();
+            idPro=jTextField2.getText();
+            cantidad=Integer.parseInt(jTextField3.getText());
+            fecha=jTextField4.getText();
+
+            obP.setIdArticulo(idA);
+            obP.setIdProveedor(idPro);
+            obP.setCantidad(cantidad);
+            obP.setFecha(fecha);
+
+            int r=obped.inserpedido(obP);
+            if(r==1)
+            {
+                JOptionPane.showMessageDialog(null, "Pedido agregado correctamente");   
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Error al agregar el pedido");
+
+            }
+            obped.selPed(tabla);
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "No actualizado");
+            JOptionPane.showMessageDialog(null, "Ingrese todos los datos");
         }
-        obped.selPed(tabla);
-    }//GEN-LAST:event_ActualizarActionPerformed
+    }//GEN-LAST:event_AgregarActionPerformed
 
     private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
         obped.selPed(tabla);
@@ -381,12 +372,51 @@ public class VentanaPedido extends javax.swing.JFrame {
     private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
         // TODO add your handling code here:
         char c=evt.getKeyChar();
+        if (jTextField3.getText().length() >=3) 
+        {
+            evt.consume();
+        }
         if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)))
         {
             evt.consume();
         }
         
     }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (jTextField1.getText().length() >=8) 
+        {
+            evt.consume();
+        }
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (jTextField2.getText().length() >=8) {
+            evt.consume();
+        }
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextField4KeyTyped
 
     /**
      * @param args the command line arguments
@@ -424,7 +454,6 @@ public class VentanaPedido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Actualizar;
     private javax.swing.JButton Agregar;
     private javax.swing.JButton Mostrar;
     private javax.swing.JButton Regresar;
@@ -449,13 +478,13 @@ public class VentanaPedido extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JButton limpiar;
     private javax.swing.JPanel principal;
-    private componentes.TablaCustom tablaPedido;
+    private javax.swing.JTable tablaPedido;
     // End of variables declaration//GEN-END:variables
 }
