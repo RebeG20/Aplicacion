@@ -44,6 +44,9 @@ public class VentanaTurno extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         TablaT.fixTable(jScrollPane2);
+        
+        Actualizar.setEnabled(false);
+        id.setEditable(true);
 
     }
 
@@ -340,8 +343,10 @@ public class VentanaTurno extends javax.swing.JFrame {
         dao.mostrarTurnos(dtm);
     }//GEN-LAST:event_MostrarActionPerformed
 
+    public static String diasA;
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
         // TODO add your handling code here:
+        
         Nombre.setText("    ID Empleado");
         int filaSeleccionada = TablaT.getSelectedRow();
         if (filaSeleccionada == -1) {
@@ -350,11 +355,13 @@ public class VentanaTurno extends javax.swing.JFrame {
             String idE = (String) TablaT.getValueAt(filaSeleccionada, 0);
             String h = (String) TablaT.getValueAt(filaSeleccionada, 2);
             String d = (String) TablaT.getValueAt(filaSeleccionada, 3);
-
+            diasA=(String) TablaT.getValueAt(filaSeleccionada, 3);
             id.setText(idE);
             horario.setText(h);
             dias.setText(d);
         }
+        Actualizar.setEnabled(true);
+        id.setEditable(false);
 
     }//GEN-LAST:event_EditarActionPerformed
 
@@ -366,8 +373,12 @@ public class VentanaTurno extends javax.swing.JFrame {
         id.setText("");
         horario.setText("");
         dias.setText("");
+        
+        Actualizar.setEnabled(false);
+        id.setEditable(true);
     }//GEN-LAST:event_limpiarActionPerformed
 
+   
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         // TODO add your handling code here:
         int filaSeleccionada = TablaT.getSelectedRow();
@@ -378,7 +389,9 @@ public class VentanaTurno extends javax.swing.JFrame {
 
             if (confirmacion == JOptionPane.YES_OPTION) {
                 String id = (String) TablaT.getValueAt(filaSeleccionada, 0);
-                dao.eliminar(id);
+                String dias = (String) TablaT.getValueAt(filaSeleccionada, 3);
+                
+                dao.eliminar(id,dias);
                 JOptionPane.showMessageDialog(null, "Turno Eliminado");
             }
         }
@@ -398,7 +411,7 @@ public class VentanaTurno extends javax.swing.JFrame {
             tur.setHorario(horarion);
             tur.setDias(diasn);
 
-            int r = dao.actualizarT(tur);
+            int r = dao.actualizarT(tur,diasA);
 
             if (r == 1) {
                 JOptionPane.showMessageDialog(null, "Turno actualizado correctamente");

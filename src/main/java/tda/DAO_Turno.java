@@ -101,13 +101,14 @@ public class DAO_Turno
         }
     }
     
-    public void eliminar(String rEliminar)
+    public void eliminar(String clave,String dias)
     {
         try
         {
             conectar=obConexion.establecerConnection();
-            ps=conectar.prepareStatement("CALL eliminar_Turno(?)");
-            ps.setString(1, rEliminar);
+            ps=conectar.prepareStatement("CALL eliminar_Turno(?,?)");
+            ps.setString(1, clave);
+            ps.setString(2, dias);
             ps.executeUpdate();
         }
         catch(Exception e)
@@ -116,16 +117,17 @@ public class DAO_Turno
         }
     }
     
-    public int actualizarT(Turno tur)
+    public int actualizarT(Turno tur,String diasA)
     {
         try
         {
             conectar=obConexion.establecerConnection();
-            ps=conectar.prepareStatement("CALL actualizar_Turno(?,?,?)");
+            ps=conectar.prepareStatement("CALL actualizar_Turno(?,?,?,?)");
             
             ps.setString(1, tur.getIdEmpleado());
             ps.setString(2, tur.getHorario());
             ps.setString(3, tur.getDias());
+            ps.setString(4, diasA);
             ps.executeUpdate();
             
             return 1;
