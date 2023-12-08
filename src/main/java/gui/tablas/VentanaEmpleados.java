@@ -271,6 +271,7 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         Actualizar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         Actualizar.setForeground(new java.awt.Color(255, 255, 255));
         Actualizar.setText("Actualizar");
+        Actualizar.setEnabled(false);
         Actualizar.setPreferredSize(new java.awt.Dimension(130, 35));
         Actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -482,6 +483,7 @@ public class VentanaEmpleados extends javax.swing.JFrame {
             int r = dao.actualizarE(emp);
             if (r == 1) {
                 JOptionPane.showMessageDialog(null, "Los datos del empleado se actualizaron correctamente");
+                Actualizar.setEnabled(false);
             } else {
                 JOptionPane.showMessageDialog(null, "Error al actualizar los datos del empleado");
             }
@@ -516,6 +518,9 @@ public class VentanaEmpleados extends javax.swing.JFrame {
             calle.setText(c);
             colonia.setText(col);
             num.setText(String.valueOf(numC));
+            
+            Actualizar.setEnabled(true);
+            id.setEditable(false);
         }
 
 
@@ -537,6 +542,9 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         nombre.setVisible(true);
         aP.setVisible(true);
         aM.setVisible(true);
+        
+        Actualizar.setEnabled(false);
+        id.setEditable(true);
 
     }//GEN-LAST:event_limpiarActionPerformed
 
