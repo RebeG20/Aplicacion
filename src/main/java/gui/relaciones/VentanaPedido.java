@@ -339,31 +339,38 @@ public class VentanaPedido extends javax.swing.JFrame {
         if (!jTextField1.getText().trim().isEmpty() && !jTextField2.getText().trim().isEmpty() &&
             !jTextField3.getText().trim().isEmpty() && !jTextField4.getText().trim().isEmpty()) 
         {
-            
-            String idA,idPro,fecha;
-            int cantidad;
-
-            idA=jTextField1.getText();
-            idPro=jTextField2.getText();
-            cantidad=Integer.parseInt(jTextField3.getText());
-            fecha=jTextField4.getText();
-
-            obP.setIdArticulo(idA);
-            obP.setIdProveedor(idPro);
-            obP.setCantidad(cantidad);
-            obP.setFecha(fecha);
-
-            int r=obped.inserpedido(obP);
-            if(r==1)
+            int re=obped.comprobarExistencia(jTextField1.getText(), jTextField2.getText());
+            if(re==1)
             {
-                JOptionPane.showMessageDialog(null, "Pedido agregado correctamente");   
+                String idA,idPro,fecha;
+                int cantidad;
+
+                idA=jTextField1.getText();
+                idPro=jTextField2.getText();
+                cantidad=Integer.parseInt(jTextField3.getText());
+                fecha=jTextField4.getText();
+
+                obP.setIdArticulo(idA);
+                obP.setIdProveedor(idPro);
+                obP.setCantidad(cantidad);
+                obP.setFecha(fecha);
+
+                int r=obped.inserpedido(obP);
+                if(r==1)
+                {
+                    JOptionPane.showMessageDialog(null, "Pedido agregado correctamente");   
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Error al agregar el pedido");
+
+                }
+                obped.selPed(tabla);
             }
             else
             {
-                JOptionPane.showMessageDialog(null, "Error al agregar el pedido");
-
+                JOptionPane.showMessageDialog(null, "Error. No existe articulo y/o proveedor asociados a los ID ingresados.");
             }
-            obped.selPed(tabla);
         }
         else
         {

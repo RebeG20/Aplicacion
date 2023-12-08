@@ -91,4 +91,49 @@ public class DAO_Pedido
 
             }
     }
+    
+    public int comprobarExistencia(String art, String prov)
+    {
+        List<String> lArt=new ArrayList<String>();
+        List<String> lProv=new ArrayList<String>();
+        
+        try
+        {
+            conec=obCon.establecerConnection();
+            ps=conec.prepareStatement("SELECT idArticulos FROM articulos");
+            rs=ps.executeQuery();
+            while(rs.next())
+            {
+                lArt.add(rs.getString(1));
+            }
+        }
+        catch(Exception e)
+        {
+            
+        }
+        
+        try
+        {
+            conec=obCon.establecerConnection();
+            ps=conec.prepareStatement("SELECT idProveedores FROM proveedores");
+            rs=ps.executeQuery();
+            while(rs.next())
+            {
+                lProv.add(rs.getString(1));
+            }
+        }
+        catch(Exception e)
+        {
+            
+        }
+        
+        if(lArt.contains(art) && lProv.contains(prov))
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }
