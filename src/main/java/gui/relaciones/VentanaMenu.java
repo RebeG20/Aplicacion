@@ -59,8 +59,6 @@ public class VentanaMenu extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 153));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\rebec\\OneDrive\\Documentos\\Aplicacion\\src\\main\\java\\Imagenes\\tienda.png")); // NOI18N
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -125,7 +123,7 @@ public class VentanaMenu extends javax.swing.JFrame {
 
         jMenu1.setText("Menu");
 
-        jMenu3.setText("Tablas");
+        jMenu3.setText("Control");
 
         jMenuItem5.setText("Venta de Recargas");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -169,7 +167,7 @@ public class VentanaMenu extends javax.swing.JFrame {
 
         jMenu1.add(jMenu3);
 
-        jMenu4.setText("Relaciones");
+        jMenu4.setText("Procesos");
 
         jMenuItem8.setText("Marca Articulos");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
