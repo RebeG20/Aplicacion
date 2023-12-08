@@ -106,7 +106,7 @@ public class DAO_Empleados
             ps.setString(6, emp.getColonia());
             ps.setInt(7, emp.getNumCalle());
             ps.executeUpdate();
-            System.out.println("se inserto");
+            
             return 1;
         }
         catch (SQLIntegrityConstraintViolationException e) {

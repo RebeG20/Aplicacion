@@ -343,14 +343,14 @@ public class VentanaTurno extends javax.swing.JFrame {
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
         // TODO add your handling code here:
-        Nombre.setText("ID Empleado");
+        Nombre.setText("    ID Empleado");
         int filaSeleccionada = TablaT.getSelectedRow();
         if (filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(null, "Selecciona la fila a editar");
         } else {
             String idE = (String) TablaT.getValueAt(filaSeleccionada, 0);
-            String h = (String) TablaT.getValueAt(filaSeleccionada, 1);
-            String d = (String) TablaT.getValueAt(filaSeleccionada, 2);
+            String h = (String) TablaT.getValueAt(filaSeleccionada, 2);
+            String d = (String) TablaT.getValueAt(filaSeleccionada, 3);
 
             id.setText(idE);
             horario.setText(h);
@@ -409,6 +409,11 @@ public class VentanaTurno extends javax.swing.JFrame {
 
             dao.mostrarTurnos(dtm);
         }
+        Nombre.setText("Nombre del Empleado");
+        id.setText("");
+        horario.setText("");
+        dias.setText("");
+        
 
     }//GEN-LAST:event_ActualizarActionPerformed
 
