@@ -104,7 +104,6 @@ public class VentanaTurno extends javax.swing.JFrame {
         header.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Turno");
         header.add(jLabel1);
 
@@ -117,7 +116,6 @@ public class VentanaTurno extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans", 1, 15)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Ingresar Datos");
         jPanel1.add(jLabel2);
 
@@ -128,17 +126,14 @@ public class VentanaTurno extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.GridLayout(3, 1, 0, 15));
 
         Nombre.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        Nombre.setForeground(new java.awt.Color(0, 0, 0));
         Nombre.setText("     Nombre del empleado: ");
         jPanel2.add(Nombre);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("     Horario Turno:");
         jPanel2.add(jLabel4);
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("     Dias que Trabaja:");
         jPanel2.add(jLabel5);
 
@@ -148,19 +143,13 @@ public class VentanaTurno extends javax.swing.JFrame {
         jPanel3.setPreferredSize(new java.awt.Dimension(200, 389));
         jPanel3.setLayout(new java.awt.GridLayout(3, 1, 0, 15));
 
-        id.setBackground(new java.awt.Color(255, 255, 255));
         id.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        id.setForeground(new java.awt.Color(0, 0, 0));
         jPanel3.add(id);
 
-        horario.setBackground(new java.awt.Color(255, 255, 255));
         horario.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        horario.setForeground(new java.awt.Color(0, 0, 0));
         jPanel3.add(horario);
 
-        dias.setBackground(new java.awt.Color(255, 255, 255));
         dias.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        dias.setForeground(new java.awt.Color(0, 0, 0));
         jPanel3.add(dias);
 
         aside.add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -173,7 +162,6 @@ public class VentanaTurno extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel6.setFont(new java.awt.Font("Lucida Sans", 1, 15)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Opciones");
         jPanel4.add(jLabel6);
 
@@ -284,7 +272,6 @@ public class VentanaTurno extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel7.setFont(new java.awt.Font("Lucida Sans", 1, 13)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Tabla Turno");
         jPanel8.add(jLabel7);
 
@@ -373,6 +360,8 @@ public class VentanaTurno extends javax.swing.JFrame {
         id.setText("");
         horario.setText("");
         dias.setText("");
+        
+        Nombre.setText("Nombre del empleado");
         
         Actualizar.setEnabled(false);
         id.setEditable(true);
