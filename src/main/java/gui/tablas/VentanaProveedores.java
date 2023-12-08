@@ -23,6 +23,7 @@ public class VentanaProveedores extends javax.swing.JFrame {
         Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
         Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
         limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
+        Actualizar.setEnabled(false);
         tablaProveedores.fixTable(jScrollPane2);
     }
 
@@ -82,12 +83,13 @@ public class VentanaProveedores extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Proveedor actualizado correctamente");
                 limpiarTabla();
                 mostrar();
+                Actualizar.setEnabled(false);
             } else {
                 JOptionPane.showMessageDialog(null, "Error al actualizar el Proveedor");
-                JOptionPane.showMessageDialog(null, "Necesitas primero seleccionar 'Editar'");
+                
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Necesitas primero seleccionar 'Editar'");
+            Actualizar.setEnabled(false);
             JOptionPane.showMessageDialog(null, "Ingrese todos los datos");
         }
 
@@ -137,6 +139,10 @@ public class VentanaProveedores extends javax.swing.JFrame {
             txtDias.setText(dias);
             txtTel.setText(tel);
             txtCiudad.setText(ciudad);
+             
+            Actualizar.setEnabled(true);
+            txtID.setEditable(false);
+            txtNombre.setEditable(false);
         }
     }
 
