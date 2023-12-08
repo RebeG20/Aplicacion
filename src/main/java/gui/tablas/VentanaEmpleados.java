@@ -21,11 +21,12 @@ public class VentanaEmpleados extends javax.swing.JFrame {
      * Creates new form VentanaEmpleados
      */
     DefaultTableModel dtm = new DefaultTableModel();
-    DAO_Empleados dao=new DAO_Empleados();
-    Empleados emp=new Empleados();
+    DAO_Empleados dao = new DAO_Empleados();
+    Empleados emp = new Empleados();
+
     public VentanaEmpleados() {
         initComponents();
-        
+
         Agregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadir.png"));
         Actualizar.setIcon(new ImageIcon("./src/main/java/Imagenes/actualizar.png"));
         Regresar.setIcon(new ImageIcon("./src/main/java/Imagenes/atras.png"));
@@ -33,7 +34,7 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         Eliminar.setIcon(new ImageIcon("./src/main/java/Imagenes/menos.png"));
         Editar.setIcon(new ImageIcon("./src/main/java/Imagenes/editar.png"));
         limpiar.setIcon(new ImageIcon("./src/main/java/Imagenes/limpiar.png"));
-        
+
         TablaE.setModel(dtm);
         dtm.addColumn("ID Empleado");
         dtm.addColumn("Nombre");
@@ -43,6 +44,8 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         dtm.addColumn("Colonia Empleado");
         dtm.addColumn("Num Casa");
         this.setLocationRelativeTo(null);
+
+        this.TablaE.fixTable(jScrollPane2);
     }
 
     /**
@@ -268,6 +271,7 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         Actualizar.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         Actualizar.setForeground(new java.awt.Color(255, 255, 255));
         Actualizar.setText("Actualizar");
+        Actualizar.setEnabled(false);
         Actualizar.setPreferredSize(new java.awt.Dimension(130, 35));
         Actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -409,17 +413,16 @@ public class VentanaEmpleados extends javax.swing.JFrame {
     private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
         // TODO add your handling code here:
         dao.mostrarEmpleados(dtm);
-        
+
     }//GEN-LAST:event_MostrarActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
-        
-        if (!id.getText().trim().isEmpty() && !nombre.getText().trim().isEmpty() && !aP.getText().trim().isEmpty() &&
-            !aM.getText().trim().isEmpty() && !calle.getText().trim().isEmpty() && !colonia.getText().trim().isEmpty()
-            &&!num.getText().trim().isEmpty()) 
-        {
-         
+
+        if (!id.getText().trim().isEmpty() && !nombre.getText().trim().isEmpty() && !aP.getText().trim().isEmpty()
+                && !aM.getText().trim().isEmpty() && !calle.getText().trim().isEmpty() && !colonia.getText().trim().isEmpty()
+                && !num.getText().trim().isEmpty()) {
+
             String idEmpleado = id.getText(), nom = nombre.getText(), ap = aP.getText(), am = aM.getText();
             String c = calle.getText(), col = colonia.getText();
             int numcalle = Integer.parseInt(num.getText());
@@ -442,9 +445,7 @@ public class VentanaEmpleados extends javax.swing.JFrame {
             }
             dao.mostrarEmpleados(dtm);
 
-        }
-        else
-        {
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
         }
     }//GEN-LAST:event_AgregarActionPerformed
@@ -468,8 +469,8 @@ public class VentanaEmpleados extends javax.swing.JFrame {
 
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
         // TODO add your handling code here:
-        
-        try{
+
+        try {
             String idEmpleado = id.getText();
             String c = calle.getText(), col = colonia.getText();
             int numcalle = Integer.parseInt(num.getText());
@@ -482,52 +483,54 @@ public class VentanaEmpleados extends javax.swing.JFrame {
             int r = dao.actualizarE(emp);
             if (r == 1) {
                 JOptionPane.showMessageDialog(null, "Los datos del empleado se actualizaron correctamente");
+                Actualizar.setEnabled(false);
             } else {
                 JOptionPane.showMessageDialog(null, "Error al actualizar los datos del empleado");
             }
             dao.mostrarEmpleados(dtm);
-        }
-        catch(Exception  e)
-        {
-            
+        } catch (Exception e) {
+
         }
         nombre.setVisible(true);
         aP.setVisible(true);
         aM.setVisible(true);
-        
+
     }//GEN-LAST:event_ActualizarActionPerformed
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
         // TODO add your handling code here:
-        
-        nombre.setVisible(false);
-        aP.setVisible(false);
-        aM.setVisible(false);
-        
+
         int filaSeleccionada = TablaE.getSelectedRow();
         if (filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(null, "Selecciona la fila a editar");
+            dao.mostrarEmpleados(dtm);
         } else {
+            nombre.setVisible(false);
+            aP.setVisible(false);
+            aM.setVisible(false);
+
             String idE = (String) TablaE.getValueAt(filaSeleccionada, 0);
             String c = (String) TablaE.getValueAt(filaSeleccionada, 4);
-            String col = (String )TablaE.getValueAt(filaSeleccionada, 5);
-            int numC= (Integer) TablaE.getValueAt(filaSeleccionada, 6);
+            String col = (String) TablaE.getValueAt(filaSeleccionada, 5);
+            int numC = (Integer) TablaE.getValueAt(filaSeleccionada, 6);
 
             id.setText(idE);
             calle.setText(c);
             colonia.setText(col);
             num.setText(String.valueOf(numC));
+            
+            Actualizar.setEnabled(true);
+            id.setEditable(false);
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_EditarActionPerformed
 
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
         // TODO add your handling code here:
         dtm = (DefaultTableModel) TablaE.getModel();
         dtm.setRowCount(0);
-        
+
         id.setText("");
         nombre.setText("");
         aP.setText("");
@@ -535,7 +538,14 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         calle.setText("");
         colonia.setText("");
         num.setText(String.valueOf(""));
+
+        nombre.setVisible(true);
+        aP.setVisible(true);
+        aM.setVisible(true);
         
+        Actualizar.setEnabled(false);
+        id.setEditable(true);
+
     }//GEN-LAST:event_limpiarActionPerformed
 
     private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
@@ -545,20 +555,19 @@ public class VentanaEmpleados extends javax.swing.JFrame {
 
     private void numKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numKeyTyped
         // TODO add your handling code here:
-        char c=evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)))
-        {
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
         }
         if (num.getText().length() >= 4) {
-            evt.consume(); 
+            evt.consume();
         }
     }//GEN-LAST:event_numKeyTyped
 
     private void idKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyTyped
         // TODO add your handling code here:
         if (id.getText().length() >= 8) {
-            evt.consume(); 
+            evt.consume();
         }
     }//GEN-LAST:event_idKeyTyped
 
@@ -568,7 +577,7 @@ public class VentanaEmpleados extends javax.swing.JFrame {
         if (!Character.isLetter(c) && !Character.isSpaceChar(c)) {
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_nombreKeyTyped
 
     private void aPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aPKeyTyped

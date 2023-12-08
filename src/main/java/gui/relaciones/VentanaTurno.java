@@ -42,6 +42,8 @@ public class VentanaTurno extends javax.swing.JFrame {
         dtm.addColumn("Horario Turno");
         dtm.addColumn("Dias Que trabaja");
         this.setLocationRelativeTo(null);
+        
+        TablaT.fixTable(jScrollPane2);
 
     }
 
@@ -289,10 +291,7 @@ public class VentanaTurno extends javax.swing.JFrame {
 
         TablaT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -418,7 +417,7 @@ public class VentanaTurno extends javax.swing.JFrame {
     }//GEN-LAST:event_ActualizarActionPerformed
 
     private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_RegresarActionPerformed
 
     /**

@@ -15,6 +15,8 @@ public class DAO_Empleados
     public void guardarDatos()
     {
         //Obtener valores
+        ArrayList<Empleados> aux=new ArrayList<>();
+        datosEmp=aux;
         try
         {
             conectar=obConexion.establecerConnection();
