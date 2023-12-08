@@ -17,6 +17,7 @@ public class VentanaArticulos extends javax.swing.JFrame {
 
     public VentanaArticulos() {
         initComponents();
+        tablaArticulos.fixTable(jScrollPane2);
 
         btnAgregar.setIcon(new ImageIcon("./src/main/java/Imagenes/anadir.png"));
         btnActualizar.setIcon(new ImageIcon("./src/main/java/Imagenes/actualizar.png"));
@@ -85,6 +86,9 @@ public class VentanaArticulos extends javax.swing.JFrame {
             txtNombre.setText(nombre);
             txtPrecio.setText(String.valueOf(precio));
             txtStock.setText(String.valueOf(stock));
+
+            btnActualizar.setEnabled(true);
+            txtID.setEditable(false);
         }
     }
 
@@ -105,6 +109,7 @@ public class VentanaArticulos extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Artículo actualizado correctamente");
                 limpiarTabla();
                 mostrar();
+                btnActualizar.setEnabled(false);
             } else {
                 JOptionPane.showMessageDialog(null, "Error al actualizar el artículo");
             }
@@ -293,6 +298,7 @@ public class VentanaArticulos extends javax.swing.JFrame {
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("Actualizar");
+        btnActualizar.setEnabled(false);
         btnActualizar.setPreferredSize(new java.awt.Dimension(120, 35));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -389,10 +395,7 @@ public class VentanaArticulos extends javax.swing.JFrame {
 
         tablaArticulos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Codigo", "Nombre", "Precio ", "Stock"
@@ -435,6 +438,7 @@ public class VentanaArticulos extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         editar();
+
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -449,6 +453,9 @@ public class VentanaArticulos extends javax.swing.JFrame {
         txtPrecio.setText("");
         txtStock.setText("");
         limpiarTabla();
+        
+        btnActualizar.setEnabled(false);
+        txtID.setEditable(true);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
