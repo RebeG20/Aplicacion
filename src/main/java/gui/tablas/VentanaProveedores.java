@@ -48,7 +48,7 @@ public class VentanaProveedores extends javax.swing.JFrame {
 
             int r = dao.agregarProveedores(prov);
             if (r == 1) {
-                JOptionPane.showMessageDialog(null, "Proveedores agregado correctamente");
+                JOptionPane.showMessageDialog(null, "Proveedor agregado correctamente");
                 limpiarTabla();
                 mostrar();
             } else if (r == 0) {
@@ -79,11 +79,11 @@ public class VentanaProveedores extends javax.swing.JFrame {
 
             int r = dao.actualizarProveedores(prov);
             if (r == 1) {
-                JOptionPane.showMessageDialog(null, "Artículo actualizado correctamente");
+                JOptionPane.showMessageDialog(null, "Proveedor actualizado correctamente");
                 limpiarTabla();
                 mostrar();
             } else {
-                JOptionPane.showMessageDialog(null, "Error al actualizar el artículo");
+                JOptionPane.showMessageDialog(null, "Error al actualizar el Proveedor");
                 JOptionPane.showMessageDialog(null, "Necesitas primero seleccionar 'Editar'");
             }
         } else {
