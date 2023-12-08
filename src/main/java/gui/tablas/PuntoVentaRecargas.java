@@ -170,7 +170,6 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         header.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Recargas");
         header.add(jLabel1);
 
@@ -183,7 +182,6 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Datos de la Recarga");
         jPanel1.add(jLabel2);
 
@@ -200,7 +198,6 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         jPanel5.setLayout(new java.awt.BorderLayout());
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("     Folio de recarga:");
         jPanel5.add(jLabel7, java.awt.BorderLayout.CENTER);
@@ -211,7 +208,6 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         jPanel9.setLayout(new java.awt.BorderLayout());
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel11.setText("     Numero:");
         jPanel9.add(jLabel11, java.awt.BorderLayout.CENTER);
@@ -222,7 +218,6 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         jPanel6.setLayout(new java.awt.BorderLayout());
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("     Compañia:");
         jPanel6.add(jLabel8, java.awt.BorderLayout.CENTER);
@@ -233,7 +228,6 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         jPanel7.setLayout(new java.awt.BorderLayout());
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText("     Tipo de Recarga:");
         jPanel7.add(jLabel9, java.awt.BorderLayout.CENTER);
@@ -244,7 +238,6 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         jPanel8.setLayout(new java.awt.BorderLayout());
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel10.setText("     Monto:");
         jPanel8.add(jLabel10, java.awt.BorderLayout.CENTER);
@@ -257,11 +250,14 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         jPanel4.setLayout(new java.awt.GridLayout(5, 1, 0, 5));
 
         txtId.setBackground(new java.awt.Color(250, 195, 195));
-        txtId.setForeground(new java.awt.Color(0, 0, 0));
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdKeyTyped(evt);
+            }
+        });
         jPanel4.add(txtId);
 
         txtNum.setBackground(new java.awt.Color(250, 195, 195));
-        txtNum.setForeground(new java.awt.Color(0, 0, 0));
         txtNum.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNumKeyTyped(evt);
@@ -270,17 +266,14 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         jPanel4.add(txtNum);
 
         cbxComp.setBackground(new java.awt.Color(250, 195, 195));
-        cbxComp.setForeground(new java.awt.Color(0, 0, 0));
         cbxComp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Selecciona una opcion--", "Telcel", "Movistar", "Unefon", "AT&T", "Weex" }));
         jPanel4.add(cbxComp);
 
         cbxTipo.setBackground(new java.awt.Color(250, 195, 195));
-        cbxTipo.setForeground(new java.awt.Color(0, 0, 0));
         cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Selecciona una opcion--", "Normal", "Paquete", "Recarga Amigo" }));
         jPanel4.add(cbxTipo);
 
         cbxMonto.setBackground(new java.awt.Color(250, 195, 195));
-        cbxMonto.setForeground(new java.awt.Color(0, 0, 0));
         cbxMonto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Selecciona una opcion--", "20", "30", "50", "100", "200", "500" }));
         jPanel4.add(cbxMonto);
 
@@ -296,7 +289,6 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         jPanel10.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel3.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Seccion de Cobro");
         jPanel10.add(jLabel3);
 
@@ -305,12 +297,10 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setLayout(new java.awt.GridLayout(5, 1));
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Ingrese cantidad de efectivo:");
         jPanel12.add(jLabel4);
 
         txtPago.setBackground(new java.awt.Color(250, 195, 195));
-        txtPago.setForeground(new java.awt.Color(0, 0, 0));
         txtPago.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPagoKeyTyped(evt);
@@ -318,11 +308,9 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
         });
         jPanel12.add(txtPago);
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Cambio:");
         jPanel12.add(jLabel5);
 
-        lblCambio.setForeground(new java.awt.Color(0, 0, 0));
         lblCambio.setText("$");
         jPanel12.add(lblCambio);
 
@@ -424,6 +412,20 @@ public class PuntoVentaRecargas extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtPagoKeyTyped
+
+    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
+        char c = evt.getKeyChar();
+
+        // Permitir solo dígitos, la tecla de retroceso o la tecla de suprimir
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+            evt.consume(); // Consumir el evento si no es un dígito o tecla de control
+        }
+
+        // Limitar la longitud del texto a 10 caracteres
+        if (txtId.getText().length() >= 8) {
+            evt.consume(); // Consumir el evento si ya hay 10 caracteres
+        }
+    }//GEN-LAST:event_txtIdKeyTyped
 
     /**
      * @param args the command line arguments
