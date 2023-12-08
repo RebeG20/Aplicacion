@@ -65,26 +65,30 @@ public class DAO_MarcaArticulos
     
     public void selMA(DefaultTableModel t1)
     {
-        List<MarcaArticulos> marA=new ArrayList<>();
+        List<MostrarMA> marA=new ArrayList<>();
         try
         {
             conec=obCon.establecerConnection();
-            ps=conec.prepareStatement("CALL select_MA()");
+            ps=conec.prepareStatement("SELECT Marca_idMarca, NombreMarca, Articulos_idArticulos, NombreArt FROM articulos inner join (marca inner join marcaarticulos on idMarca=Marca_idMarca) on idArticulos=Articulos_idArticulos");
             rs=ps.executeQuery();
             while(rs.next())
             {
-                MarcaArticulos obMA=new MarcaArticulos();
+                MostrarMA obMA=new MostrarMA();
                 obMA.setIdMar(rs.getString(1));
-                obMA.setIdArt(rs.getString(2));
+                obMA.setMarca(rs.getString(2));
+                obMA.setIdArt(rs.getString(3));
+                obMA.setArt(rs.getString(4));
                 marA.add(obMA);
             }
             
             t1.setRowCount(0);
-            Object[] fila = new Object[2];
+            Object[] fila = new Object[4];
             for (int i = 0; i < marA.size(); i++) 
             {
                 fila[0] = marA.get(i).getIdMar();
-                fila[1] = marA.get(i).getIdArt();
+                fila[1] = marA.get(i).getMarca();
+                fila[2] = marA.get(i).getIdArt();
+                fila[3] = marA.get(i).getArt();
                 t1.addRow(fila);
             }
             }catch(Exception e)
