@@ -52,9 +52,9 @@ public class VentanaProveedores extends javax.swing.JFrame {
                 limpiarTabla();
                 mostrar();
             } else if (r == 0) {
-                JOptionPane.showMessageDialog(null, "Error al agregar el proveedor");
+                JOptionPane.showMessageDialog(null, "Error:Ya existe un proveedor con el mismo ID");
             } else {
-                JOptionPane.showMessageDialog(null, "Error: Ya existe un proveedor con el mismo ID");
+                JOptionPane.showMessageDialog(null, "Error al agregar el proveedor ");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese todos los datos");
