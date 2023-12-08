@@ -133,4 +133,49 @@ public class DAO_Ventas
         double cambio=cant-total;
         JOptionPane.showMessageDialog(null, "Cambio a entregar"+cambio);
     }
+    
+    public int comprobarExistencia(String art, String emp)
+    {
+        List<String> lArt=new ArrayList<String>();
+        List<String> lEmp=new ArrayList<String>();
+        
+        try
+        {
+            conectar=obConexion.establecerConnection();
+            ps=conectar.prepareStatement("SELECT idArticulos FROM articulos");
+            rs=ps.executeQuery();
+            while(rs.next())
+            {
+                lArt.add(rs.getString(1));
+            }
+        }
+        catch(Exception e)
+        {
+            
+        }
+        
+        try
+        {
+            conectar=obConexion.establecerConnection();
+            ps=conectar.prepareStatement("SELECT idEmpleados FROM empleados");
+            rs=ps.executeQuery();
+            while(rs.next())
+            {
+                lEmp.add(rs.getString(1));
+            }
+        }
+        catch(Exception e)
+        {
+            
+        }
+        
+        if(lArt.contains(art) && lEmp.contains(emp))
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }

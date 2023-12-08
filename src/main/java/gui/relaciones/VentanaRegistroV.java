@@ -283,27 +283,38 @@ public class VentanaRegistroV extends javax.swing.JFrame {
     }//GEN-LAST:event_efectivoActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        if (!id.getText().trim().isEmpty() && !cantidad.getText().trim().isEmpty() && !idEm.getText().trim().isEmpty()) {
-            // TODO add your handling code here:
-            LocalDate fechaActual = LocalDate.now();
+        if (!id.getText().trim().isEmpty() && !cantidad.getText().trim().isEmpty() && !idEm.getText().trim().isEmpty()) 
+        {
+            int r=dao.comprobarExistencia(id.getText(), idEm.getText());
+            if(r==1)
+            {
+                // TODO add your handling code here:
+                LocalDate fechaActual = LocalDate.now();
 
-            // Definir el formato deseado (yyyy-MM-dd)
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                // Definir el formato deseado (yyyy-MM-dd)
+                DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-            // Formatear la fecha según el formato deseado
-            String fechaFormateada = fechaActual.format(formato);
+                // Formatear la fecha según el formato deseado
+                String fechaFormateada = fechaActual.format(formato);
 
-            String idA = id.getText();
-            String idEmpleado = idEm.getText();
-            int cant = Integer.parseInt(cantidad.getText());
+                String idA = id.getText();
+                String idEmpleado = idEm.getText();
+                int cant = Integer.parseInt(cantidad.getText());
 
-            try {
-                dao.consultaSelect(idA, fechaFormateada, idEmpleado, cant);
-            } catch (SQLException ex) {
-                Logger.getLogger(VentanaRegistroV.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    dao.consultaSelect(idA, fechaFormateada, idEmpleado, cant);
+                } catch (SQLException ex) {
+                    Logger.getLogger(VentanaRegistroV.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                dao.mostrar(dtm);
             }
-            dao.mostrar(dtm);
-        } else {
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Error. No existe articulo y/o empleado asociados a los ID ingresados");
+            }
+        } 
+        else 
+        {
             JOptionPane.showMessageDialog(null, "Ingrese datos en todos los campos");
         }
 
